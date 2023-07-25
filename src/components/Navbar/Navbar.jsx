@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import Logo from "../../assets/logo-garage.png";
 import Menu from "../../assets/bars-solid.svg";
 
@@ -34,36 +35,26 @@ const Navbar = () => {
         navigate("/connexion");
     };
 
-    
-
     return (
-        <nav className="fixed top-0 z-[4] w-full h-[100px] text-yellow-02 backdrop-blur-sm">
-            <Link to="/">
-                <img className="w-24" src={Logo} alt="logo-garage" />
-            </Link>
+        <nav className="relative top-0 w-full h-[100px] text-yellow-02 font-bold md:fixed md:flex md:flex-row md:justify-between">
             {(toggleMenu || screenWidth > 768) && (
-                <ul className="flex flex-col items-center py-5 space-y-5 z-[3] list-none backdrop-blur-sm border border-b-black md:flex-row md:space-y-0 md:py-0 md:justify-around ">
-                    <li onClick={toggleItem}>
-                        <Link to="#mecanique">
-                            Mécanique
-                        </Link>
+                <ul className="w-full flex flex-col items-center py-5 space-y-5 z-[3] list-none backdrop-blur-sm md:flex-row md:space-y-0 md:py-0 md:justify-around ">
+                    <Link to="/" onClick={toggleItem}>
+                        <img className="w-24 " src={Logo} alt="logo-garage" />
+                    </Link>
+                    <li onClick={toggleItem} className="text-xl lg:text-2xl">
+                        <HashLink smooth to="/#mecanique">Mécanique</HashLink>
                     </li>
-                    <li onClick={toggleItem}>
-                        <Link to="#carrosserie">
-                            Carrosserie
-                        </Link>
+                    <li onClick={toggleItem} className="text-xl lg:text-2xl">
+                        <HashLink smooth to="/#carrosserie">Carrosserie</HashLink>
                     </li>
-                    <li onClick={toggleItem}>
-                        <Link to="#auto">
-                            Parc automobile
-                        </Link>
+                    <li onClick={toggleItem} className="text-xl lg:text-2xl">
+                        <HashLink smooth to="/#auto">Parc automobile</HashLink>
                     </li>
-                    <li onClick={toggleItem}>
-                        <Link to="/contact">
-                            Contact
-                        </Link>
+                    <li onClick={toggleItem} className="text-xl lg:text-2xl">
+                        <Link to="/contact">Contact</Link>
                     </li>
-                    <li>
+                    <li className="font-racer text-xl lg:text-2xl">
                         <button onClick={handleClick}>Accès Personnel</button>
                     </li>
                 </ul>
