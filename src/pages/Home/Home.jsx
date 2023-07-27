@@ -1,10 +1,13 @@
+import Slider from "../../components/Slider/Slider";
+
 const Home = () => {
     return (
         <>
-            <main className=" text-white mt-[160px] p-5">
-                <h1 className="text-center text-3xl text-yellow-02 underline mb-6 sm:text-5xl ">
+            <main className=" text-white max-w-[1400px] mx-auto mt-[160px] p-5">
+                <h1 className="text-center text-3xl text-yellow-02 underline mb-6 sm:text-5xl decoration-red-02">
                     Garage V<span className="text-red-02">.</span> Parrot
                 </h1>
+                <Slider />
                 <section id="mecanique">
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                     Expedita rerum ipsum itaque facilis ea voluptatum et

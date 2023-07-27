@@ -15,6 +15,7 @@ export default {
                 "blue-02": "#0a369d",
                 "yellow-02": "#ffc100",
             }
+            
         },
     },
     plugins: [],
