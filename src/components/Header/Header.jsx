@@ -21,7 +21,7 @@ const Header = () => {
     };
 
     return (
-        <header className="text-yellow-02 w-full fixed top-0 left-0">
+        <header className="text-yellow-02 w-full fixed z-40 top-0 left-0">
             <nav className="md:flex items-center justify-between bg-black-02">
                 <Link to="/" onClick={() => setOpen(false)}>
                     <img className="w-40" src={Logo} alt="logo-garage" />
