@@ -1,5 +1,5 @@
 // eslint-disable-next-line react/prop-types
-const Card = ({ img, title, content }) => {
+const Card = ({ img, title, content, button }) => {
     return (
         <>
             {/*<!-- Component: Horizontal card--> */}
@@ -25,7 +25,7 @@ const Card = ({ img, title, content }) => {
                     {/*  <!-- Action base sized link button --> */}
                     <div className="flex justify-end gap-2 mt-8 p-2 pt-0">
                         <button className="inline-flex h-10 items-center justify-center gap-2 justify-self-center whitespace-nowrap rounded px-5 text-sm font-bold tracking-wide text-yellow-02 bg-red-02 transition duration-300 hover:bg-black-02 hover:text-yellow-02 focus-visible:outline-none disabled:cursor-not-allowed disabled:text-emerald-300 disabled:shadow-none disabled:hover:bg-transparent">
-                            <span>Read more</span>
+                            <span>{button}</span>
                         </button>
                     </div>
                 </div>
