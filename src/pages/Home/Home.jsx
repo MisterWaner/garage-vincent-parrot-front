@@ -12,7 +12,7 @@ const Home = () => {
                 <section id="mecanique" className="py-6">
                     <Card
                         img="/images/mecanique.jpg"
-                        title="Mécanique et entretien"
+                        title="Mécanique et Entretien"
                         content="Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                     Expedita rerum ipsum itaque facilis ea voluptatum et
                     repellat! Nostrum culpa quibusdam eos quia dolor rem nihil
@@ -38,7 +38,7 @@ const Home = () => {
                 <section id="auto" className="py-6">
                     <Card
                         img="/images/vente.jpg"
-                        title="Nos voitures en stock"
+                        title="Les voitures en stock"
                         content="Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                     Expedita rerum ipsum itaque facilis ea voluptatum et
                     repellat! Nostrum culpa quibusdam eos quia dolor rem nihil
