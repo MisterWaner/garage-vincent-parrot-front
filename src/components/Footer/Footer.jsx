@@ -1,9 +1,15 @@
 
-
 const Footer = () => {
-  return (
-    <div>Footer</div>
-  )
-}
+    return (
+    <footer className="mt-auto">
+        <div className="bg-yellow-02">
+            <div className="grid grid-cols-2">
+                <div>Footer</div>
+                <div>Footer</div>
+            </div>
+        </div>
 
-export default Footer
+    </footer>);
+};
+
+export default Footer;
