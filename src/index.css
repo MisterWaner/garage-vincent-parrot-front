@@ -3,16 +3,17 @@
 @tailwind utilities;
 
 html, body, #root {
-    min-height: 100vh;
+   height: 100%;
 }
-#root {
-    display: flex;
-    flex-direction: column;
-}
+
 
 body {
     background-color: #020202;
     font-family: "Roboto", sans-serif; 
+}
+
+main {
+    margin-bottom: auto;
 }
 
 h1,

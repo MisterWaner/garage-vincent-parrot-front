@@ -5,7 +5,7 @@ import CarousselTestimonials from "../../components/CarousselTestimonials/Carous
 const Home = () => {
     return (
         <>
-            <main className=" text-white max-w-[1400px] mx-auto mt-[160px] p-5">
+            <main className="text-white max-w-[1400px] mx-auto mt-[160px] p-5">
                 <h1 className="text-center text-3xl text-yellow-02 underline mb-6 sm:text-5xl decoration-red-02">
                     Garage V<span className="text-red-02">.</span> Parrot
                 </h1>
@@ -35,7 +35,7 @@ const Home = () => {
                     architecto corporis ex modi impedit expedita quas quod
                     fugiat! Labore nemo rerum perferendis ducimus eveniet, porro
                     odio repellendus molestias amet dolorem alias."
-                    button="Nous contacter"
+                        button="Nous contacter"
                     />
                 </section>
                 <section id="auto" className="py-14">
@@ -49,11 +49,19 @@ const Home = () => {
                     architecto corporis ex modi impedit expedita quas quod
                     fugiat! Labore nemo rerum perferendis ducimus eveniet, porro
                     odio repellendus molestias amet dolorem alias."
-                    button="Voir les véhicules"
+                        button="Voir les véhicules"
                     />
                 </section>
                 <section id="avis" className="py-14">
+                    <h2 className="text-3xl font-medium text-yellow-02 mb-2">
+                        Ce qu&apos;ils pensent de nous
+                    </h2>
                     <CarousselTestimonials />
+                    <div className="flex justify-end p-2 gap-2">
+                        <button className="inline-flex h-10 items-center justify-center gap-2 justify-self-center whitespace-nowrap rounded px-5 text-sm font-bold tracking-wide text-red-02 bg-yellow-02 transition duration-300 hover:bg-red-02 hover:text-yellow-02 focus-visible:outline-none disabled:cursor-not-allowed disabled:text-emerald-300 disabled:shadow-none disabled:hover:bg-transparent">
+                            Laisser un avis
+                        </button>
+                    </div>
                 </section>
             </main>
         </>

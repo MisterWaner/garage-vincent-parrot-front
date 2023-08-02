@@ -37,7 +37,7 @@ const Header = () => {
                     {Links.map((item) => (
                         <li
                             key={item.name}
-                            className="text-lg lg:text-xl hover:text-red-02 duration-300"
+                            className="text-lg lg:text-xl hover:text-white duration-300"
                             onClick={toggleMenu}
                         >
                             <HashLink to={item.link} smooth>
