@@ -1,9 +1,12 @@
+import { Link } from "react-router-dom";    
+
+
 // eslint-disable-next-line react/prop-types
-const Card = ({ img, title, content, button }) => {
+const Card = ({ img, title, content, button, url }) => {
     return (
         <>
             {/*<!-- Component: Horizontal card--> */}
-            <div className="flex flex-col overflow-hidden bg-red-02 rounded text-black-02 sm:flex-row">
+            <div className="flex flex-col overflow-hidden bg-yellow-02 rounded text-black-02 sm:flex-row">
                 {/*  <!-- Image --> */}
                 <figure className="flex-1">
                     <img
@@ -24,8 +27,8 @@ const Card = ({ img, title, content, button }) => {
                     <p className="sm:grow sm:justify-items-center">{content}</p>
                     {/*  <!-- Action base sized link button --> */}
                     <div className="flex justify-end gap-2 mt-8 p-2 pt-0">
-                        <button className="inline-flex h-10 items-center justify-center gap-2 justify-self-center whitespace-nowrap rounded px-5 text-sm font-bold tracking-wide text-red-02 bg-yellow-02 transition duration-300 hover:bg-black-02 hover:text-red-02 focus-visible:outline-none disabled:cursor-not-allowed disabled:text-emerald-300 disabled:shadow-none disabled:hover:bg-transparent">
-                            <span>{button}</span>
+                        <button className="inline-flex h-10 items-center justify-center gap-2 justify-self-center whitespace-nowrap rounded px-5 text-sm font-bold tracking-wide text-yellow-02 bg-red-02 transition duration-300 hover:bg-black-02 hover:text-yellow-02 focus-visible:outline-none disabled:cursor-not-allowed disabled:text-emerald-300 disabled:shadow-none disabled:hover:bg-transparent">
+                            <Link to={url}>{button}</Link>
                         </button>
                     </div>
                 </div>

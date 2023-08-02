@@ -22,6 +22,7 @@ const Home = () => {
                     fugiat! Labore nemo rerum perferendis ducimus eveniet, porro
                     odio repellendus molestias amet dolorem alias."
                         button="Nous contacter"
+                        url="/contact"
                     />
                 </section>
                 <section id="carrosserie" className="py-14">
@@ -36,6 +37,7 @@ const Home = () => {
                     fugiat! Labore nemo rerum perferendis ducimus eveniet, porro
                     odio repellendus molestias amet dolorem alias."
                         button="Nous contacter"
+                        url="/contact"
                     />
                 </section>
                 <section id="auto" className="py-14">
@@ -50,6 +52,7 @@ const Home = () => {
                     fugiat! Labore nemo rerum perferendis ducimus eveniet, porro
                     odio repellendus molestias amet dolorem alias."
                         button="Voir les véhicules"
+                        url="/cars"
                     />
                 </section>
                 <section id="avis" className="py-14">

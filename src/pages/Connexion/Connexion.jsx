@@ -39,7 +39,7 @@ const Connexion = () => {
                         Mot de passe oublié ?{" "}
                         <Link
                             className="no-underline text-yellow-02 font-bold hover:underline hover:decoration-red-02"
-                            to="/inscription"
+                            to=""
                         >
                             cliquez-ici
                         </Link>
