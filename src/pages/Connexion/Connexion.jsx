@@ -1,6 +1,33 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { connectionSchema } from "../../Validations/connectionValidation.js";
+import Axios from "../../api/axios.js";
 
 const Connexion = () => {
+    const navigate = useNavigate();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        resolver: yupResolver(connectionSchema),
+        mode: "onTouched",
+    });
+
+    const onSubmit = async(data, event) => {
+        event.preventDefault();
+        console.log(data);
+
+        try {
+            const res = await Axios.post()
+            console.log(res);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
     return (
         <>
             <main className="max-w-[1400px] mx-auto mt-[160px] p-5 text-white">
@@ -9,6 +36,7 @@ const Connexion = () => {
                 </h1>
                 <section className="w-1/2 mx-auto h-full mt-6 mb-12 lg:w-[500px]">
                     <form
+                        onSubmit={handleSubmit(onSubmit)}
                         action=""
                         className="w-full h-full flex flex-col items-center"
                     >
