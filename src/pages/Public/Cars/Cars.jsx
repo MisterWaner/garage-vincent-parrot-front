@@ -1,4 +1,4 @@
-import CarsGallery from "../../components/CarsGallery/CarsGallery";
+import CarsGallery from "../../../components/CarsGallery/CarsGallery";
 
 const Cars = () => {
     return (

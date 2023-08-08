@@ -1,8 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { connectionSchema } from "../../Validations/connectionValidation.js";
-import Axios from "../../api/axios.js";
+import { connectionSchema } from "../../../Validations/connectionValidation.js";
+import Axios from "../../../api/axios.js";
+
+const LOGIN_URL = "";
 
 const Connexion = () => {
     const navigate = useNavigate();
@@ -15,18 +17,23 @@ const Connexion = () => {
         mode: "onTouched",
     });
 
-    const onSubmit = async(data, event) => {
+    const onSubmit = async (data, event) => {
         event.preventDefault();
         console.log(data);
 
         try {
-            const res = await Axios.post()
+            const res = await Axios.post(LOGIN_URL, data);
+            console.log(res);
+            const {roleId, token, id} = res.data;
+
+
+
+
             console.log(res);
         } catch (error) {
             console.log(error);
         }
-    }
-
+    };
 
     return (
         <>
@@ -44,15 +51,37 @@ const Connexion = () => {
                             <label htmlFor="">E-mail</label>
                             <input
                                 type="email"
+                                name="email"
+                                id="email"
+                                autoComplete="off"
                                 className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                                {...register("email")}
                             />
+                            {errors.email ? (
+                                <p className="error-msg text-center">
+                                    {errors.email?.message}
+                                </p>
+                            ) : (
+                                ""
+                            )}
                         </div>
                         <div className="flex flex-col mb-4 w-full">
                             <label htmlFor="">Mot de passe</label>
                             <input
                                 type="password"
+                                name="password"
+                                id="password"
+                                autoComplete="off"
                                 className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                                {...register("password")}
                             />
+                            {errors.password ? (
+                                <p className="error-msg text-center">
+                                    {errors.password?.message}
+                                </p>
+                            ) : (
+                                ""
+                            )}
                         </div>
                         <div className="flex justify-end w-full mt-4">
                             <button

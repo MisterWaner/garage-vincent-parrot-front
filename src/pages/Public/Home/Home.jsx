@@ -1,6 +1,6 @@
-import Slider from "../../components/Slider/Slider";
-import Card from "../../components/Card/Card";
-import CarousselTestimonials from "../../components/CarousselTestimonials/CarousselTestimonials";
+import Slider from "../../../components/Slider/Slider";
+import Card from "../../../components/Card/Card";
+import CarousselTestimonials from "../../../components/CarousselTestimonials/CarousselTestimonials";
 
 const Home = () => {
     return (
