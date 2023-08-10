@@ -7,7 +7,6 @@ import {
     Cog6ToothIcon,
     UserGroupIcon,
     TruckIcon,
-    AdjustmentsHorizontalIcon,
     ChatBubbleOvalLeftEllipsisIcon,
     XMarkIcon,
     Bars3Icon,
@@ -15,30 +14,25 @@ import {
 
 const SideNav = () => {
     const Links = [
-        { name: "Mail", link: "./mails", icon: <InboxIcon /> },
+        { name: "Mail", link: "/admin/mails", icon: <InboxIcon /> },
         {
             name: "Gestion globale",
-            link: "./gestion-globale",
+            link: "/admin/globals",
             icon: <Cog6ToothIcon />,
         },
         {
             name: "Gestion des employés",
-            link: "./gestion-employes",
+            link: "/admin/employees",
             icon: <UserGroupIcon />,
         },
         {
             name: "Gestion des vehicules",
-            link: "./gestion-vehicules",
+            link: "/admin/car-park",
             icon: <TruckIcon />,
         },
         {
-            name: "Gestion des services",
-            link: "./gestion-services",
-            icon: <AdjustmentsHorizontalIcon />,
-        },
-        {
             name: "Gestion des témoignages",
-            link: "./gestion-temoignages",
+            link: "/admin/reviews",
             icon: <ChatBubbleOvalLeftEllipsisIcon />,
         },
     ];
@@ -82,14 +76,10 @@ const SideNav = () => {
                             className="flex items-center justify-between w-full gap-4 text-lg lg-text-xl hover:text-white duration-300"
                             key={item.name}
                         >
-                            <Link
-                                className="flex items-center justify-between gap-4 w-full"
-                                to={item.link}
-                                onClick={toggleSideNav}
-                            >
+                            <Link to={item.link} onClick={toggleSideNav}>
                                 {item.name}
-                                <div className="w-9 pl-2">{item.icon}</div>
                             </Link>
+                            <div className="w-9 pl-2" onClick={toggleSideNav}>{item.icon}</div>
                         </li>
                     ))}
                 </ul>

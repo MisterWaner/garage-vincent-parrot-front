@@ -1,8 +1,8 @@
-const Dashboard = () => {
+const GlobalSettings = () => {
     return (
         <main className="ml-[80px] text-white">
             <h1 className="text-center text-3xl text-yellow-02 underline my-6 sm:text-5xl decoration-red-02">
-                Dashboard
+                Gestion globale
             </h1>
             <section>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -17,4 +17,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default GlobalSettings;
