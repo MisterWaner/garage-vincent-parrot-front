@@ -5,8 +5,8 @@ import CarousselTestimonials from "../../../components/CarousselTestimonials/Car
 const Home = () => {
     return (
         <>
-            <main className="text-white max-w-[1400px] mx-auto mt-[160px] p-5">
-                <h1 className="text-center text-3xl text-yellow-02 underline mb-6 sm:text-5xl decoration-red-02">
+            <main className="text-white container mx-auto mt-[160px] p-5">
+                <h1 className="text-center text-2xl text-yellow-02 underline my-6 sm:text-3xl lg:text-5xl decoration-red-02">
                     Garage V<span className="text-red-02">.</span> Parrot
                 </h1>
                 <Slider />

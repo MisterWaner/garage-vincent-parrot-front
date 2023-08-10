@@ -37,8 +37,8 @@ const Connexion = () => {
 
     return (
         <>
-            <main className="max-w-[1400px] mx-auto mt-[160px] p-5 text-white">
-                <h1 className="text-center text-3xl text-yellow-02 underline mb-6 sm:text-5xl decoration-red-02">
+            <main className="container mx-auto mt-[160px] p-5 text-white">
+                <h1 className="text-center text-2xl text-yellow-02 underline my-6 sm:text-3xl lg:text-5xl decoration-red-02">
                     Connexion
                 </h1>
                 <section className="w-1/2 mx-auto h-full mt-6 mb-12 lg:w-[500px]">
