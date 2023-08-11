@@ -1,6 +1,6 @@
 const TestimonialsSettings = () => {
     return (
-        <main className="container mx-auto p-5 text-white">
+        <main className="max-w-[1440px] mx-[100px] p-5 text-white">
             <h1 className="text-center text-2xl text-yellow-02 underline my-6 sm:text-3xl lg:text-5xl decoration-red-02">
                 Gestion des commentaires
             </h1>
