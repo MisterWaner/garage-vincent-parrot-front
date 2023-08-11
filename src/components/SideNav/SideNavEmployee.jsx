@@ -4,35 +4,29 @@ import { useState } from "react";
 import {
     ArrowRightOnRectangleIcon,
     InboxIcon,
-    Cog6ToothIcon,
-    UserGroupIcon,
+    UserCircleIcon,
     TruckIcon,
     ChatBubbleOvalLeftEllipsisIcon,
     XMarkIcon,
     Bars3Icon,
 } from "@heroicons/react/24/solid";
 
-const SideNav = () => {
+const SideNavEmployee = () => {
     const Links = [
-        { name: "Mail", link: "/admin/mails", icon: <InboxIcon /> },
         {
-            name: "Gestion globale",
-            link: "/admin/globals",
-            icon: <Cog6ToothIcon />,
+            name: "Informations personnelles",
+            link: "/account/:id/personal-settings",
+            icon: <UserCircleIcon />,
         },
-        {
-            name: "Gestion des employés",
-            link: "/admin/employees",
-            icon: <UserGroupIcon />,
-        },
+        { name: "Mail", link: "/account/:id/mails", icon: <InboxIcon /> },
         {
             name: "Gestion des vehicules",
-            link: "/admin/car-park",
+            link: "/account/:id/car-park",
             icon: <TruckIcon />,
         },
         {
-            name: "Gestion des témoignages",
-            link: "/admin/reviews",
+            name: "Gestion des commentaires",
+            link: "/account/:id/reviews",
             icon: <ChatBubbleOvalLeftEllipsisIcon />,
         },
     ];
@@ -71,21 +65,34 @@ const SideNav = () => {
                         Déconnexion
                         <ArrowRightOnRectangleIcon className="w-9 pl-2" />
                     </Link>
-                    {Links.map((item) => (
-                        <li
-                            className="flex items-center justify-between w-full gap-4 text-lg lg-text-xl hover:text-white duration-300"
-                            key={item.name}
-                        >
-                            <Link to={item.link} onClick={toggleSideNav}>
-                                {item.name}
-                            </Link>
-                            <div className="w-9 pl-2" onClick={toggleSideNav}>{item.icon}</div>
-                        </li>
-                    ))}
+                    {Links.map(
+                        (item) => (
+                            console.log(Links),
+                            (
+                                <li
+                                    className="flex items-center justify-between w-full gap-4 text-lg lg-text-xl hover:text-white duration-300"
+                                    key={item.name}
+                                >
+                                    <Link
+                                        to={item.link}
+                                        onClick={toggleSideNav}
+                                    >
+                                        {item.name}
+                                    </Link>
+                                    <div
+                                        className="w-10 pl-2"
+                                        onClick={toggleSideNav}
+                                    >
+                                        {item.icon}
+                                    </div>
+                                </li>
+                            )
+                        )
+                    )}
                 </ul>
             </nav>
         </aside>
     );
 };
 
-export default SideNav;
+export default SideNavEmployee;

@@ -1,8 +1,8 @@
-const Account = () => {
+const MailEmployee = () => {
     return (
         <main className="max-w-[1440px] mx-[100px] p-5 text-white">
             <h1 className="text-center text-2xl text-yellow-02 underline my-6 sm:text-3xl lg:text-5xl decoration-red-02">
-                Bienvenue sur votre compte
+                Gestion des messages
             </h1>
             <section>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -17,4 +17,4 @@ const Account = () => {
     );
 };
 
-export default Account;
+export default MailEmployee;
