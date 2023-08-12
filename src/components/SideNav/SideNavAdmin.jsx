@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import {
@@ -15,27 +15,31 @@ import {
 
 const SideNavAdmin = () => {
     const Links = [
-        { name: "Dashboard", link: "/admin", icon: <PresentationChartBarIcon/> },
-        { name: "Mail", link: "/admin/mails", icon: <InboxIcon/> },
+        {
+            name: "Dashboard",
+            link: "/admin",
+            icon: <PresentationChartBarIcon />,
+        },
+        { name: "Mail", link: "/admin/mails", icon: <InboxIcon /> },
         {
             name: "Gestion globale",
             link: "/admin/globals",
-            icon: <Cog6ToothIcon/> ,
+            icon: <Cog6ToothIcon />,
         },
         {
             name: "Gestion des employés",
             link: "/admin/employees",
-            icon: <UserGroupIcon/> ,
+            icon: <UserGroupIcon />,
         },
         {
             name: "Gestion des vehicules",
             link: "/admin/car-park",
-            icon:< TruckIcon />,
+            icon: <TruckIcon />,
         },
         {
             name: "Gestion des témoignages",
             link: "/admin/reviews",
-            icon: <ChatBubbleOvalLeftEllipsisIcon/> ,
+            icon: <ChatBubbleOvalLeftEllipsisIcon />,
         },
     ];
 
@@ -68,23 +72,37 @@ const SideNavAdmin = () => {
                 >
                     <Link
                         onClick={handleSignOut}
-                        className="flex items-center justify-between w-full gap-4 text-lg lg-text-xl hover:text-white duration-300 mt-6"
+                        className="flex items-center justify-between w-full gap-4 text-lg lg-text-xl hover:text-white duration-300 mt-6 "
                     >
                         Déconnexion
                         <ArrowRightOnRectangleIcon className="w-9 pl-2" />
                     </Link>
-                    {Links.map((item) => (
-                        console.log(Links),
-                        <li
-                            className="flex items-center justify-between w-full gap-4 text-lg lg-text-xl hover:text-white duration-300"
-                            key={item.name}
-                        >
-                            <Link to={item.link} onClick={toggleSideNav}>
-                                {item.name}
-                            </Link>
-                            <div className="w-9 pl-2" onClick={toggleSideNav}>{item.icon}</div>
-                        </li>
-                    ))}
+                    {Links.map(
+                        (item) => (
+                            console.log(Links),
+                            (
+                                <li
+                                    key={item.name}
+                                    className="w-full"
+                                >
+                                    <NavLink
+                                        className="flex items-center justify-between gap-4 text-lg lg-text-xl hover:text-white duration-300"
+                                        style={({ isActive }) => ({
+                                            color: isActive ? "blue" : "",
+                                        })}
+                                        to={item.link}
+                                    >
+                                        <span onClick={toggleSideNav}>
+                                            {item.name}
+                                        </span>
+                                        <div className="w-9 pl-2">
+                                            {item.icon}
+                                        </div>
+                                    </NavLink>
+                                </li>
+                            )
+                        )
+                    )}
                 </ul>
             </nav>
         </aside>

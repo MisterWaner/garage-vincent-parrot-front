@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import {
@@ -14,7 +14,11 @@ import {
 
 const SideNavEmployee = () => {
     const Links = [
-        {name: "Dashboard", link: "/account/:id", icon: <PresentationChartBarIcon />},
+        {
+            name: "Dashboard",
+            link: "/account/:id",
+            icon: <PresentationChartBarIcon />,
+        },
         {
             name: "Informations personnelles",
             link: "/account/:id/personal-settings",
@@ -72,21 +76,23 @@ const SideNavEmployee = () => {
                             console.log(Links),
                             (
                                 <li
-                                    className="flex items-center justify-between w-full gap-4 text-lg lg-text-xl hover:text-white duration-300"
+                                    className="w-full"
                                     key={item.name}
                                 >
-                                    <Link
+                                    <NavLink
+                                        className="flex items-center justify-between w-full gap-4 text-lg lg-text-xl hover:text-white duration-300"
+                                        style={({ isActive }) => ({
+                                            color: isActive ? "blue" : "",
+                                        })}
                                         to={item.link}
-                                        onClick={toggleSideNav}
                                     >
-                                        {item.name}
-                                    </Link>
-                                    <div
-                                        className="w-10 pl-2"
-                                        onClick={toggleSideNav}
-                                    >
-                                        {item.icon}
-                                    </div>
+                                        <span onClick={toggleSideNav}>
+                                            {item.name}
+                                        </span>
+                                        <div className="w-10 pl-2">
+                                            {item.icon}
+                                        </div>
+                                    </NavLink>
                                 </li>
                             )
                         )
