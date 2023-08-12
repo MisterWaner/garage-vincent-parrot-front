@@ -7,6 +7,7 @@ import {
     Cog6ToothIcon,
     UserGroupIcon,
     TruckIcon,
+    PresentationChartBarIcon,
     ChatBubbleOvalLeftEllipsisIcon,
     XMarkIcon,
     Bars3Icon,
@@ -14,6 +15,7 @@ import {
 
 const SideNavAdmin = () => {
     const Links = [
+        { name: "Dashboard", link: "/admin", icon: <PresentationChartBarIcon/> },
         { name: "Mail", link: "/admin/mails", icon: <InboxIcon/> },
         {
             name: "Gestion globale",

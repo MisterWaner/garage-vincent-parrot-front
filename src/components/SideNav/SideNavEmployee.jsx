@@ -6,6 +6,7 @@ import {
     InboxIcon,
     UserCircleIcon,
     TruckIcon,
+    PresentationChartBarIcon,
     ChatBubbleOvalLeftEllipsisIcon,
     XMarkIcon,
     Bars3Icon,
@@ -13,6 +14,7 @@ import {
 
 const SideNavEmployee = () => {
     const Links = [
+        {name: "Dashboard", link: "/account/:id", icon: <PresentationChartBarIcon />},
         {
             name: "Informations personnelles",
             link: "/account/:id/personal-settings",
