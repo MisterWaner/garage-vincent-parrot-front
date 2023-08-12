@@ -15,7 +15,6 @@ import Cars from "./pages/Public/Cars/Cars";
 import Dashboard from "./pages/Auth/Admin/Dashboard/Dashboard";
 import TestimonialsSettings from "./pages/Auth/Admin/TestimonialsSettings/TestimonialsSettings";
 import CarsSettings from "./pages/Auth/Admin/CarsSettings/CarsSettings";
-import CarsSettingsbyEmployee from "./pages/Auth/Employee/CarsSettingsbyEmployee/CarsSettingsbyEmployee";
 import EmployeesSettings from "./pages/Auth/Admin/EmployeesSettings/EmployeesSettings";
 import GlobalSettings from "./pages/Auth/Admin/GlobalSettings/GlobalSettings";
 import Mail from "./pages/Auth/Admin/Mail/Mail";
@@ -51,10 +50,9 @@ const App = () => {
                 <Route path="/account/:id" element={<AccountLayout />}>
                     <Route index element={<Account />} />
                     <Route path="personal-settings" element={<PersonnalSettings />} />
-                    <Route path="car-park" element={<CarsSettingsbyEmployee />} />
+                    <Route path="car-park" element={<CarsSettings />} />
                     <Route path="mails" element={<MailEmployee />} />
                     <Route path="reviews" element={<ReviewsSettings />} />
-                    
                 </Route>
             </>
         )
