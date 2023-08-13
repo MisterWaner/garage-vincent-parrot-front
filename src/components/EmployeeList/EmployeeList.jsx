@@ -1,7 +1,19 @@
+import { useState } from "react";
+
+import EmployeeModal from "../Modals/EmployeeModal";
 import Button from "../Button/Button";
 import employees from "./EmployeeData";
 
 const EmployeeList = () => {
+    const [selectedEmployee, setSelectedEmployee] = useState(null);
+
+    const openModal = (employee) => {
+        setSelectedEmployee(employee);
+    };
+
+    const closeModal = () => {
+        setSelectedEmployee(null);
+    };
     return (
         <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-red-02 bg-yellow-02">
@@ -25,7 +37,12 @@ const EmployeeList = () => {
                 <tbody className="bg-white divide-y divide-red-02">
                     {employees.map((employee) => (
                         <tr key={employee.id} className="hover:bg-red-02/50">
-                            <td className="py-4 px-6 whitespace-nowrap"><Button name="Voir la fiche" fn={() => {}} /></td>
+                            <td className="py-4 px-6 whitespace-nowrap">
+                                <Button
+                                    name="Voir la fiche"
+                                    fn={() => openModal(employee)}
+                                />
+                            </td>
                             <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">
                                 {employee.firstname}
                             </td>
@@ -38,12 +55,16 @@ const EmployeeList = () => {
                             <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">
                                 {employee.service}
                             </td>
-                            
-                            
                         </tr>
                     ))}
                 </tbody>
             </table>
+            {selectedEmployee && (
+                <EmployeeModal
+                    employee={selectedEmployee}
+                    onClose={closeModal}
+                />
+            )}
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "../Button/Button";
 import cars from "./CarData";
-import CarModal from "../CarModal/CarModal";
+import CarModal from "../Modals/CarModal";
 
 const CarList = () => {
     const [selectedCar, setSelectedCar] = useState(null);
