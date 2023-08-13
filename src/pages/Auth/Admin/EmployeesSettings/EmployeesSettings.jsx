@@ -8,12 +8,11 @@ const EmployeesSettings = () => {
             </h1>
             <section className="mt-10">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti laborum vel sit suscipit iusto magnam eius fuga obcaecati dolorum optio.</p>
-                <div className="mt-4 grid lg:grid-cols-2 gap-2 lg:col-span-2 ">
+                <div className="mt-4 grid lg:grid-cols-2 gap-2">
                     <Button name={"Ajouter un employé"} fn={() => {}} />
                     <Button name={"Supprimer un employé"} fn={() => {}} />
                     <Button name={"Modifier un employé"} fn={() => {}} />
                     <Button name={"Chercher un employé"} fn={() => {}} />
-                    <Button name={"Voir tous les employés"} fn={() => {}} />
                 </div>
             </section>
             <section className=" mt-10">

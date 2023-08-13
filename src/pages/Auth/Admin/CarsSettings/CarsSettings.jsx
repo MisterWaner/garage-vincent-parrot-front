@@ -10,12 +10,11 @@ const CarsSettings = () => {
             </h1>
             <section className="mt-10">
                 <p>Il y a actuellement X véhicules en stock.</p>
-                <div className="mt-4 grid lg:grid-cols-2 gap-2 lg:col-span-2 ">
+                <div className="mt-4 grid lg:grid-cols-2 gap-2 ">
                     <Button name={"Ajouter un véhicule"} fn={() => {}} />
                     <Button name={"Supprimer un véhicule"} fn={() => {}} />
                     <Button name={"Modifier un véhicule"} fn={() => {}} />
                     <Button name={"Chercher un véhicule"} fn={() => {}} />
-                    <Button name={"Voir tous les véhicules"} fn={() => {}} />
                 </div>
             </section>
             <section className=" mt-10">
