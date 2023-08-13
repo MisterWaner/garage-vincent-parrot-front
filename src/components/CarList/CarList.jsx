@@ -7,10 +7,10 @@ const CarList = () => {
                 <thead>
                     <tr>
                         <th className="py-3 px-6 text-left text-lg font-medium text-black-02 tracking-wider font-racer">
-                            Image
+                            Nom
                         </th>
                         <th className="py-3 px-6 text-left text-lg font-medium text-black-02 tracking-wider font-racer">
-                            Nom
+                            Image
                         </th>
                         <th className="py-3 px-6 text-left text-lg font-medium text-black-02 tracking-wider font-racer">
                             Marque
@@ -29,12 +29,12 @@ const CarList = () => {
                 <tbody className="bg-white divide-y divide-red-02">
                     {cars.map((car) => (
                         <tr key={car.id}>
-                            <td className="py-4 px-6 whitespace-nowrap"><img src={car.image} alt="" className="w-24" /></td>
-                            <td className="py-4 px-6 whitespace-nowrap text-black-02">{car.name}</td>
-                            <td className="py-4 px-6 whitespace-nowrap text-black-02">{car.brand}</td>
-                            <td className="py-4 px-6 whitespace-nowrap text-black-02">{car.model}</td>
-                            <td className="py-4 px-6 whitespace-nowrap text-black-02">{car.year}</td>
-                            <td className="py-4 px-6 whitespace-nowrap text-black-02">{car.color}</td>
+                            <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">{car.name}</td>
+                            <td className="py-4 px-6 whitespace-nowrap"><img src={car.image} alt="" className="w-32 rounded-lg" /></td>
+                            <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">{car.brand}</td>
+                            <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">{car.model}</td>
+                            <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">{car.year}</td>
+                            <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">{car.color}</td>
                         </tr>
                     ))}
                 </tbody>

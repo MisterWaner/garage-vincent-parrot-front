@@ -4,13 +4,13 @@ import Button from "../../../../components/Button/Button";
 import CarList from "../../../../components/CarList/CarList";
 const CarsSettings = () => {
     return (
-        <main className="max-w-[1440px] mx-[100px] p-5 text-white">
+        <main className="container mx-auto px-24 lg:px-16 py-5 text-white">
             <h1 className="text-center text-2xl text-yellow-02 underline my-6 sm:text-3xl lg:text-5xl decoration-red-02">
                 Gestion des véhicules
             </h1>
-            <section className="lg:ml-[100px] mt-10">
+            <section className="mt-10">
                 <p>Il y a actuellement X véhicules en stock.</p>
-                <div className="mt-4 grid md:grid-cols-2">
+                <div className="mt-4 grid lg:grid-cols-2 gap-2 lg:col-span-2 ">
                     <Button name={"Ajouter un véhicule"} fn={() => {}} />
                     <Button name={"Supprimer un véhicule"} fn={() => {}} />
                     <Button name={"Modifier un véhicule"} fn={() => {}} />
@@ -18,7 +18,7 @@ const CarsSettings = () => {
                     <Button name={"Voir tous les véhicules"} fn={() => {}} />
                 </div>
             </section>
-            <section className="lg:ml-[100px] mt-10">
+            <section className=" mt-10">
                 <CarList />
             </section>
         </main>
