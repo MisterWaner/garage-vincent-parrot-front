@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Button from "../../../components/Button/Button.jsx";
 import { connectionSchema } from "../../../Validations/connectionValidation.js";
 import Axios from "../../../api/axios.js";
 
@@ -84,12 +85,7 @@ const Connexion = () => {
                             )}
                         </div>
                         <div className="flex justify-end w-full mt-4">
-                            <button
-                                type="submit"
-                                className="inline-flex h-10 items-center justify-center gap-2 justify-self-center whitespace-nowrap rounded px-5 text-sm font-bold tracking-wide text-red-02 bg-yellow-02 transition duration-300 hover:bg-red-02 hover:text-yellow-02 focus-visible:outline-none disabled:cursor-not-allowed disabled:text-emerald-300 disabled:shadow-none disabled:hover:bg-transparent"
-                            >
-                                Se connecter
-                            </button>
+                            <Button name={"Se connecter"}  />
                         </div>
                     </form>
                     <p className="text-center text-sm mt-4">
