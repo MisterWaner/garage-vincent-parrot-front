@@ -7,6 +7,7 @@ const Contact = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm({
         resolver: yupResolver(contactSchema),
@@ -16,6 +17,7 @@ const Contact = () => {
     const onSubmit = async (data, event) => {
         event.preventDefault();
         console.log(data);
+        reset();
     };
 
     return (

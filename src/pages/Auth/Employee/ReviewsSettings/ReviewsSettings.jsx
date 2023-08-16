@@ -1,6 +1,6 @@
 const ReviewsSettings = () => {
     return (
-        <main className="max-w-[1440px] mx-[100px] p-5 text-white">
+        <main className="container mx-auto px-24 lg:px-16 py-5 text-white">
             <h1 className="text-center text-2xl text-yellow-02 underline my-6 sm:text-3xl lg:text-5xl decoration-red-02">
                 Gestions des commentaires
             </h1>
