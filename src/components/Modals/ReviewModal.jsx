@@ -1,11 +1,30 @@
 import Button from "../Button/Button";
 import { XCircleIcon } from "@heroicons/react/24/solid";
+import { reviewSchema } from "../../Validations/reviewValidation.js";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 // eslint-disable-next-line react/prop-types
-const ReviewModal = ({ onClose, toggleModal }) => {
+const ReviewModal = ({ toggleModal }) => {
+
+    const { register, reset, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(reviewSchema),
+        mode: "onSubmit",
+    });
+
+    const onSubmit = async (data, event) => {
+        event.preventDefault();
+        console.log(data);
+
+        reset();
+        toggleModal()
+    }
+
+
+
     return (
-        <div className="fixed inset-0 flex items-center justify-center mt-10">
-            <div className="bg-white p-8 rounded-lg w-1/3 text-black-02">
+        <div className="fixed inset-0 flex items-center justify-center mt-20">
+            <div className="bg-white p-8 rounded-lg w-2/3 text-black-02">
                 <div className="w-full flex justify-end">
                     <button onClick={toggleModal} className="w-10 text-red-02">
                         <XCircleIcon />
@@ -15,38 +34,78 @@ const ReviewModal = ({ onClose, toggleModal }) => {
                 <h2 className="text-xl text-center font-bold mb-4">
                     Donnez nous votre avis
                 </h2>
-                <form className="w-full h-full flex flex-col items-center">
+                <form onSubmit={handleSubmit(onSubmit)} className="w-full grid grid-cols-2 gap-4">
                     <div className="flex flex-col mb-4 w-full">
-                        <label htmlFor="">Nom</label>
+                        <label htmlFor="name">Nom</label>
                         <input
+                            name="name"
+                            id="name"
                             type="text"
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                            {...register("name")}
                         />
+                        {errors.name ? (
+                            <p className="error-msg text-center">
+                                {errors.name?.message}
+                            </p>
+                        ) : (
+                            ""
+                        )}
                     </div>
                     <div className="flex flex-col mb-4 w-full">
-                        <label htmlFor="">Prénom</label>
+                        <label htmlFor="firstname">Prénom</label>
                         <input
+                            name="firstname"
+                            id="firstname"
                             type="text"
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                            {...register("firstname")}
                         />
+                        {errors.firstname ? (
+                            <p className="error-msg text-center">
+                                {errors.firstname?.message}
+                            </p>
+                        ) : (
+                            ""
+                        )}
                     </div>
                     <div className="flex flex-col mb-4 w-full">
-                        <label htmlFor="">Email</label>
+                        <label htmlFor="email">Email</label>
                         <input
-                            type="text"
+                            name="email"
+                            type="email"
+                            id="email"
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                            {...register("email")}
                         />
+                        {errors.email ? (
+                            <p className="error-msg text-center">
+                                {errors.email?.message}
+                            </p>
+                        ) : (
+                            ""
+                        )}
                     </div>
                     <div className="flex flex-col mb-4 w-full">
-                        <label htmlFor="">Message</label>
+                        <label htmlFor="message">Message</label>
                         <textarea
+                            name="message"
+                            id="message"
                             cols="30"
                             rows="5"
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                            {...register("message")}
                         />
+                        {errors.message ? (
+                            <p className="error-msg text-center">
+                                {errors.message?.message}
+                            </p>
+                        ) : (
+                            ""
+                        )}
                     </div>
-                    <div className="flex flex-col mb-4 w-full">
-                        <Button name="Envoyer" fn={onClose} />
+                    <div className="flex flex-col mb-4 w-full col-span-2">
+                        <Button name="Envoyer"/>
                     </div>
                 </form>
             </div>

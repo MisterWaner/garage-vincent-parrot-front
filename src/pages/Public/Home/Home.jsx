@@ -12,9 +12,7 @@ const Home = () => {
         setShowModal(!showModal);
     };
 
-    const sendReview = () => {
-        toggleModal();
-    }
+    
 
     return (
         <>
@@ -81,7 +79,7 @@ const Home = () => {
                             Laisser un avis
                         </button>
                     </div>
-                    {showModal && <ReviewModal onClose={sendReview} toggleModal={toggleModal} />}
+                    {showModal && <ReviewModal toggleModal={toggleModal} />}
                 </section>
             </main>
         </>
