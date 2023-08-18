@@ -3,9 +3,13 @@ import Button from "../../../../components/Button/Button";
 import EmployeeList from "../../../../components/EmployeeList/EmployeeList";
 import AddEmployee from "../../../../components/Modals/AddEmployee";
 import FindEmployee from "../../../../components/Modals/FindEmployee";
+import employees from "../../../../components/EmployeeList/EmployeeData";
 
 const EmployeesSettings = () => {
     const [modalType, setModalType] = useState(null);
+
+    const [searchResults, setSearchResults] = useState([]);
+    const [selectedEmployee, setSelectedEmployee] = useState(null);
 
     const openModal = (type) => {
         setModalType(type);
@@ -14,6 +18,22 @@ const EmployeesSettings = () => {
     const closeModal = () => {
         setModalType(null);
     };
+
+    const handleSearch = (search) => {
+        const searchResults = performSearch(search);
+        setSearchResults(searchResults);
+        console.log(searchResults);
+    }
+
+    const performSearch = (search) => {
+        const searchResults = employees.filter((employee) => {
+            employee.name.toLowerCase().includes(search.toLowerCase());
+        })
+
+        return searchResults;
+    }
+
+
 
     useEffect(() => {
         if (modalType) {
@@ -49,7 +69,8 @@ const EmployeesSettings = () => {
                 <AddEmployee toggleModal={closeModal} />
             )}
             {modalType === "findEmployee" && (
-                <FindEmployee toggleModal={closeModal} />
+                <FindEmployee toggleModal={closeModal} onSearch={handleSearch} />
+
             )}
         </main>
     );

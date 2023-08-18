@@ -8,8 +8,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 // eslint-disable-next-line react/prop-types
 const ReviewModal = ({ toggleModal }) => {
-
-    const { register, reset, handleSubmit, formState: { errors } } = useForm({
+    const {
+        register,
+        reset,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
         resolver: yupResolver(reviewSchema),
         mode: "onSubmit",
     });
@@ -19,7 +23,7 @@ const ReviewModal = ({ toggleModal }) => {
 
         return () => {
             document.body.style.overflow = "auto";
-        }
+        };
     }, []);
 
     const onSubmit = async (data, event) => {
@@ -28,18 +32,18 @@ const ReviewModal = ({ toggleModal }) => {
 
         reset();
         setTimeout(() => {
-            toggleModal()
-            
-        }, 1500)
-    }
-
-
+            toggleModal();
+        }, 1500);
+    };
 
     return (
         <div className="fixed inset-0 flex items-center justify-center mt-20 z-50">
             <div className="bg-white p-8 rounded-lg w-2/3 text-black-02">
                 <div className="w-full flex justify-end">
-                    <button onClick={toggleModal} className="w-10 text-red-02 transition duration-200 active:scale-[0.95]">
+                    <button
+                        onClick={toggleModal}
+                        className="w-10 text-red-02 transition duration-200 active:scale-[0.95]"
+                    >
                         <XCircleIcon />
                     </button>
                 </div>
@@ -47,7 +51,10 @@ const ReviewModal = ({ toggleModal }) => {
                 <h2 className="text-xl text-center font-bold mb-4">
                     Donnez nous votre avis
                 </h2>
-                <form onSubmit={handleSubmit(onSubmit)} className="w-full h-full flex flex-col items-center lg:grid lg:grid-cols-2 lg:gap-4 lg:items-start ">
+                <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="w-full h-full flex flex-col items-center lg:grid lg:grid-cols-2 lg:gap-4 lg:items-start "
+                >
                     <div className="flex flex-col mb-4 w-full">
                         <label htmlFor="name">Nom</label>
                         <input
@@ -118,7 +125,7 @@ const ReviewModal = ({ toggleModal }) => {
                         )}
                     </div>
                     <div className="flex flex-col mb-4 w-full col-span-2">
-                        <Button name="Envoyer"/>
+                        <Button name="Envoyer" />
                     </div>
                 </form>
             </div>

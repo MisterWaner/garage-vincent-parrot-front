@@ -1,4 +1,4 @@
-
+import cars from "../../../../components/CarList/CarData.js";
 
 import Button from "../../../../components/Button/Button";
 import CarList from "../../../../components/CarList/CarList";
@@ -9,7 +9,7 @@ const CarsSettings = () => {
                 Gestion des véhicules
             </h1>
             <section className="mt-10">
-                <p>Il y a actuellement X véhicules en stock.</p>
+                <p>Il y a actuellement {cars.length} véhicules en stock.</p>
                 <div className="mt-4 grid lg:grid-cols-2 gap-2 ">
                     <Button name={"Ajouter un véhicule"} fn={() => {}} />
                     <Button name={"Supprimer un véhicule"} fn={() => {}} />
