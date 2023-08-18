@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import Button from "../Button/Button";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import { reviewSchema } from "../../Validations/reviewValidation.js";
@@ -12,21 +14,32 @@ const ReviewModal = ({ toggleModal }) => {
         mode: "onSubmit",
     });
 
+    useEffect(() => {
+        document.body.style.overflow = "hidden";
+
+        return () => {
+            document.body.style.overflow = "auto";
+        }
+    }, []);
+
     const onSubmit = async (data, event) => {
         event.preventDefault();
         console.log(data);
 
         reset();
-        toggleModal()
+        setTimeout(() => {
+            toggleModal()
+            
+        }, 1500)
     }
 
 
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center mt-20">
+        <div className="fixed inset-0 flex items-center justify-center mt-20 z-50">
             <div className="bg-white p-8 rounded-lg w-2/3 text-black-02">
                 <div className="w-full flex justify-end">
-                    <button onClick={toggleModal} className="w-10 text-red-02">
+                    <button onClick={toggleModal} className="w-10 text-red-02 transition duration-200 active:scale-[0.95]">
                         <XCircleIcon />
                     </button>
                 </div>
@@ -34,7 +47,7 @@ const ReviewModal = ({ toggleModal }) => {
                 <h2 className="text-xl text-center font-bold mb-4">
                     Donnez nous votre avis
                 </h2>
-                <form onSubmit={handleSubmit(onSubmit)} className="w-full grid grid-cols-2 gap-4">
+                <form onSubmit={handleSubmit(onSubmit)} className="w-full h-full flex flex-col items-center lg:grid lg:grid-cols-2 lg:gap-4 lg:items-start ">
                     <div className="flex flex-col mb-4 w-full">
                         <label htmlFor="name">Nom</label>
                         <input

@@ -2,7 +2,7 @@ const Mail = () => {
     return (
         <main className="container mx-auto px-24 lg:px-16 py-5 text-white">
             <h1 className="text-center text-2xl text-yellow-02 underline my-6 sm:text-3xl lg:text-5xl decoration-red-02">
-                Mail
+                Messages
             </h1>
             <section>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit.
