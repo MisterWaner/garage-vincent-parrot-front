@@ -1,4 +1,4 @@
-//import { useEffect } from "react"
+import { useEffect } from "react"
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -27,6 +27,14 @@ const AddEmployee = ({ toggleModal }) => {
             toggleModal();
         }, 1500);
     };
+
+    useEffect(() => {
+        document.body.style.overflow = "hidden";
+
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, []);
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black-02 bg-opacity-50">
