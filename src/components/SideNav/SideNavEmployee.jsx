@@ -71,32 +71,20 @@ const SideNavEmployee = () => {
                         Déconnexion
                         <ArrowRightOnRectangleIcon className="w-9 pl-2" />
                     </Link>
-                    {Links.map(
-                        (item) => (
-                            console.log(Links),
-                            (
-                                <li
-                                    className="w-full"
-                                    key={item.name}
-                                >
-                                    <NavLink
-                                        className="flex items-center justify-between w-full gap-4 text-lg lg-text-xl hover:text-white duration-300"
-                                        style={({ isActive }) => ({
-                                            color: isActive ? "blue" : "",
-                                        })}
-                                        to={item.link}
-                                    >
-                                        <span onClick={toggleSideNav}>
-                                            {item.name}
-                                        </span>
-                                        <div className="w-10 pl-2">
-                                            {item.icon}
-                                        </div>
-                                    </NavLink>
-                                </li>
-                            )
-                        )
-                    )}
+                    {Links.map((item) => (
+                        <li className="w-full" key={item.name}>
+                            <NavLink
+                                className="flex items-center justify-between w-full gap-4 text-lg lg-text-xl hover:text-white duration-300"
+                                style={({ isActive }) => ({
+                                    color: isActive ? "blue" : "",
+                                })}
+                                to={item.link}
+                            >
+                                <span onClick={toggleSideNav}>{item.name}</span>
+                                <div className="w-10 pl-2">{item.icon}</div>
+                            </NavLink>
+                        </li>
+                    ))}
                 </ul>
             </nav>
         </aside>

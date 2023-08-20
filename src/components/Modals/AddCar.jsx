@@ -110,6 +110,8 @@ const AddCar = ({ toggleModal }) => {
                         <input
                             name="year"
                             id="year"
+                            min="1960"
+                            max="2023"
                             type="number"
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"
                             {...register("year")}
@@ -156,7 +158,24 @@ const AddCar = ({ toggleModal }) => {
                             ""
                         )}
                     </div>
-                    <div className="flex flex-row gap-2 items-center mb-4 w-full">
+                    <div className="flex flex-col mb-4 w-full">
+                        <label htmlFor="kilometers">Kilomètres</label>
+                        <input
+                            name="kilometers"
+                            id="kilometers"
+                            type="number"
+                            className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                            {...register("kilometers")}
+                        />
+                        {errors.kilometers ? (
+                            <p className="error-msg text-center">
+                                {errors.kilometers?.message}
+                            </p>
+                        ) : (
+                            ""
+                        )}
+                    </div>
+                    <div className="flex flex-row justify-between gap-2 items-center mb-4 w-full">
                         <label htmlFor="image">Image</label>
                         <input
                             name="image"

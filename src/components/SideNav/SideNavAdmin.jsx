@@ -79,7 +79,6 @@ const SideNavAdmin = () => {
                     </Link>
                     {Links.map(
                         (item) => (
-                            console.log(Links),
                             (
                                 <li
                                     key={item.name}
