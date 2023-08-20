@@ -38,7 +38,7 @@ const ReviewModal = ({ toggleModal }) => {
 
     return (
         <div className="fixed inset-0 flex items-center justify-center mt-20 z-50">
-            <div className="bg-white p-8 rounded-lg w-2/3 text-black-02">
+            <div className="bg-white p-8 rounded-lg w-3/5 text-black-02 lg:w-1/2">
                 <div className="w-full flex justify-end">
                     <button
                         onClick={toggleModal}
@@ -124,7 +124,8 @@ const ReviewModal = ({ toggleModal }) => {
                             ""
                         )}
                     </div>
-                    <div className="flex flex-col mb-4 w-full col-span-2">
+                    
+                    <div className="flex mb-4 w-full lg:col-start-2">
                         <Button name="Envoyer" />
                     </div>
                 </form>

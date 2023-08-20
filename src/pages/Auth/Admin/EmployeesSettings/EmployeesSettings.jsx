@@ -8,8 +8,6 @@ const EmployeesSettings = () => {
     const [toggleModal, setToggleModal] = useState(false);
     const [selectedEmployee, setSelectedEmployee] = useState(null);
     const [searchResults, setSearchResults] = useState("");
-    
-
 
     const openModal = () => {
         setToggleModal(true);
@@ -39,21 +37,18 @@ const EmployeesSettings = () => {
                     obcaecati dolorum optio.
                 </p>
                 <div className="mt-4 w-1/3">
-                    
-                        <div className="flex flex-col mb-4 w-full">
-                            <label htmlFor="search">Rechercher</label>
-                            <input
-                                type="search"
-                                name="search"
-                                id="search"
-                                onChange={(e) =>
-                                    setSearchResults(e.target.value)
-                                }
-                                className="bg-yellow-02 rounded-sm text-black-02 p-2"
-                                placeholder="Rechercher un employé"
-                            />
-                        </div>
-                    
+                    <div className="flex flex-col mb-4 w-full">
+                        <label htmlFor="search">Rechercher</label>
+                        <input
+                            type="search"
+                            name="search"
+                            id="search"
+                            onChange={(e) => setSearchResults(e.target.value)}
+                            className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                            placeholder="Rechercher un employé"
+                        />
+                    </div>
+
                     <Button
                         name={"Ajouter un employé"}
                         fn={() => openModal()}
