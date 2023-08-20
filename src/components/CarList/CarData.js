@@ -7,17 +7,21 @@ const cars = [
         year: "2017",
         color: "rouge",
         price: "1000",
-        image: "image",
+        image: "",
+        kilometers: "80000",
+        puissance: "100"
     },
     {
         id: 2,
         name: "Renault Mégane",
         brand: "Renault",
-        model: "Clio",
+        model: "Mégane",
         year: "2012",
         color: "Noir",
         price: "3000",
-        image: "image",
+        image: "",
+        kilometers: "50000",
+        puissance: "80",
     },
     {
         id: 3,
@@ -27,7 +31,9 @@ const cars = [
         year: "2015",
         color: "bleu",
         price: "1500",
-        image: "image",
+        image: "",
+        kilometers: "70000",
+        puissance: "100"
     },
     {
         id: 4,
@@ -38,6 +44,8 @@ const cars = [
         color: "orange",
         price: "9000",
         image: "/images/image_slider4.jpg",
+        kilometers: "100000",
+        puissance: "100"
     },
 ];
 

@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const createCarSchema = yup.object().shape({
+const carSchema = yup.object().shape({
     name: yup.string().required("Le nom est obligatoire"),
     brand: yup.string().required("Le nom du constructeur est obligatoire"),
     model: yup.string().required("Le nom du modèle est obligatoire"),
@@ -8,6 +8,7 @@ const createCarSchema = yup.object().shape({
     color: yup.string().required("La couleur est obligatoire"),
     price: yup.number().positive("Le prix ne peut pas être négatif").required("Le prix est obligatoire"),
     kilometers: yup.number().positive("Le kilométrage ne peut pas être négatif").required("Le kilométrage est obligatoire"),
+    puissance: yup.number().integer("La puissance doit être un entier").positive("La puissance ne peut pas être négatif").required("La puissance est obligatoire"),
     image: yup
         .mixed()
         .notRequired()
@@ -17,4 +18,4 @@ const createCarSchema = yup.object().shape({
         }),
 });
 
-export { createCarSchema };
+export { carSchema };

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { createCarSchema } from "../../Validations/createCarValidation.js";
+import { carSchema } from "../../Validations/carValidation.js";
 import Button from "../Button/Button.jsx";
 
 // eslint-disable-next-line react/prop-types
@@ -13,7 +13,7 @@ const AddCar = ({ toggleModal }) => {
         reset,
         formState: { errors },
     } = useForm({
-        resolver: yupResolver(createCarSchema),
+        resolver: yupResolver(carSchema),
         mode: "onSubmit",
     });
 
@@ -37,7 +37,7 @@ const AddCar = ({ toggleModal }) => {
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black-02 bg-opacity-50">
-            <div className="bg-white p-8 rounded-lg w-3/5 text-black-02 lg:w-1/2">
+            <div className="bg-white p-8 rounded-lg w-3/5 text-black-02 lg:w-2/3">
                 <div className="w-full flex justify-end">
                     <button
                         onClick={toggleModal}
@@ -52,7 +52,7 @@ const AddCar = ({ toggleModal }) => {
                 <form
                     action=""
                     onSubmit={handleSubmit(onSubmit)}
-                    className="w-full h-full flex flex-col items-center lg:grid lg:grid-cols-2 lg:gap-4 lg:items-start "
+                    className="w-full h-full flex flex-col items-center lg:grid lg:grid-cols-3 lg:gap-4 lg:items-start "
                 >
                     <div className="flex flex-col mb-4 w-full">
                         <label htmlFor="name">Nom</label>
@@ -175,7 +175,24 @@ const AddCar = ({ toggleModal }) => {
                             ""
                         )}
                     </div>
-                    <div className="flex flex-row justify-between gap-2 items-center mb-4 w-full">
+                    <div className="flex flex-col mb-4 w-full">
+                        <label htmlFor="puissance">Puissance</label>
+                        <input
+                            name="puissance"
+                            id="puissance"
+                            type="number"
+                            className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                            {...register("puissance")}
+                        />
+                        {errors.puissance ? (
+                            <p className="error-msg text-center">
+                                {errors.puissance?.message}
+                            </p>
+                        ) : (
+                            ""
+                        )}
+                    </div>
+                    <div className="flex flex-col mb-4 w-full">
                         <label htmlFor="image">Image</label>
                         <input
                             name="image"
