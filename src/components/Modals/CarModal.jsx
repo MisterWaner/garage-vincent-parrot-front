@@ -51,7 +51,7 @@ const CarModal = ({ car, onClose }) => {
             handleUpdate();
         }
         setShowInputs(!showInputs);
-    }
+    };
 
     useEffect(() => {
         document.body.style.overflow = "hidden";
@@ -61,8 +61,8 @@ const CarModal = ({ car, onClose }) => {
     }, []);
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center">
-            <div className="bg-white p-8 rounded-lg w-3/5 text-black-02 lg:w-1/2">
+        <div className="fixed inset-0 flex items-center justify-center bg-black-02 bg-opacity-50 overflow-scroll">
+            <div className="bg-white p-8 rounded-lg min-w-fit min-h-fit mt-auto text-black-02 lg:w-1/2 lg:mt-0">
                 <div className="w-full flex justify-end">
                     <button
                         onClick={onClose}
@@ -74,12 +74,12 @@ const CarModal = ({ car, onClose }) => {
                 <h2 className="text-lg font-bold mb-4">
                     {car.name} - {car.year}
                 </h2>
-                <div className="flex flex-col mb-4">
-                    <div className="flex gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2">
+                    <>
                         <p className="font-bold">Marque: </p>
                         {showInputs ? (
                             <input
-                                className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                                className="bg-yellow-02 rounded-sm text-black-02 p-2 mb-4"
                                 type="text"
                                 value={brandInput}
                                 onChange={(e) => setBrandInput(e.target.value)}
@@ -87,12 +87,12 @@ const CarModal = ({ car, onClose }) => {
                         ) : (
                             <span>{car.brand}</span>
                         )}
-                    </div>
-                    <div className="flex gap-4">
+                    </>
+                    <>
                         <p className="font-bold">Modèle: </p>
                         {showInputs ? (
                             <input
-                                className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                                className="bg-yellow-02 rounded-sm text-black-02 p-2 mb-4"
                                 type="text"
                                 value={modelInput}
                                 onChange={(e) => setModelInput(e.target.value)}
@@ -100,14 +100,13 @@ const CarModal = ({ car, onClose }) => {
                         ) : (
                             <span>{car.model}</span>
                         )}
-                    </div>
-                </div>
-                <div className="flex flex-col mb-4">
-                    <div className="flex gap-4">
+                    </>
+
+                    <>
                         <p className="font-bold">Année: </p>
                         {showInputs ? (
                             <input
-                                className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                                className="bg-yellow-02 rounded-sm text-black-02 p-2 mb-4"
                                 type="text"
                                 value={yearInput}
                                 onChange={(e) => setYearInput(e.target.value)}
@@ -115,12 +114,12 @@ const CarModal = ({ car, onClose }) => {
                         ) : (
                             <span>{car.year}</span>
                         )}
-                    </div>
-                    <div className="flex gap-4">
+                    </>
+                    <>
                         <p className="font-bold">Couleur: </p>
                         {showInputs ? (
                             <input
-                                className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                                className="bg-yellow-02 rounded-sm text-black-02 p-2 mb-4"
                                 type="text"
                                 value={colorInput}
                                 onChange={(e) => setColorInput(e.target.value)}
@@ -128,27 +127,26 @@ const CarModal = ({ car, onClose }) => {
                         ) : (
                             <span>{car.color}</span>
                         )}
-                    </div>
-                    <div className="flex gap-4">
+                    </>
+                    <>
                         <p className="font-bold">Prix: </p>
                         {showInputs ? (
                             <input
-                                className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                                className="bg-yellow-02 rounded-sm text-black-02 p-2 mb-4"
                                 type="number"
                                 value={priceInput}
                                 onChange={(e) => setPriceInput(e.target.value)}
                             />
                         ) : (
-                            <span>{car.price}</span>
+                            <span>{car.price} €</span>
                         )}
-                    </div>
-                </div>
-                <div className="flex flex-col mb-4">
-                    <div className="flex gap-4">
+                    </>
+
+                    <>
                         <p className="font-bold">Kilométrage: </p>
                         {showInputs ? (
                             <input
-                                className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                                className="bg-yellow-02 rounded-sm text-black-02 p-2 mb-4"
                                 type="number"
                                 value={kilometersInput}
                                 onChange={(e) =>
@@ -156,14 +154,14 @@ const CarModal = ({ car, onClose }) => {
                                 }
                             />
                         ) : (
-                            <span>{car.kilometers}</span>
+                            <span>{car.kilometers} km</span>
                         )}
-                    </div>
-                    <div className="flex gap-4">
+                    </>
+                    <>
                         <p className="font-bold">Puissance: </p>
                         {showInputs ? (
                             <input
-                                className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                                className="bg-yellow-02 rounded-sm text-black-02 p-2 mb-4"
                                 type="number"
                                 value={puissanceInput}
                                 onChange={(e) =>
@@ -171,14 +169,14 @@ const CarModal = ({ car, onClose }) => {
                                 }
                             />
                         ) : (
-                            <span>{car.puissance}</span>
+                            <span>{car.puissance} ch</span>
                         )}
-                    </div>
-                    <div className="flex gap-4">
+                    </>
+                    <>
                         <p className="font-bold">Motorisation: </p>
                         {showInputs ? (
                             <input
-                                className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                                className="bg-yellow-02 rounded-sm text-black-02 p-2 mb-4"
                                 type="text"
                                 value={motorInput}
                                 onChange={(e) =>
@@ -188,9 +186,9 @@ const CarModal = ({ car, onClose }) => {
                         ) : (
                             <span>{car.motor}</span>
                         )}
-                    </div>
+                    </>
                     {car.image ? (
-                        <div className="flex gap-4 mt-4">
+                        <>
                             <p className="font-bold">Image: </p>
                             <span>
                                 <img
@@ -199,17 +197,21 @@ const CarModal = ({ car, onClose }) => {
                                     alt=""
                                 />
                             </span>
-                        </div>
+                        </>
                     ) : (
                         <p>Pas d&apos;image disponible</p>
                     )}
                 </div>
+
                 <div className="w-full flex flex-col lg:flex-row lg:gap-2 ">
                     <Button
                         name={isModified ? "Valider" : "Modifier"}
                         fn={handleButtonClick}
                     />
-                    <Button name={isModified ? "Annuler" : "Fermer"} fn={onClose} />
+                    <Button
+                        name={isModified ? "Annuler" : "Supprimer"}
+                        fn={onClose}
+                    />
                 </div>
             </div>
         </div>

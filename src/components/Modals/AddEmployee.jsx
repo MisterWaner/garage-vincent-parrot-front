@@ -37,8 +37,8 @@ const AddEmployee = ({ toggleModal }) => {
     }, []);
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black-02 bg-opacity-50">
-            <div className="bg-white p-8 rounded-lg w-3/5 text-black-02 lg:w-1/2">
+        <div className="fixed inset-0 flex items-center justify-center bg-black-02 bg-opacity-50 overflow-scroll">
+            <div className="bg-white p-8 min-h-fit mt-auto rounded-lg w-3/5 text-black-02 lg:w-1/2 lg:mt-0">
                 <div className="w-full flex justify-end">
                     <button
                         onClick={toggleModal}
@@ -56,16 +56,16 @@ const AddEmployee = ({ toggleModal }) => {
                     className="w-full h-full flex flex-col items-center lg:grid lg:grid-cols-2 lg:gap-4 lg:items-start "
                 >
                     <div className="flex flex-col mb-4 w-full">
-                        <label htmlFor="name">Nom</label>
+                        <label htmlFor="lastname">Nom</label>
                         <input
-                            name="name"
-                            id="name"
+                            name="lastname"
+                            id="lastname"
                             type="text"
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"
-                            {...register("name")}
+                            {...register("lastname")}
                         />
-                        {errors.name ? (
-                            <p className="error-msg text-center">{errors.name?.message}</p>
+                        {errors.lastname ? (
+                            <p className="error-msg text-center">{errors.lastname?.message}</p>
                         ) : (
                             ""
                         )}
