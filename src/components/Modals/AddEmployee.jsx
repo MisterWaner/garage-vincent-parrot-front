@@ -38,7 +38,7 @@ const AddEmployee = ({ toggleModal }) => {
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black-02 bg-opacity-50 overflow-scroll">
-            <div className="bg-white p-8 min-h-fit mt-auto rounded-lg w-3/5 text-black-02 lg:w-1/2 lg:mt-0">
+            <div className={`bg-white p-8 min-h-fit ${errors ? "mt-auto" : "mt-0"}mt-auto rounded-lg w-3/5 text-black-02  lg:w-2/3`}>
                 <div className="w-full flex justify-end">
                     <button
                         onClick={toggleModal}
