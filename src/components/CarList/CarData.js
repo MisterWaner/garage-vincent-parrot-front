@@ -9,7 +9,8 @@ const cars = [
         price: "1000",
         image: "",
         kilometers: "80000",
-        puissance: "100"
+        puissance: "100",
+        motor: "diesel",
     },
     {
         id: 2,
@@ -22,6 +23,7 @@ const cars = [
         image: "",
         kilometers: "50000",
         puissance: "80",
+        motor: "essence",
     },
     {
         id: 3,
@@ -33,7 +35,8 @@ const cars = [
         price: "1500",
         image: "",
         kilometers: "70000",
-        puissance: "100"
+        puissance: "100",
+        motor: "electrique",
     },
     {
         id: 4,
@@ -45,7 +48,8 @@ const cars = [
         price: "9000",
         image: "/images/image_slider4.jpg",
         kilometers: "100000",
-        puissance: "100"
+        puissance: "100",
+        motor: "electrique",
     },
 ];
 

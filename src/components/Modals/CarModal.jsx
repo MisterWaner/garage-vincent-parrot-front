@@ -13,6 +13,7 @@ const CarModal = ({ car, onClose }) => {
     const [priceInput, setPriceInput] = useState(car.price);
     const [kilometersInput, setKilometersInput] = useState(car.kilometers);
     const [puissanceInput, setPuissanceInput] = useState(car.puissance);
+    const [motorInput, setMotorInput] = useState(car.motor);
     const [isModified, setIsModified] = useState(false);
 
     const handleUpdate = () => {
@@ -35,7 +36,9 @@ const CarModal = ({ car, onClose }) => {
         setPriceInput(updatedCar.price);
         setKilometersInput(updatedCar.kilometers);
         setPuissanceInput(updatedCar.puissance);
+        setMotorInput(updatedCar.motor);
 
+        setIsModified(false);
         setTimeout(() => {
             onClose();
         }, 1500);
@@ -69,7 +72,7 @@ const CarModal = ({ car, onClose }) => {
                     </button>
                 </div>
                 <h2 className="text-lg font-bold mb-4">
-                    {car.name} {car.id}
+                    {car.name} - {car.year}
                 </h2>
                 <div className="flex flex-col mb-4">
                     <div className="flex gap-4">
@@ -169,6 +172,21 @@ const CarModal = ({ car, onClose }) => {
                             />
                         ) : (
                             <span>{car.puissance}</span>
+                        )}
+                    </div>
+                    <div className="flex gap-4">
+                        <p className="font-bold">Motorisation: </p>
+                        {showInputs ? (
+                            <input
+                                className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                                type="text"
+                                value={motorInput}
+                                onChange={(e) =>
+                                    setPuissanceInput(e.target.value)
+                                }
+                            />
+                        ) : (
+                            <span>{car.motor}</span>
                         )}
                     </div>
                     {car.image ? (

@@ -36,8 +36,8 @@ const AddCar = ({ toggleModal }) => {
     }, []);
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black-02 bg-opacity-50">
-            <div className="bg-white p-8 rounded-lg w-3/5 text-black-02 lg:w-2/3">
+        <div className="fixed inset-0 flex items-center justify-center bg-black-02 bg-opacity-50 overflow-scroll">
+            <div className={`bg-white min-h-fit mt-auto p-8 rounded-lg w-3/5 text-black-02 lg:w-5/6 lg:mt-24`}>
                 <div className="w-full flex justify-end">
                     <button
                         onClick={toggleModal}
@@ -52,9 +52,9 @@ const AddCar = ({ toggleModal }) => {
                 <form
                     action=""
                     onSubmit={handleSubmit(onSubmit)}
-                    className="w-full h-full flex flex-col items-center lg:grid lg:grid-cols-3 lg:gap-4 lg:items-start "
+                    className="w-full h-full flex flex-col items-center lg:grid lg:grid-cols-4 lg:grid-rows-auto lg:gap-2 lg:items-start "
                 >
-                    <div className="flex flex-col mb-4 w-full">
+                    <div className="flex flex-col mb-2 w-full">
                         <label htmlFor="name">Nom</label>
                         <input
                             name="name"
@@ -71,7 +71,7 @@ const AddCar = ({ toggleModal }) => {
                             ""
                         )}
                     </div>
-                    <div className="flex flex-col mb-4 w-full">
+                    <div className="flex flex-col mb-2 w-full">
                         <label htmlFor="brand">Marque</label>
                         <input
                             name="brand"
@@ -88,7 +88,7 @@ const AddCar = ({ toggleModal }) => {
                             ""
                         )}
                     </div>
-                    <div className="flex flex-col mb-4 w-full">
+                    <div className="flex flex-col mb-2 w-full">
                         <label htmlFor="model">Model</label>
                         <input
                             name="model"
@@ -105,7 +105,7 @@ const AddCar = ({ toggleModal }) => {
                             ""
                         )}
                     </div>
-                    <div className="flex flex-col mb-4 w-full">
+                    <div className="flex flex-col mb-2 w-full">
                         <label htmlFor="year">Année</label>
                         <input
                             name="year"
@@ -124,7 +124,7 @@ const AddCar = ({ toggleModal }) => {
                             ""
                         )}
                     </div>
-                    <div className="flex flex-col mb-4 w-full">
+                    <div className="flex flex-col mb-2 w-full">
                         <label htmlFor="color">Couleur</label>
                         <input
                             name="color"
@@ -141,7 +141,7 @@ const AddCar = ({ toggleModal }) => {
                             ""
                         )}
                     </div>
-                    <div className="flex flex-col mb-4 w-full">
+                    <div className="flex flex-col mb-2 w-full">
                         <label htmlFor="price">Prix</label>
                         <input
                             name="price"
@@ -158,7 +158,7 @@ const AddCar = ({ toggleModal }) => {
                             ""
                         )}
                     </div>
-                    <div className="flex flex-col mb-4 w-full">
+                    <div className="flex flex-col mb-2 w-full">
                         <label htmlFor="kilometers">Kilomètres</label>
                         <input
                             name="kilometers"
@@ -175,7 +175,7 @@ const AddCar = ({ toggleModal }) => {
                             ""
                         )}
                     </div>
-                    <div className="flex flex-col mb-4 w-full">
+                    <div className="flex flex-col mb-2 w-full">
                         <label htmlFor="puissance">Puissance</label>
                         <input
                             name="puissance"
@@ -192,7 +192,24 @@ const AddCar = ({ toggleModal }) => {
                             ""
                         )}
                     </div>
-                    <div className="flex flex-col mb-4 w-full">
+                    <div className="flex flex-col mb-2 w-full">
+                        <label htmlFor="motor">Motorisation</label>
+                        <input
+                            name="motor"
+                            id="motor"
+                            type="text"
+                            className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                            {...register("motor")}
+                        />
+                        {errors.motor ? (
+                            <p className="error-msg text-center">
+                                {errors.motor?.message}
+                            </p>
+                        ) : (
+                            ""
+                        )}
+                    </div>
+                    <div className="flex flex-col mb-2 w-full">
                         <label htmlFor="image">Image</label>
                         <input
                             name="image"
@@ -209,7 +226,7 @@ const AddCar = ({ toggleModal }) => {
                             ""
                         )}
                     </div>
-                    <div className="flex mb-4 w-full lg:col-start-2">
+                    <div className="flex mb-2 w-full lg:col-start-4 lg:row-start-4">
                         <Button name="Valider" />
                     </div>
                 </form>
