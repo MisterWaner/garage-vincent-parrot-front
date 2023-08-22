@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import CarModal from "../../../../components/Modals/CarModal.jsx";
 import AddCar from "../../../../components/Modals/AddCar.jsx";
-import { cars } from "../../../../components/CarList/CarData.js";
+import { cars } from "../../../../components/TestDatas/CarData.js";
 import Button from "../../../../components/Button/Button";
 
 const CarsSettings = () => {
@@ -57,7 +57,9 @@ const CarsSettings = () => {
                     <table className="min-w-full divide-y divide-red-02 bg-yellow-02">
                         <thead>
                             <tr>
-                                <th></th>
+                                <th className="py-3 px-6 text-left text-lg font-medium text-black-02 tracking-wider font-racer">
+                                    Action
+                                </th>
                                 <th className="py-3 px-6 text-left text-lg font-medium text-black-02 tracking-wider font-racer">
                                     Nom
                                 </th>
@@ -136,7 +138,7 @@ const CarsSettings = () => {
                     )}
                 </div>
             </section>
-            {toggleModal && <AddCar toggleModal={closeModal}/>}
+            {toggleModal && <AddCar toggleModal={closeModal} />}
         </main>
     );
 };

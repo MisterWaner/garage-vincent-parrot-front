@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "../../../../components/Button/Button";
 import AddEmployee from "../../../../components/Modals/AddEmployee";
 import EmployeeModal from "../../../../components/Modals/EmployeeModal";
-import { employees } from "../../../../components/EmployeeList/EmployeeData";
+import { employees } from "../../../../components/TestDatas/EmployeeData.js";
 
 const EmployeesSettings = () => {
     const [toggleModal, setToggleModal] = useState(false);

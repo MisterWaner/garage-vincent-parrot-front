@@ -3,7 +3,7 @@ import { useState } from "react";
 import Slider from "../../../components/Slider/Slider";
 import Card from "../../../components/Card/Card";
 import CarousselTestimonials from "../../../components/CarousselTestimonials/CarousselTestimonials";
-import ReviewModal from "../../../components/Modals/ReviewModal";
+import ReviewFormModal from "../../../components/Modals/ReviewFormModal";
 
 const Home = () => {
     const [showModal, setShowModal] = useState(false);
@@ -79,7 +79,7 @@ const Home = () => {
                             Laisser un avis
                         </button>
                     </div>
-                    {showModal && <ReviewModal toggleModal={toggleModal} />}
+                    {showModal && <ReviewFormModal toggleModal={toggleModal} />}
                 </section>
             </main>
         </>
