@@ -28,7 +28,7 @@ const reviews = [
         rating: 4,
         title: "Je suis satisfait",
         message:
-            "Super service, ils ont fait du super boulot avec mon bouclier après ma bataille avec Thanos",
+            "Super service, ils ont fait du super boulot sur mon bouclier après ma bataille avec Thanos",
     },
     {
         id: 4,

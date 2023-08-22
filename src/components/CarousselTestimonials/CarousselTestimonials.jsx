@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Testimonial from "../Testimonial/Testimonial";
 import Glide from "@glidejs/glide";
+import { reviews } from "../TestDatas/ReviewData.js";
 
 const CarousselTestimonials = () => {
     useEffect(() => {
@@ -39,21 +40,14 @@ const CarousselTestimonials = () => {
                 {/*    <!-- Slides --> */}
                 <div data-glide-el="track" className="overflow-hidden">
                     <ul className="whitespace-no-wrap flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform] relative flex w-full overflow-hidden p-0 pb-12">
-                        <li>
-                            <div className="h-full w-full">
-                                <Testimonial author="Dead Pool" review="Super travail !"/>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="h-full w-full">
-                                <Testimonial author="Captain A." review="Super boulot, comme d'habitude, mon bolide est comme neuf !" />
-                            </div>
-                        </li>
-                        <li>
-                            <div className="h-full w-full">
-                                <Testimonial author="Thor" review="Mjöllnir n'a jamais autant brillé !" />
-                            </div>
-                        </li>
+                        {reviews.map((review) => (
+                            <li key={review.id}>
+                                <div className="h-full w-full">
+                                    <Testimonial review={review} />
+                                </div>
+                            </li>
+                        ))}
+                        
                     </ul>
                 </div>
             </div>
