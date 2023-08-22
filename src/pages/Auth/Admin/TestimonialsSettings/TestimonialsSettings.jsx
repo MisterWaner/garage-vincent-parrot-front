@@ -23,7 +23,7 @@ const TestimonialsSettings = () => {
                 Gestion des commentaires
             </h1>
             <section className="mt-10">
-                <p>Vous avez actuellement {reviews.length} commentaires non approuvés</p>
+                <p>Vous avez actuellement {reviews.length} commentaires non approuvés.</p>
             </section>
             <section className="mt-10">
                 <div className="overflow-x-auto">
