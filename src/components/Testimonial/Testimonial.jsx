@@ -5,10 +5,17 @@ const Testimonial = ({review}) => {
 
     const renderStars = () => {
         const stars = [];
-        for (let i = 0; i < review.rating; i++) {
+        const totalStars = 5;
+        const filledStars = review.rating;
+
+        for (let i = 0; i < totalStars; i++) {
+            let starColor= "text-white";
+            if (i >= filledStars) {
+                starColor = "text-black-02";
+            }
             stars.push(
                 <span key={i} aria-hidden="true">
-                    <StarIcon className="h-6 w-6 text-white" />
+                    <StarIcon className={`h-6 w-6 ${starColor}`} />
                 </span>
             );
         }
