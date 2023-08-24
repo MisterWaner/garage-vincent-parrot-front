@@ -6,6 +6,7 @@ import {
 } from "react-icons/fa6";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
+
 const Footer = () => {
     const emailAddress = "garage-vincent.parrot@example.com";
     const phoneNumber = "+33612345678";
@@ -16,8 +17,7 @@ const Footer = () => {
 
     const handleDialNumber = () => {
         window.location.href = `tel:${phoneNumber}`;
-    }
-
+    };
 
     return (
         <footer className="sticky top-[100vh]">
@@ -82,9 +82,27 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                <div className="grid grid-cols-2">
-                    <div>Footer 2</div>
-                    <div>Footer 2</div>
+                <hr className="my-4 border-black-02 w-1/2 mx-auto" />
+                <div className="grid lg:grid-cols-2">
+                    <div className="p-4 text-center text-xs">
+                        <p>
+                            Pour plus d&apos;informations sur l&apos;utilisation
+                            de vos données personnelles: consulter notre{" "}
+                            <Link
+                                to="/rgpd"
+                                className="text-black-02 hover:underline hover:decoration-red-02"
+                            >
+                                politique de confidentialité
+                            </Link>
+                            .
+                        </p>
+                    </div>
+                    <div className="p-4 text-center text-xs">
+                        <p>
+                            Tous droits réservés &copy; Garage Vincent Parrot -
+                            2023
+                        </p>
+                    </div>
                 </div>
             </div>
         </footer>

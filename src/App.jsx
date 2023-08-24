@@ -11,6 +11,7 @@ import Layout from "./pages/Layout/Layout";
 import AdminLayout from "./pages/Layout/AdminLayout";
 import AccountLayout from "./pages/Layout/AccountLayout";
 import Connexion from "./pages/Public/Connexion/Connexion";
+import RgpdPage from "./pages/Public/RGPD/Rgpd";
 import Cars from "./pages/Public/Cars/Cars";
 import Dashboard from "./pages/Auth/Admin/Dashboard/Dashboard";
 import TestimonialsSettings from "./pages/Auth/Admin/TestimonialsSettings/TestimonialsSettings";
@@ -32,6 +33,7 @@ const App = () => {
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/connexion" element={<Connexion />} />
                     <Route path="/cars" element={<Cars />} />
+                    <Route path="/rgpd" element={<RgpdPage />} />
                 </Route>
                 <Route path="/admin" element={<AdminLayout />}>
                     <Route index element={<Dashboard />} />
