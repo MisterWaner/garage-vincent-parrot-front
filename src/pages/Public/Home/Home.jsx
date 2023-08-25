@@ -4,6 +4,7 @@ import Slider from "../../../components/Slider/Slider";
 import Card from "../../../components/Card/Card";
 import CarousselTestimonials from "../../../components/CarousselTestimonials/CarousselTestimonials";
 import ReviewFormModal from "../../../components/Modals/ReviewFormModal";
+import { datas } from "../../../components/Card/CardData";
 
 const Home = () => {
     const [showModal, setShowModal] = useState(false);
@@ -12,8 +13,6 @@ const Home = () => {
         setShowModal(!showModal);
     };
 
-    
-
     return (
         <>
             <main className="text-white max-w-[1440px] mx-auto mt-[160px] p-5">
@@ -21,51 +20,18 @@ const Home = () => {
                     Garage V<span className="text-red-02">.</span> Parrot
                 </h1>
                 <Slider />
-                <section id="mecanique" className="py-14">
-                    <Card
-                        img="/images/mecanique.jpg"
-                        title="Mécanique et Entretien"
-                        content="Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Expedita rerum ipsum itaque facilis ea voluptatum et
-                    repellat! Nostrum culpa quibusdam eos quia dolor rem nihil
-                    reiciendis provident ad vitae veniam eligendi magnam, odit,
-                    architecto corporis ex modi impedit expedita quas quod
-                    fugiat! Labore nemo rerum perferendis ducimus eveniet, porro
-                    odio repellendus molestias amet dolorem alias."
-                        button="Nous contacter"
-                        url="/contact"
-                    />
-                </section>
-                <section id="carrosserie" className="py-14">
-                    <Card
-                        img="/images/carrosserie.jpg"
-                        title="Carrosserie"
-                        content="Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Expedita rerum ipsum itaque facilis ea voluptatum et
-                    repellat! Nostrum culpa quibusdam eos quia dolor rem nihil
-                    reiciendis provident ad vitae veniam eligendi magnam, odit,
-                    architecto corporis ex modi impedit expedita quas quod
-                    fugiat! Labore nemo rerum perferendis ducimus eveniet, porro
-                    odio repellendus molestias amet dolorem alias."
-                        button="Nous contacter"
-                        url="/contact"
-                    />
-                </section>
-                <section id="auto" className="py-14">
-                    <Card
-                        img="/images/vente.jpg"
-                        title="Les voitures en stock"
-                        content="Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Expedita rerum ipsum itaque facilis ea voluptatum et
-                    repellat! Nostrum culpa quibusdam eos quia dolor rem nihil
-                    reiciendis provident ad vitae veniam eligendi magnam, odit,
-                    architecto corporis ex modi impedit expedita quas quod
-                    fugiat! Labore nemo rerum perferendis ducimus eveniet, porro
-                    odio repellendus molestias amet dolorem alias."
-                        button="Voir les véhicules"
-                        url="/cars"
-                    />
-                </section>
+
+                {datas.map((item) => (
+                    <section id={`${item.link}`} key={item.id}>
+                        <Card
+                            img={item.img}
+                            title={item.title}
+                            contents={item.contents}
+                            button={item.button}
+                            url={item.url}
+                        />
+                    </section>
+                ))}
                 <section id="avis" className="py-14">
                     <h2 className="text-3xl font-medium text-yellow-02 mb-2">
                         Ce qu&apos;ils pensent de nous
