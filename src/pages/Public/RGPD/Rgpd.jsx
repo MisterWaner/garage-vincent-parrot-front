@@ -1,8 +1,53 @@
 const RgpdPage = () => {
     return (
         <main className="max-w-[1440px] mx-auto mt-[160px] p-5 text-white">
-            <h1 className="text-center text-2xl text-yellow-02 underline my-6 sm:text-3xl lg:text-5xl decoration-red-02">Politique de confidentialité</h1>
-            <section className="mt-10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum tempora dolorem facilis, a cumque rerum facere praesentium iusto molestias quis laboriosam laborum expedita delectus incidunt nihil! Libero corrupti accusantium amet at sit eligendi natus eius enim consectetur eos temporibus recusandae inventore est veritatis corporis illo quasi aut iste quae, explicabo totam quam debitis rem! Ut, temporibus placeat magnam eum deleniti velit minima autem eligendi quo debitis porro laudantium est exercitationem vero impedit dolore voluptate perferendis voluptatibus tempore dolores facere cupiditate corrupti. Explicabo adipisci quisquam inventore laboriosam ipsum non reprehenderit est perferendis perspiciatis molestias aperiam cum consectetur tenetur nulla repudiandae ut rem, dolorum culpa molestiae natus qui voluptas? Nostrum debitis repellat eveniet, reiciendis facere earum, cupiditate voluptates hic in, ullam inventore dignissimos dolor sequi fugiat consectetur eligendi! Similique labore cumque ducimus nulla molestias nobis corporis distinctio possimus quam est iste reprehenderit, perferendis corrupti saepe earum porro enim voluptas laborum? Sint qui laboriosam voluptatem accusamus inventore. Architecto facilis qui iste tempore incidunt, harum culpa fugiat expedita minus molestiae! Corrupti possimus placeat sequi quam accusamus ex nam, sapiente iusto repudiandae adipisci. Harum libero quas nihil aliquid, non odit veritatis quo nostrum maxime inventore alias natus reiciendis numquam vitae quos delectus optio necessitatibus, voluptas distinctio assumenda. Dolore, obcaecati? Tempora facere natus deleniti at. Maiores vitae blanditiis dolorem nobis recusandae incidunt est quasi facilis ipsa eaque hic possimus, dolore nisi placeat sit temporibus rerum dignissimos animi? Modi delectus doloremque, culpa voluptatum velit voluptas eum magnam repellat exercitationem commodi iusto neque laboriosam, dolores officia minima quam non. Quas aperiam nesciunt magni eveniet facilis, et fuga tempora quasi molestiae delectus dolorem. Necessitatibus fuga at, exercitationem debitis et eveniet suscipit ut quia doloribus, pariatur praesentium? Rem dicta sequi, voluptate modi est qui quisquam inventore iure dolore quaerat odit, culpa minima totam itaque? Iste, doloremque autem sapiente laborum tempore fugit reiciendis libero pariatur, distinctio magni voluptates eligendi, tempora numquam deserunt. Doloremque vel ratione ullam corrupti maxime! Porro facere expedita voluptates blanditiis rerum mollitia aperiam possimus quod doloremque ratione, voluptate sunt laborum incidunt error minus, placeat illo ab? Enim quas, excepturi cumque amet minima nobis aspernatur magnam sed nihil natus voluptatem optio. Veritatis quis consequatur quae, voluptatibus repudiandae magnam eum ex inventore animi. Maxime hic, sequi in quos possimus consequuntur voluptatibus, vel, vero ex tenetur unde facere natus laboriosam optio quibusdam vitae. Doloribus numquam aliquam dicta veritatis reiciendis, nostrum fugiat autem, sint atque deleniti, dolores voluptatem praesentium nulla iusto ipsa commodi aut dignissimos minus reprehenderit eos sit! Voluptatum quo mollitia quibusdam amet aliquam repellat itaque, sint aperiam. Veritatis totam repellat laborum fugiat distinctio eveniet corporis, voluptatum facilis quam aut? Blanditiis porro pariatur tempora reprehenderit recusandae vitae adipisci minima esse! Cumque eius voluptatum dignissimos dolorum minus adipisci natus molestias neque, itaque commodi provident ullam odio aut ipsam perferendis iusto. Iste, numquam? Illum modi sunt beatae natus sint quos ratione fugiat. Expedita illum exercitationem aspernatur amet obcaecati repudiandae cum earum deserunt eaque cumque, dolor modi reprehenderit molestiae labore temporibus? Nihil molestias, architecto corrupti assumenda in laborum. Aspernatur ab iure consequuntur enim?</section>
+            <h1 className="text-center text-2xl text-yellow-02 underline my-6 sm:text-3xl lg:text-5xl decoration-red-02">
+                Politique de confidentialité
+            </h1>
+            <section className="mt-10 md:text-lg">
+                <p className="my-4">
+                    Les informations recueillies sur ce formulaire sont
+                    enregistrées dans un fichier informatisé par{" "}
+                    <i className="font-bold">Garage Vincent Parot</i> afin de :
+                    <br />
+                    <ul className="ml-12">
+                        <li className="list-disc">Pouvoir vous recontacter en cas de besoin (informations supplementaires, conseil, envoie de devis, prise de rendez-vous...).</li>
+                        <li className="list-disc">Afficher des commentaires si vous avez accepté leur utilisation.</li>
+                    </ul>
+                    
+                </p>
+                <p className="my-4">
+                    La base légale du traitement est [base légale du
+                    traitement]. Les données collectées seront communiquées aux
+                    seuls destinataires suivants : [destinataires des données].
+                    Les données sont conservées pendant [durée de conservation
+                    des données prévue par le responsable du traitement ou
+                    critères permettant de la déterminer].
+                </p>
+                <p className="my-4">
+                    Vous pouvez accéder aux données vous concernant, les
+                    rectifier, demander leur effacement ou exercer votre droit à
+                    la limitation du traitement de vos données (en fonction de
+                    la base légale du traitement, mentionner également : Vous
+                    pouvez retirer à tout moment votre consentement au
+                    traitement de vos données ; Vous pouvez également vous
+                    opposer au traitement de vos données ; Vous pouvez également
+                    exercer votre droit à la portabilité de vos données).{" "}
+                </p>
+                <p className="my-4">
+                    Consultez le site <a href="https://www.cnil.fr/fr" target="_blank" rel="noreferrer" className="hover:underline hover:decoration-red-02">cnil.fr</a> pour plus d’informations sur vos
+                    droits.
+                </p>
+                <p className="my-4">
+                    Pour exercer ces droits ou pour toute question sur le
+                    traitement de vos données dans ce dispositif, vous pouvez
+                    contacter (le cas échéant, notre délégué à la protection des
+                    données ou le service chargé de l’exercice de ces droits) :
+                    la direction du garage Vincent Parrot. Si vous estimez, après nous avoir contactés, que vos
+                    droits « Informatique et Libertés » ne sont pas respectés,
+                    vous pouvez adresser une réclamation à la CNIL.
+                </p>
+            </section>
         </main>
     );
 };
