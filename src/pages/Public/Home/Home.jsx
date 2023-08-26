@@ -22,7 +22,7 @@ const Home = () => {
                 <Slider />
 
                 {datas.map((item) => (
-                    <section id={`${item.link}`} key={item.id}>
+                    <section key={item.id} id={`${item.link}`} className="py-14">
                         <Card
                             img={item.img}
                             title={item.title}

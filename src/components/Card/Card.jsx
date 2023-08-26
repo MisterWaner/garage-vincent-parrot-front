@@ -7,7 +7,7 @@ const Card = ({ img, title, contents, button, url, link }) => {
 
     return (
         <>
-                <section className="py-14" id={link}>
+                <section id={link}>
                     {/*<!-- Component: Horizontal card--> */}
 
                     <div className="flex flex-col overflow-hidden bg-yellow-02 rounded text-black-02 sm:flex-row">
