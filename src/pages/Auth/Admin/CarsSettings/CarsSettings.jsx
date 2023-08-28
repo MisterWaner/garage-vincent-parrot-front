@@ -10,7 +10,18 @@ const CarsSettings = () => {
     const [selectedCar, setSelectedCar] = useState(null);
     const [searchResults, setSearchResults] = useState("");
     const [cars, setCars] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [carsPerPage] = useState(10);
 
+    const getCarsForCurrentPage = () => {
+        const indexOfLastCar = currentPage * carsPerPage;
+        const indexOfFirstCar = indexOfLastCar - carsPerPage;
+        return cars.slice(indexOfFirstCar, indexOfLastCar);
+    };
+
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
     const openModal = () => {
         setToggleModal(true);
     };
@@ -107,7 +118,7 @@ const CarsSettings = () => {
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-red-02">
-                            {cars
+                            {getCarsForCurrentPage()
                                 .filter((car) => {
                                     return searchResults.toLowerCase() === ""
                                         ? car
@@ -126,7 +137,9 @@ const CarsSettings = () => {
                                                 fn={() => openCar(car)}
                                             />
                                         </td>
-                                        <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">{car.immat}</td>
+                                        <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">
+                                            {car.immat}
+                                        </td>
                                         <td className="py-4 px-6 whitespace-nowrap">
                                             <img
                                                 src={car.image}
@@ -157,6 +170,33 @@ const CarsSettings = () => {
                     {selectedCar && (
                         <CarModal car={selectedCar} onClose={closeCar} />
                     )}
+                </div>
+                <div className="flex justify-center mt-5">
+                    <nav>
+                        <ul className="flex items-center">
+                            {Array.from(
+                                {
+                                    length: Math.ceil(
+                                        cars.length / carsPerPage
+                                    ),
+                                },
+                                (_, index) => (
+                                    <li key={index + 1}>
+                                        <button
+                                            className={`bg-yellow-02 text-black-02 px-2 py-1 rounded-md mx-1 ${
+                                                currentPage === index + 1
+                                                    ? "font-bold"
+                                                    : ""
+                                            }`}
+                                            onClick={() => paginate(index + 1)}
+                                        >
+                                            {index + 1}
+                                        </button>
+                                    </li>
+                                )
+                            )}
+                        </ul>
+                    </nav>
                 </div>
             </section>
             {toggleModal && <AddCar toggleModal={closeModal} />}
