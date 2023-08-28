@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { carSchema } from "../../Validations/carValidation.js";
 import Button from "../Button/Button.jsx";
 
-import sendCarsDataToBack from "../../services/sendDataToBack.js";
+import {sendCarsDataToBack} from "../../services/sendDataToBack.js";
 
 // eslint-disable-next-line react/prop-types
 const AddCar = ({ toggleModal }) => {

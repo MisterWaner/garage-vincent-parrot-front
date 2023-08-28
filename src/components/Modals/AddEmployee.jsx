@@ -3,7 +3,7 @@ import { XCircleIcon } from "@heroicons/react/24/solid";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { employeeSchema } from "../../Validations/employeeValidation.js";
-
+import { sendEmployeesDataToBack } from "../../services/sendDataToBack.js";
 import Button from "../Button/Button";
 
 // eslint-disable-next-line react/prop-types
@@ -21,6 +21,8 @@ const AddEmployee = ({ toggleModal }) => {
     const onSubmit = async (data, event) => {
         event.preventDefault();
         console.log(data);
+        const formData = new FormData(event.target);
+        sendEmployeesDataToBack(formData);
 
         reset();
         setTimeout(() => {
@@ -52,7 +54,6 @@ const AddEmployee = ({ toggleModal }) => {
                 </h2>
                 <form
                     onSubmit={handleSubmit(onSubmit)}
-                    action=""
                     className="w-full h-full flex flex-col items-center lg:grid lg:grid-cols-2 lg:gap-4 lg:items-start "
                 >
                     <div className="flex flex-col mb-4 w-full">
@@ -105,17 +106,17 @@ const AddEmployee = ({ toggleModal }) => {
                         )}
                     </div>
                     <div className="flex flex-col mb-4 w-full">
-                        <label htmlFor="service">Service</label>
+                        <label htmlFor="services">Service</label>
                         <input
-                            name="service"
-                            id="service"
+                            name="services"
+                            id="services"
                             type="text"
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"
-                            {...register("service")}
+                            {...register("services")}
                         />
-                        {errors.service ? (
+                        {errors.services ? (
                             <p className="error-msg text-center">
-                                {errors.service?.message}
+                                {errors.services?.message}
                             </p>
                         ) : (
                             ""

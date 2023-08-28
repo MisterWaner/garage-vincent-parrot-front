@@ -1,14 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "../../../../components/Button/Button";
 import AddEmployee from "../../../../components/Modals/AddEmployee";
 import EmployeeModal from "../../../../components/Modals/EmployeeModal";
-import { employees } from "../../../../components/TestDatas/EmployeeData.js";
+import Axios from "../../../../api/axios";
 
 const EmployeesSettings = () => {
     const [toggleModal, setToggleModal] = useState(false);
     const [selectedEmployee, setSelectedEmployee] = useState(null);
     const [searchResults, setSearchResults] = useState("");
+    const [employees, setEmployees] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [employeePerPage] = useState(10);
 
+    const getEmployeesForCurrentPage = () => {
+        const indexOfLastEmployee = currentPage * employeePerPage;
+        const indexOfFirstEmployee = indexOfLastEmployee - employeePerPage;
+        return employees.slice(indexOfFirstEmployee, indexOfLastEmployee);
+    };
+
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
     const openModal = () => {
         setToggleModal(true);
     };
@@ -24,6 +36,28 @@ const EmployeesSettings = () => {
     const closeEmployee = () => {
         setSelectedEmployee(null);
     };
+
+    useEffect(() => {
+        const getEmployeesDataFromBack = async () => {
+            try {
+                const res = await Axios.get("/api/users/employees");
+                if (res.status === 200) {
+                    console.log(
+                        res.data,
+                        "Les données ont bien été récupérées"
+                    );
+                } else {
+                    console.error(res, "Une erreur est survenue");
+                }
+
+                setEmployees(res.data);
+            } catch (error) {
+                console.error("Une erreur est survenue", error);
+            }
+        };
+
+        getEmployeesDataFromBack();
+    }, []);
 
     return (
         <main className="container mx-auto px-24 lg:px-16 py-5 text-white">
@@ -76,7 +110,7 @@ const EmployeesSettings = () => {
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-red-02">
-                            {employees
+                            {getEmployeesForCurrentPage()
                                 .filter((employee) => {
                                     return searchResults.toLowerCase() === ""
                                         ? employee
@@ -107,7 +141,7 @@ const EmployeesSettings = () => {
                                             {employee.email}
                                         </td>
                                         <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">
-                                            {employee.service}
+                                            {employee.services}
                                         </td>
                                     </tr>
                                 ))}
@@ -119,6 +153,33 @@ const EmployeesSettings = () => {
                             onClose={closeEmployee}
                         />
                     )}
+                </div>
+                <div className="flex justify-center mt-5">
+                    <nav>
+                        <ul className="flex items-center">
+                            {Array.from(
+                                {
+                                    length: Math.ceil(
+                                        employees.length / employeePerPage
+                                    ),
+                                },
+                                (_, index) => (
+                                    <li key={index + 1}>
+                                        <button
+                                            className={`bg-yellow-02 text-black-02 px-2 py-1 rounded-md mx-1 ${
+                                                currentPage === index + 1
+                                                    ? "font-bold"
+                                                    : ""
+                                            } hover:bg-red-02`}
+                                            onClick={() => paginate(index + 1)}
+                                        >
+                                            {index + 1}
+                                        </button>
+                                    </li>
+                                )
+                            )}
+                        </ul>
+                    </nav>
                 </div>
             </section>
             {toggleModal && <AddEmployee toggleModal={closeModal} />}

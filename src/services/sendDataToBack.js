@@ -12,6 +12,25 @@ const sendCarsDataToBack = async (formData) => {
     } catch (error) {
         console.error("Une erreur est survenue", error);
     }
+};
+
+const sendEmployeesDataToBack = async (formData) => {
+    try {
+        const res = await Axios.post("/api/users/employees", formData, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (res.status === 201) {
+            console.log(res.data, "Les données ont bien été envoyées");
+        } else {
+            console.log(res.data, "Une erreur est SURVENUE");
+        }
+        return res.data;
+    } catch (error) {
+        console.log("Une erreur est survenue", error);
+    }
 }
 
-export default sendCarsDataToBack;
+export { sendCarsDataToBack, sendEmployeesDataToBack };

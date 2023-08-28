@@ -187,7 +187,7 @@ const CarsSettings = () => {
                                                 currentPage === index + 1
                                                     ? "font-bold"
                                                     : ""
-                                            }`}
+                                            } hover:bg-red-02`}
                                             onClick={() => paginate(index + 1)}
                                         >
                                             {index + 1}
