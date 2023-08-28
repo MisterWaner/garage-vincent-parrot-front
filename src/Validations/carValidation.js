@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 const carSchema = yup.object().shape({
-    name: yup.string().required("Le nom est obligatoire"),
+    immat: yup.string().required("L'immatriculation est obligatoire"),
     brand: yup.string().required("Le nom du constructeur est obligatoire"),
     model: yup.string().required("Le nom du modèle est obligatoire"),
     year: yup.number().integer("L'année doit être un entier").required("L'année est obligatoire").max(2023, "L'année doit être inférieure à 2023").min(1960, "L'année doit être supérieure à 1960"),

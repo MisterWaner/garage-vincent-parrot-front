@@ -5,6 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { carSchema } from "../../Validations/carValidation.js";
 import Button from "../Button/Button.jsx";
 
+import sendCarsDataToBack from "../../services/sendDataToBack.js";
+
 // eslint-disable-next-line react/prop-types
 const AddCar = ({ toggleModal }) => {
     const {
@@ -20,6 +22,8 @@ const AddCar = ({ toggleModal }) => {
     const onSubmit = async (data, event) => {
         event.preventDefault();
         console.log(data);
+        const formData = new FormData(event.target);
+        sendCarsDataToBack(formData);
 
         reset();
         setTimeout(() => {
@@ -50,27 +54,10 @@ const AddCar = ({ toggleModal }) => {
                     Ajouter une voiture
                 </h2>
                 <form
-                    action=""
+                    encType="multipart/form-data"
                     onSubmit={handleSubmit(onSubmit)}
                     className="w-full h-full flex flex-col items-center lg:grid lg:grid-cols-4 lg:grid-rows-auto lg:gap-2 lg:items-start "
                 >
-                    <div className="flex flex-col mb-2 w-full">
-                        <label htmlFor="name">Nom</label>
-                        <input
-                            name="name"
-                            id="name"
-                            type="text"
-                            className="bg-yellow-02 rounded-sm text-black-02 p-2"
-                            {...register("name")}
-                        />
-                        {errors.name ? (
-                            <p className="error-msg text-center">
-                                {errors.name?.message}
-                            </p>
-                        ) : (
-                            ""
-                        )}
-                    </div>
                     <div className="flex flex-col mb-2 w-full">
                         <label htmlFor="brand">Marque</label>
                         <input
@@ -100,6 +87,23 @@ const AddCar = ({ toggleModal }) => {
                         {errors.model ? (
                             <p className="error-msg text-center">
                                 {errors.model?.message}
+                            </p>
+                        ) : (
+                            ""
+                        )}
+                    </div>
+                    <div className="flex flex-col mb-2 w-full">
+                        <label htmlFor="immat">Immatriculation</label>
+                        <input
+                            name="immat"
+                            id="immat"
+                            type="text"
+                            className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                            {...register("immat")}
+                        />
+                        {errors.immat ? (
+                            <p className="error-msg text-center">
+                                {errors.immat?.message}
                             </p>
                         ) : (
                             ""

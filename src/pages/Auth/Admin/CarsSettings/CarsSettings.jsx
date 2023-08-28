@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import CarModal from "../../../../components/Modals/CarModal.jsx";
 import AddCar from "../../../../components/Modals/AddCar.jsx";
-import { cars } from "../../../../components/TestDatas/CarData.js";
 import Button from "../../../../components/Button/Button";
+import Axios from "../../../../api/axios.js";
 
 const CarsSettings = () => {
     const [toggleModal, setToggleModal] = useState(false);
     const [selectedCar, setSelectedCar] = useState(null);
     const [searchResults, setSearchResults] = useState("");
+    const [cars, setCars] = useState([]);
 
     const openModal = () => {
         setToggleModal(true);
@@ -25,6 +26,28 @@ const CarsSettings = () => {
     const closeCar = () => {
         setSelectedCar(null);
     };
+
+    useEffect(() => {
+        const getCarsDataFromBack = async () => {
+            try {
+                const res = await Axios.get("/api/cars");
+                if (res.status === 200) {
+                    console.log(
+                        res.data,
+                        "Les données ont bien été récupérées"
+                    );
+                } else {
+                    console.error(res, "Une erreur est survenue");
+                }
+
+                setCars(res.data);
+            } catch (error) {
+                console.error("Une erreur est survenue", error);
+            }
+        };
+
+        getCarsDataFromBack();
+    }, []);
 
     return (
         <main className="container mx-auto px-24 lg:px-16 py-5 text-white">
@@ -61,7 +84,7 @@ const CarsSettings = () => {
                                     Action
                                 </th>
                                 <th className="py-3 px-6 text-left text-lg font-medium text-black-02 tracking-wider font-racer">
-                                    Nom
+                                    Immatriculation
                                 </th>
                                 <th className="py-3 px-6 text-left text-lg font-medium text-black-02 tracking-wider font-racer">
                                     Image
@@ -88,7 +111,7 @@ const CarsSettings = () => {
                                 .filter((car) => {
                                     return searchResults.toLowerCase() === ""
                                         ? car
-                                        : car.name
+                                        : car.brand
                                               .toLowerCase()
                                               .includes(searchResults);
                                 })
@@ -103,9 +126,7 @@ const CarsSettings = () => {
                                                 fn={() => openCar(car)}
                                             />
                                         </td>
-                                        <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">
-                                            {car.name}
-                                        </td>
+                                        <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">{car.immat}</td>
                                         <td className="py-4 px-6 whitespace-nowrap">
                                             <img
                                                 src={car.image}

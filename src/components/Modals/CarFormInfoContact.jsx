@@ -57,6 +57,7 @@ const CarFormInfoContact = ({ toggleModal }) => {
                         <input
                             type="text"
                             id="ref"
+                            defaultValue={"ref"}
                             placeholder="Référence du véhicule"
                             name="ref"
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"

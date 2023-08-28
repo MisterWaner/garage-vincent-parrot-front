@@ -14,6 +14,7 @@ const CarModal = ({ car, onClose }) => {
     const [kilometersInput, setKilometersInput] = useState(car.kilometers);
     const [puissanceInput, setPuissanceInput] = useState(car.puissance);
     const [motorInput, setMotorInput] = useState(car.motor);
+    const [immatInput, setImmatInput] = useState(car.immat);
     const [isModified, setIsModified] = useState(false);
 
     const handleUpdate = () => {
@@ -26,6 +27,8 @@ const CarModal = ({ car, onClose }) => {
             price: priceInput,
             kilometers: kilometersInput,
             puissance: puissanceInput,
+            motor: motorInput,
+            immat: immatInput,
         };
         console.log(updatedCar);
 
@@ -37,6 +40,7 @@ const CarModal = ({ car, onClose }) => {
         setKilometersInput(updatedCar.kilometers);
         setPuissanceInput(updatedCar.puissance);
         setMotorInput(updatedCar.motor);
+        setImmatInput(updatedCar.immat);
 
         setIsModified(false);
         setTimeout(() => {
@@ -72,7 +76,7 @@ const CarModal = ({ car, onClose }) => {
                     </button>
                 </div>
                 <h2 className="text-lg font-bold mb-4">
-                    {car.name} - {car.year}
+                    {car.brand} {car.model} - {car.year}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2">
                     <>
@@ -86,6 +90,19 @@ const CarModal = ({ car, onClose }) => {
                             />
                         ) : (
                             <span>{car.brand}</span>
+                        )}
+                    </>
+                    <>
+                        <p className="font-bold">Immatriculation: </p>
+                        {showInputs ? (
+                            <input
+                                className="bg-yellow-02 rounded-sm text-black-02 p-2 mb-4"
+                                type="text"
+                                value={immatInput}
+                                onChange={(e) => setImmatInput(e.target.value)}
+                            />
+                        ) : (
+                            <span>{car.immat}</span>
                         )}
                     </>
                     <>
