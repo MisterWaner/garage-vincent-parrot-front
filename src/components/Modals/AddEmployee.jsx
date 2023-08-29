@@ -57,21 +57,6 @@ const AddEmployee = ({ toggleModal }) => {
                     className="w-full h-full flex flex-col items-center lg:grid lg:grid-cols-2 lg:gap-4 lg:items-start "
                 >
                     <div className="flex flex-col mb-4 w-full">
-                        <label htmlFor="lastname">Nom</label>
-                        <input
-                            name="lastname"
-                            id="lastname"
-                            type="text"
-                            className="bg-yellow-02 rounded-sm text-black-02 p-2"
-                            {...register("lastname")}
-                        />
-                        {errors.lastname ? (
-                            <p className="error-msg text-center">{errors.lastname?.message}</p>
-                        ) : (
-                            ""
-                        )}
-                    </div>
-                    <div className="flex flex-col mb-4 w-full">
                         <label htmlFor="firstname">Prénom</label>
                         <input
                             name="firstname"
@@ -89,18 +74,16 @@ const AddEmployee = ({ toggleModal }) => {
                         )}
                     </div>
                     <div className="flex flex-col mb-4 w-full">
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="lastname">Nom</label>
                         <input
-                            name="email"
-                            id="email"
-                            type="email"
+                            name="lastname"
+                            id="lastname"
+                            type="text"
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"
-                            {...register("email")}
+                            {...register("lastname")}
                         />
-                        {errors.email ? (
-                            <p className="error-msg text-center">
-                                {errors.email?.message}
-                            </p>
+                        {errors.lastname ? (
+                            <p className="error-msg text-center">{errors.lastname?.message}</p>
                         ) : (
                             ""
                         )}
@@ -122,7 +105,7 @@ const AddEmployee = ({ toggleModal }) => {
                             ""
                         )}
                     </div>
-                    <div className="flex mb-4 w-full lg:col-start-2">
+                    <div className="flex mb-4 w-full lg:col-start-2 lg:row-start-3">
                         <Button name="Valider" />
                     </div>
                 </form>

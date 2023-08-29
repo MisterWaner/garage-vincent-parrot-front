@@ -8,7 +8,7 @@ const EmployeeModal = ({ employee, onClose }) => {
     const [showInputs, setShowInputs] = useState(false);
     const [firstnameInput, setFirstnameInput] = useState(employee.firstname);
     const [lastnameInput, setLastnameInput] = useState(employee.lastname);
-    const [serviceInput, setServiceInput] = useState(employee.service);
+    const [serviceInput, setServiceInput] = useState(employee.services);
     const [emailInput, setEmailInput] = useState(employee.email);
     const [isModified, setIsModified] = useState(false);
 
@@ -17,14 +17,14 @@ const EmployeeModal = ({ employee, onClose }) => {
             ...employee,
             firstname: firstnameInput,
             lastname: lastnameInput,
-            service: serviceInput,
+            services: serviceInput,
             email: emailInput,
         };
         console.log(updatedEmployee);
 
         setFirstnameInput(updatedEmployee.firstname);
         setLastnameInput(updatedEmployee.lastname);
-        setServiceInput(updatedEmployee.service);
+        setServiceInput(updatedEmployee.services);
         setEmailInput(updatedEmployee.email);
         setIsModified(false);
 
@@ -111,7 +111,7 @@ const EmployeeModal = ({ employee, onClose }) => {
                             />
                         ) : (
                             <span className="md:col-start-2">
-                                {employee.service}
+                                {employee.services}
                             </span>
                         )}
                     </>
