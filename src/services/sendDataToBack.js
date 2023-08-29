@@ -2,13 +2,18 @@ import Axios from "../api/axios";
 
 const sendCarsDataToBack = async (formData) => {
     try {
-        const res = await Axios.post("/api/cars", formData);
-
+        const res = await Axios.post("/api/cars", formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        });
+        
         if (res.status === 200) {
             console.log(res.data, "Les données ont bien été envoyées");
         } else {
             console.error(res, "Une erreur est survenue");
         }
+        return res.data;
     } catch (error) {
         console.error("Une erreur est survenue", error);
     }
