@@ -4,6 +4,7 @@ import CarModal from "../../../../components/Modals/CarModal.jsx";
 import AddCar from "../../../../components/Modals/AddCar.jsx";
 import Button from "../../../../components/Button/Button";
 import Axios from "../../../../api/axios.js";
+import { deleteCarDataFromBack } from "../../../../services/deleteDataFromBack.js";
 
 const CarsSettings = () => {
     const [toggleModal, setToggleModal] = useState(false);
@@ -46,25 +47,47 @@ const CarsSettings = () => {
                     console.log(
                         res.data,
                         "Les données ont bien été récupérées"
-                        );
-                    } else {
-                        console.error(res, "Une erreur est survenue");
-                    }
-                    
-                    setCars(res.data);
-                } catch (error) {
-                    console.error("Une erreur est survenue", error);
+                    );
+                } else {
+                    console.error(res, "Une erreur est survenue");
                 }
-            };
-            
-            getCarsDataFromBack();
-        }, []);
-        const updtateCarInList = (updatedCar) => {
-            const updatedCars = cars.map((car) => {
-                return car.immat === updatedCar.immat ? { ...car, ...updatedCar } : car;
-            });
-            setCars(updatedCars);
+
+                setCars(res.data);
+            } catch (error) {
+                console.error("Une erreur est survenue", error);
+            }
         };
+
+        getCarsDataFromBack();
+    }, []);
+
+    const updtateCarInList = (updatedCar) => {
+        const updatedCars = cars.map((car) => {
+            return car.immat === updatedCar.immat
+                ? { ...car, ...updatedCar }
+                : car;
+        });
+        setCars(updatedCars);
+    };
+
+    const handleCarDeletionModal = async (car) => {
+        try {
+            const res = await deleteCarDataFromBack(car.immat);
+            if (res) {
+                const updatedCars = cars.filter(
+                    (c) => c.immat !== car.immat
+                );
+                setCars(updatedCars);
+                setSelectedCar(null);
+                alert("Le véhicule a bien été supprimé");
+                console.log("Le véhicule a bien été supprimé");
+            } else {
+                console.error(res, "Une erreur est SURVENUE");
+            }
+        } catch (error) {
+            console.error("Une erreur est survenue", error);
+        }
+    };
 
     return (
         <main className="container mx-auto px-24 lg:px-16 py-5 text-white">
@@ -178,6 +201,7 @@ const CarsSettings = () => {
                             car={selectedCar}
                             onClose={closeCar}
                             updateCarInList={updtateCarInList}
+                            handleCarDeletionModal={handleCarDeletionModal}
                         />
                     )}
                 </div>

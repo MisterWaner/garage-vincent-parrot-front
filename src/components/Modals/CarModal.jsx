@@ -5,7 +5,12 @@ import Button from "../Button/Button";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import { updateCarsDataToBack } from "../../services/updateDataToBack";
 
-const CarModal = ({ car, onClose, updateCarInList }) => {
+const CarModal = ({
+    car,
+    onClose,
+    updateCarInList,
+    handleCarDeletionModal,
+}) => {
     const [showInputs, setShowInputs] = useState(false);
     const [brandInput, setBrandInput] = useState(car.brand);
     const [modelInput, setModelInput] = useState(car.model);
@@ -33,35 +38,52 @@ const CarModal = ({ car, onClose, updateCarInList }) => {
         };
         console.log(updatedCar);
 
-        
         try {
             const res = await updateCarsDataToBack(car.immat, updatedCar);
-            
+
             if (res) {
                 updateCarInList(updatedCar);
                 console.log(updatedCar);
-    
+
                 setIsModified(false);
-        
+
                 alert("Les données ont bien été mises à jour");
-        
+
                 setTimeout(() => {
                     onClose();
                 }, 1500);
-            } 
+            }
         } catch (error) {
             console.error("Une erreur est survenue", error);
         }
-
     };
 
-    const handleButtonClick = () => {
+    const handleButtonUpdateClick = () => {
         if (!isModified) {
             setIsModified(true);
         } else {
             handleUpdate();
         }
         setShowInputs(!showInputs);
+    };
+
+    const handleDeleteButtonClick = async () => {
+        if (car) {
+            try {
+                console.log(car);
+                await handleCarDeletionModal(car);
+                //updateCarInList(null);
+
+                console.log(car);
+                setTimeout(() => {
+                    onClose();
+                }, 1500);
+            } catch (error) {
+                console.error("Une erreur est survenue", error);
+            }
+        } else {
+            console.error("Aucune voiture sélectionnée pour la suppression");
+        }
     };
 
     useEffect(() => {
@@ -203,9 +225,7 @@ const CarModal = ({ car, onClose, updateCarInList }) => {
                                 className="bg-yellow-02 rounded-sm text-black-02 p-2 mb-4"
                                 type="text"
                                 value={motorInput}
-                                onChange={(e) =>
-                                    setMotorInput(e.target.value)
-                                }
+                                onChange={(e) => setMotorInput(e.target.value)}
                             />
                         ) : (
                             <span>{car.motor}</span>
@@ -230,11 +250,11 @@ const CarModal = ({ car, onClose, updateCarInList }) => {
                 <div className="w-full flex flex-col lg:flex-row lg:gap-2 ">
                     <Button
                         name={isModified ? "Valider" : "Modifier"}
-                        fn={handleButtonClick}
+                        fn={handleButtonUpdateClick}
                     />
                     <Button
                         name={isModified ? "Annuler" : "Supprimer"}
-                        fn={onClose}
+                        fn={isModified ? onClose : handleDeleteButtonClick}
                     />
                 </div>
             </div>
