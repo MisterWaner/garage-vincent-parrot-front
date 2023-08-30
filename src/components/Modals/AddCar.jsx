@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { carSchema } from "../../Validations/carValidation.js";
 import Button from "../Button/Button.jsx";
 
-import {sendCarsDataToBack} from "../../services/sendDataToBack.js";
+import { sendCarsDataToBack } from "../../services/sendDataToBack.js";
 
 // eslint-disable-next-line react/prop-types
 const AddCar = ({ toggleModal }) => {
@@ -21,14 +21,18 @@ const AddCar = ({ toggleModal }) => {
 
     const onSubmit = async (data, event) => {
         event.preventDefault();
-        console.log(data);
         const formData = new FormData(event.target);
-        sendCarsDataToBack(formData);
-
-        reset();
-        setTimeout(() => {
-            toggleModal();
-        }, 1500);
+        try {
+            await sendCarsDataToBack(formData);
+            reset();
+            setTimeout(() => {
+                toggleModal();
+            }, 1500);
+            console.log(data);
+        } catch (error) {
+            console.log("Erreur d'envoi des données au back", error);
+        }
+        console.log(formData);
     };
 
     useEffect(() => {

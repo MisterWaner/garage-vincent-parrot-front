@@ -11,11 +11,13 @@ const sendCarsDataToBack = async (formData) => {
         if (res.status === 200) {
             console.log(res.data, "Les données ont bien été envoyées");
         } else {
-            console.error(res, "Une erreur est survenue");
+            console.error(res, "Une erreur est SURVENUE");
+            throw new Error("Les données n'ont pas pu être envoyées");
         }
         return res.data;
     } catch (error) {
         console.error("Une erreur est survenue", error);
+        throw error;
     }
 };
 
