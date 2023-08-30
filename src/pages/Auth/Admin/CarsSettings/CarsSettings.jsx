@@ -46,19 +46,25 @@ const CarsSettings = () => {
                     console.log(
                         res.data,
                         "Les données ont bien été récupérées"
-                    );
-                } else {
-                    console.error(res, "Une erreur est survenue");
+                        );
+                    } else {
+                        console.error(res, "Une erreur est survenue");
+                    }
+                    
+                    setCars(res.data);
+                } catch (error) {
+                    console.error("Une erreur est survenue", error);
                 }
-
-                setCars(res.data);
-            } catch (error) {
-                console.error("Une erreur est survenue", error);
-            }
+            };
+            
+            getCarsDataFromBack();
+        }, []);
+        const updtateCarInList = (updatedCar) => {
+            const updatedCars = cars.map((car) => {
+                return car.immat === updatedCar.immat ? { ...car, ...updatedCar } : car;
+            });
+            setCars(updatedCars);
         };
-
-        getCarsDataFromBack();
-    }, []);
 
     return (
         <main className="container mx-auto px-24 lg:px-16 py-5 text-white">
@@ -168,7 +174,11 @@ const CarsSettings = () => {
                     </table>
 
                     {selectedCar && (
-                        <CarModal car={selectedCar} onClose={closeCar} />
+                        <CarModal
+                            car={selectedCar}
+                            onClose={closeCar}
+                            updateCarInList={updtateCarInList}
+                        />
                     )}
                 </div>
                 <div className="flex justify-center mt-5">

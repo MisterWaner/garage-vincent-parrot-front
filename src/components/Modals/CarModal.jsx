@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 /* eslint-disable react/prop-types */
 import Button from "../Button/Button";
 import { XCircleIcon } from "@heroicons/react/24/solid";
+import { updateCarsDataToBack } from "../../services/updateDataToBack";
 
-const CarModal = ({ car, onClose }) => {
+const CarModal = ({ car, onClose, updateCarInList }) => {
     const [showInputs, setShowInputs] = useState(false);
     const [brandInput, setBrandInput] = useState(car.brand);
     const [modelInput, setModelInput] = useState(car.model);
@@ -17,7 +18,7 @@ const CarModal = ({ car, onClose }) => {
     const [immatInput, setImmatInput] = useState(car.immat);
     const [isModified, setIsModified] = useState(false);
 
-    const handleUpdate = () => {
+    const handleUpdate = async () => {
         const updatedCar = {
             ...car,
             brand: brandInput,
@@ -32,20 +33,26 @@ const CarModal = ({ car, onClose }) => {
         };
         console.log(updatedCar);
 
-        setBrandInput(updatedCar.brand);
-        setModelInput(updatedCar.model);
-        setYearInput(updatedCar.year);
-        setColorInput(updatedCar.color);
-        setPriceInput(updatedCar.price);
-        setKilometersInput(updatedCar.kilometers);
-        setPuissanceInput(updatedCar.puissance);
-        setMotorInput(updatedCar.motor);
-        setImmatInput(updatedCar.immat);
+        
+        try {
+            const res = await updateCarsDataToBack(car.immat, updatedCar);
+            
+            if (res) {
+                updateCarInList(updatedCar);
+                console.log(updatedCar);
+    
+                setIsModified(false);
+        
+                alert("Les données ont bien été mises à jour");
+        
+                setTimeout(() => {
+                    onClose();
+                }, 1500);
+            } 
+        } catch (error) {
+            console.error("Une erreur est survenue", error);
+        }
 
-        setIsModified(false);
-        setTimeout(() => {
-            onClose();
-        }, 1500);
     };
 
     const handleButtonClick = () => {
@@ -197,7 +204,7 @@ const CarModal = ({ car, onClose }) => {
                                 type="text"
                                 value={motorInput}
                                 onChange={(e) =>
-                                    setPuissanceInput(e.target.value)
+                                    setMotorInput(e.target.value)
                                 }
                             />
                         ) : (
