@@ -61,6 +61,11 @@ const CarsSettings = () => {
         getCarsDataFromBack();
     }, []);
 
+    const addNewCarToList = (newCar) => {
+        setCars((prevCars) => [...prevCars, newCar]);
+        console.log("Ajout d'un nouveau véhicule : ", newCar);
+    };
+
     const updtateCarInList = (updatedCar) => {
         const updatedCars = cars.map((car) => {
             return car.immat === updatedCar.immat
@@ -74,9 +79,7 @@ const CarsSettings = () => {
         try {
             const res = await deleteCarDataFromBack(car.immat);
             if (res) {
-                const updatedCars = cars.filter(
-                    (c) => c.immat !== car.immat
-                );
+                const updatedCars = cars.filter((c) => c.immat !== car.immat);
                 setCars(updatedCars);
                 setSelectedCar(null);
                 alert("Le véhicule a bien été supprimé");
@@ -233,7 +236,12 @@ const CarsSettings = () => {
                     </nav>
                 </div>
             </section>
-            {toggleModal && <AddCar toggleModal={closeModal} />}
+            {toggleModal && (
+                <AddCar
+                    toggleModal={closeModal}
+                    addCarToList={addNewCarToList}
+                />
+            )}
         </main>
     );
 };

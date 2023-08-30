@@ -8,7 +8,7 @@ import Button from "../Button/Button.jsx";
 import { sendCarsDataToBack } from "../../services/sendDataToBack.js";
 
 // eslint-disable-next-line react/prop-types
-const AddCar = ({ toggleModal }) => {
+const AddCar = ({ toggleModal, addCarToList }) => {
     const {
         register,
         handleSubmit,
@@ -21,18 +21,21 @@ const AddCar = ({ toggleModal }) => {
 
     const onSubmit = async (data, event) => {
         event.preventDefault();
-        const formData = new FormData(event.target);
+        
+        const carFormData = new FormData(event.target);
+        
         try {
-            await sendCarsDataToBack(formData);
+            const res = await sendCarsDataToBack(carFormData);
+            const newCar = res.data;
+            addCarToList(newCar);
             reset();
-            setTimeout(() => {
-                toggleModal();
-            }, 1500);
+            console.log("data envoyé :", newCar);
+            alert("Le véhicule a bien été ajouté");
+            toggleModal();
             console.log(data);
         } catch (error) {
             console.log("Erreur d'envoi des données au back", error);
         }
-        console.log(formData);
     };
 
     useEffect(() => {

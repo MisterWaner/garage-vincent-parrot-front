@@ -14,6 +14,6 @@ const deleteCarDataFromBack = async (carId) => {
         console.error("Une erreur est survenue", error);
         throw error;
     }
-}
+};
 
 export { deleteCarDataFromBack };
