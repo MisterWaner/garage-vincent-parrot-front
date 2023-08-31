@@ -7,7 +7,7 @@ import { sendEmployeesDataToBack } from "../../services/sendDataToBack.js";
 import Button from "../Button/Button";
 
 // eslint-disable-next-line react/prop-types
-const AddEmployee = ({ toggleModal }) => {
+const AddEmployee = ({ toggleModal, addEmployeeToList }) => {
     const {
         register,
         reset,
@@ -20,14 +20,20 @@ const AddEmployee = ({ toggleModal }) => {
 
     const onSubmit = async (data, event) => {
         event.preventDefault();
-        console.log(data);
-        const formData = new FormData(event.target);
-        sendEmployeesDataToBack(formData);
-
-        reset();
-        setTimeout(() => {
+        
+        const employeeFormData = new FormData(event.target);
+        try {
+            const res = await sendEmployeesDataToBack(employeeFormData);
+            const newEmployee = res.data;
+            addEmployeeToList(newEmployee);
+            reset();
+            console.log("data envoyé :", newEmployee);
+            alert("L'employé a bien été ajouté");
             toggleModal();
-        }, 1500);
+            console.log(data);
+        } catch (error) {
+            console.log("Erreur d'envoi des données au back", error);
+        }
     };
 
     useEffect(() => {

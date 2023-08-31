@@ -59,6 +59,11 @@ const EmployeesSettings = () => {
         getEmployeesDataFromBack();
     }, []);
 
+    const addNewEmployeeToList = (newEmployee) => {
+        setEmployees((prevEmployees) => [...prevEmployees, newEmployee]);
+        console.log("Ajout d'un nouvel employé : ", newEmployee);
+    }
+
     return (
         <main className="container mx-auto px-24 lg:px-16 py-5 text-white">
             <h1 className="text-center text-2xl text-yellow-02 underline my-6 sm:text-3xl lg:text-5xl decoration-red-02">
@@ -182,7 +187,7 @@ const EmployeesSettings = () => {
                     </nav>
                 </div>
             </section>
-            {toggleModal && <AddEmployee toggleModal={closeModal} />}
+            {toggleModal && <AddEmployee toggleModal={closeModal} addEmployeeToList={addNewEmployeeToList} />}
         </main>
     );
 };
