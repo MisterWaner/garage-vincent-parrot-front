@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import Button from "../../../../components/Button/Button";
 import AddEmployee from "../../../../components/Modals/AddEmployee";
@@ -62,7 +63,20 @@ const EmployeesSettings = () => {
     const addNewEmployeeToList = (newEmployee) => {
         setEmployees((prevEmployees) => [...prevEmployees, newEmployee]);
         console.log("Ajout d'un nouvel employé : ", newEmployee);
-    }
+    };
+
+    const updateEmployeeInList = (updatedEmployee) => {
+        console.log(updatedEmployee);
+        setEmployees((prevEmployees) => {
+            return prevEmployees.map((employee) => {
+                if (employee.id === updatedEmployee.id) {
+                    return updatedEmployee;
+                } else {
+                    return employee;
+                }
+            });
+        });
+    };
 
     return (
         <main className="container mx-auto px-24 lg:px-16 py-5 text-white">
@@ -156,6 +170,7 @@ const EmployeesSettings = () => {
                         <EmployeeModal
                             employee={selectedEmployee}
                             onClose={closeEmployee}
+                            updateEmployeeInList={updateEmployeeInList}
                         />
                     )}
                 </div>
@@ -187,7 +202,12 @@ const EmployeesSettings = () => {
                     </nav>
                 </div>
             </section>
-            {toggleModal && <AddEmployee toggleModal={closeModal} addEmployeeToList={addNewEmployeeToList} />}
+            {toggleModal && (
+                <AddEmployee
+                    toggleModal={closeModal}
+                    addEmployeeToList={addNewEmployeeToList}
+                />
+            )}
         </main>
     );
 };

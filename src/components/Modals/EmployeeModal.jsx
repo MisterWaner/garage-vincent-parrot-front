@@ -3,36 +3,42 @@ import { useEffect, useState } from "react";
 /* eslint-disable react/prop-types */
 import Button from "../Button/Button";
 import { XCircleIcon } from "@heroicons/react/24/solid";
+import { updateUserEmployeesDataToBack } from "../../services/updateDataToBack";
 
-const EmployeeModal = ({ employee, onClose }) => {
+const EmployeeModal = ({ employee, onClose, updateEmployeeInList }) => {
     const [showInputs, setShowInputs] = useState(false);
     const [firstnameInput, setFirstnameInput] = useState(employee.firstname);
     const [lastnameInput, setLastnameInput] = useState(employee.lastname);
     const [serviceInput, setServiceInput] = useState(employee.services);
-    const [emailInput, setEmailInput] = useState(employee.email);
     const [isModified, setIsModified] = useState(false);
+    const [updatedEmployee, setUpdatedEmployee] = useState({...employee});
 
-    const handleUpdate = () => {
-        const updatedEmployee = {
-            ...employee,
-            firstname: firstnameInput,
-            lastname: lastnameInput,
-            services: serviceInput,
-            email: emailInput,
-        };
-        console.log(updatedEmployee);
 
-        setFirstnameInput(updatedEmployee.firstname);
-        setLastnameInput(updatedEmployee.lastname);
-        setServiceInput(updatedEmployee.services);
-        setEmailInput(updatedEmployee.email);
-        setIsModified(false);
+    const handleUpdate = async () => {
+        
 
-        setTimeout(() => {
-            onClose();
-        }, 1500);
+        try {
+            const res = await updateUserEmployeesDataToBack(
+                employee.id,
+                updatedEmployee
+            );
+            console.log(res);
+
+            if(res) {
+                const updatedEmployeeData = res.data.data;
+                setUpdatedEmployee(updatedEmployeeData);
+                updateEmployeeInList(updatedEmployeeData);
+                console.log(updatedEmployee);
+                setIsModified(false);
+                alert("Les données ont bien été mises à jour");
+                onClose();
+            }
+        } catch (error) {
+            console.error("Une erreur est survenue", error);
+        }
+        
     };
-    const handleButtonClick = () => {
+    const handleButtonUpdateClick = () => {
         if (!isModified) {
             setIsModified(true);
         } else {
@@ -117,25 +123,15 @@ const EmployeeModal = ({ employee, onClose }) => {
                     </>
                     <>
                         <p className="font-bold md:col-start-1">Email :</p>
-                        {showInputs ? (
-                            <input
-                                className="bg-yellow-02 md:col-start-2 rounded-sm text-black-02 p-2 mb-4"
-                                type="text"
-                                value={emailInput}
-                                onChange={(e) => setEmailInput(e.target.value)}
-                            />
-                        ) : (
-                            <span className="md:col-start-2">
-                                {employee.email}
-                            </span>
-                        )}
+
+                        <span className="md:col-start-2">{employee.email}</span>
                     </>
                 </div>
 
                 <div className="w-full flex flex-col lg:flex-row lg:gap-2 ">
                     <Button
                         name={isModified ? "Valider" : "Modifier"}
-                        fn={handleButtonClick}
+                        fn={handleButtonUpdateClick}
                     />
                     <Button
                         name={isModified ? "Annuler" : "Supprimer"}
