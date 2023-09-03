@@ -4,6 +4,7 @@ import Button from "../../../../components/Button/Button";
 import AddEmployee from "../../../../components/Modals/AddEmployee";
 import EmployeeModal from "../../../../components/Modals/EmployeeModal";
 import Axios from "../../../../api/axios";
+import { deleteEmployeeDataFromBack } from "../../../../services/deleteDataFromBack";
 
 const EmployeesSettings = () => {
     const [toggleModal, setToggleModal] = useState(false);
@@ -75,6 +76,25 @@ const EmployeesSettings = () => {
         console.log(updatedEmployees);
         setEmployees(updatedEmployees);
     };
+
+    const handleEmployeeDeletionModal = async (employee) => {
+        try {
+            const res = await deleteEmployeeDataFromBack(employee.id);
+            if (res) {
+                const updatedEmployees = employees.filter(
+                    (e) => e.id !== employee.id
+                );
+                setEmployees(updatedEmployees);
+                setSelectedEmployee(null);
+                alert("L'employé a bien été supprimé");
+                console.log("L'employé a bien été supprimé");
+            } else {
+                console.error(res, "Une erreur est SURVENUE");
+            }
+        } catch (error) {
+            console.error("Une erreur est survenue", error);
+        }
+    }
 
     return (
         <main className="container mx-auto px-24 lg:px-16 py-5 text-white">
@@ -169,6 +189,7 @@ const EmployeesSettings = () => {
                             employee={selectedEmployee}
                             onClose={closeEmployee}
                             updateEmployeeInList={updateEmployeeInList}
+                            handleEmployeeDeletionModal={handleEmployeeDeletionModal}
                         />
                     )}
                 </div>

@@ -5,7 +5,7 @@ import Button from "../Button/Button";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import { updateUserEmployeesDataToBack } from "../../services/updateDataToBack";
 
-const EmployeeModal = ({ employee, onClose, updateEmployeeInList }) => {
+const EmployeeModal = ({ employee, onClose, updateEmployeeInList, handleEmployeeDeletionModal }) => {
     const [showInputs, setShowInputs] = useState(false);
     const [firstnameInput, setFirstnameInput] = useState(employee.firstname);
     const [lastnameInput, setLastnameInput] = useState(employee.lastname);
@@ -48,6 +48,24 @@ const EmployeeModal = ({ employee, onClose, updateEmployeeInList }) => {
         }
         setShowInputs(!showInputs);
     };
+
+    const handleDeleteButtonClick = async () => {
+        if (employee) {
+            try {
+                console.log(employee);
+                handleEmployeeDeletionModal(employee);
+
+                console.log(employee);
+                setTimeout(() => {
+                    onClose();
+                }, 1500);
+            } catch (error) {
+                console.error("Une erreur est survenue", error);
+            }
+        } else {
+            console.error("Aucun employé selectionné pour la suppression");
+        }
+    }
 
     useEffect(() => {
         document.body.style.overflow = "hidden";
@@ -137,7 +155,7 @@ const EmployeeModal = ({ employee, onClose, updateEmployeeInList }) => {
                     />
                     <Button
                         name={isModified ? "Annuler" : "Supprimer"}
-                        fn={onClose}
+                        fn={isModified ? onClose : handleDeleteButtonClick}
                     />
                 </div>
             </div>

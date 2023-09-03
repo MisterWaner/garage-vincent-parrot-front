@@ -23,7 +23,7 @@ const updateCarsDataToBack = async (carId, formData) => {
 
 const updateUserEmployeesDataToBack = async (userId, formData) => {
     try {
-        const res = await Axios.put(`/api/users/${userId}`, formData, {
+        const res = await Axios.put(`/api/users/employees/${userId}`, formData, {
             headers: {
                 "Content-Type": "application/json",
             },
