@@ -5,6 +5,7 @@ import {
     ArrowRightOnRectangleIcon,
     InboxIcon,
     Cog6ToothIcon,
+    UserCircleIcon,
     UserGroupIcon,
     TruckIcon,
     PresentationChartBarIcon,
@@ -19,6 +20,11 @@ const SideNavAdmin = () => {
             name: "Dashboard",
             link: "/admin",
             icon: <PresentationChartBarIcon />,
+        },
+        {
+            name: "Informations personnelles",
+            link: "/admin/settings",
+            icon: <UserCircleIcon />,
         },
         { name: "Mail", link: "/admin/mails", icon: <InboxIcon /> },
         {

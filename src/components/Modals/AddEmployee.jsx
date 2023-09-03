@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { employeeSchema } from "../../Validations/employeeValidation.js";
+import { userSchema } from "../../Validations/userValidation.js";
 import { sendEmployeesDataToBack } from "../../services/sendDataToBack.js";
 import Button from "../Button/Button";
 
@@ -14,7 +14,7 @@ const AddEmployee = ({ toggleModal, addEmployeeToList }) => {
         handleSubmit,
         formState: { errors },
     } = useForm({
-        resolver: yupResolver(employeeSchema),
+        resolver: yupResolver(userSchema),
         mode: "onSubmit",
     });
 

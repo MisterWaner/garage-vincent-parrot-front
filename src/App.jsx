@@ -21,6 +21,7 @@ import GlobalSettings from "./pages/Auth/Admin/GlobalSettings/GlobalSettings";
 import Mail from "./pages/Auth/Admin/Mail/Mail";
 import Account from "./pages/Auth/Employee/Account/Account";
 import PersonnalSettings from "./pages/Auth/Employee/PersonnalSettings/PersonnalSettings";
+import AdminSettings from "./pages/Auth/Admin/AdminSettings/AdminSettings";
 import MailEmployee from "./pages/Auth/Employee/MailEmployee/MailEmployee";
 
 
@@ -37,6 +38,7 @@ const App = () => {
                 </Route>
                 <Route path="/admin" element={<AdminLayout />}>
                     <Route index element={<Dashboard />} />
+                    <Route path="settings" element={<AdminSettings />} />
                     <Route path="mails" element={<Mail />} />
                     <Route
                         path="reviews"
