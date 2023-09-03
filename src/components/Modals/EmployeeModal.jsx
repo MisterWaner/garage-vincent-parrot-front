@@ -11,11 +11,15 @@ const EmployeeModal = ({ employee, onClose, updateEmployeeInList }) => {
     const [lastnameInput, setLastnameInput] = useState(employee.lastname);
     const [serviceInput, setServiceInput] = useState(employee.services);
     const [isModified, setIsModified] = useState(false);
-    const [updatedEmployee, setUpdatedEmployee] = useState({...employee});
 
 
     const handleUpdate = async () => {
-        
+        const updatedEmployee = {
+            ...employee,
+            firstname: firstnameInput,
+            lastname: lastnameInput,
+            services: serviceInput,
+        }        
 
         try {
             const res = await updateUserEmployeesDataToBack(
@@ -25,9 +29,7 @@ const EmployeeModal = ({ employee, onClose, updateEmployeeInList }) => {
             console.log(res);
 
             if(res) {
-                const updatedEmployeeData = res.data.data;
-                setUpdatedEmployee(updatedEmployeeData);
-                updateEmployeeInList(updatedEmployeeData);
+                updateEmployeeInList(updatedEmployee);
                 console.log(updatedEmployee);
                 setIsModified(false);
                 alert("Les données ont bien été mises à jour");

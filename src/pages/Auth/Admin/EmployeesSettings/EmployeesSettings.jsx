@@ -67,15 +67,13 @@ const EmployeesSettings = () => {
 
     const updateEmployeeInList = (updatedEmployee) => {
         console.log(updatedEmployee);
-        setEmployees((prevEmployees) => {
-            return prevEmployees.map((employee) => {
-                if (employee.id === updatedEmployee.id) {
-                    return updatedEmployee;
-                } else {
-                    return employee;
-                }
-            });
+        const updatedEmployees = employees.map((employee) => {
+            return employee.id === updatedEmployee.id
+                ? { ...employee, ...updatedEmployee }
+                : employee;
         });
+        console.log(updatedEmployees);
+        setEmployees(updatedEmployees);
     };
 
     return (
