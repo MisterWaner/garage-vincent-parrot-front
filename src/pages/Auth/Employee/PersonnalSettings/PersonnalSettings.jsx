@@ -1,17 +1,26 @@
+import UpdatePasswordForm from "../../../../components/UpdatePasswordForm/UpdatePasswordForm";
+
 const PersonnalSettings = () => {
     return (
         <main className="container mx-auto px-24 lg:px-16 py-5 text-white">
             <h1 className="text-center text-2xl text-yellow-02 underline my-6 sm:text-3xl lg:text-5xl decoration-red-02">
                 Informations personnelles
             </h1>
-            <section>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Quisquam rerum, placeat numquam laborum aspernatur laudantium,
-                est modi harum soluta laboriosam fugiat maxime explicabo odit
-                itaque repellat, et reprehenderit? Natus, consequuntur? Tempora
-                qui harum ex maiores animi cumque, magni facere, veniam amet
-                debitis enim. Dolorem placeat dicta exercitationem, vero
-                repellendus mollitia.
+            <section className="mt-10">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea
+                    iusto est quo autem, cumque quos? Recusandae amet minus
+                    corrupti illo, sed optio eaque, ad veritatis quasi debitis
+                    porro magni totam inventore nobis enim ullam nemo rerum
+                    minima adipisci expedita ipsum ut, sunt numquam. Quae qui
+                    odio, facilis voluptate nulla itaque?
+                </p>
+            </section>
+            <section className="mt-10 p-4 bg-white text-black-02 w-full lg:w-1/2 xl:w-1/3 rounded-md">
+                <h2 className="text-lg text-center font-bold mb-4">
+                    Modifier mon mot de passe
+                </h2>
+                <UpdatePasswordForm userId={""} userRoleId={""}/>
             </section>
         </main>
     );

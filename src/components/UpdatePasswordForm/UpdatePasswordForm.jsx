@@ -1,12 +1,56 @@
+/* eslint-disable react/prop-types */
 import Button from "../Button/Button";
 import { userSchema } from "../../Validations/userValidation.js";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import {
+    updatePasswordAdmin,
+    updatePasswordEmployee,
+} from "../../services/updateDataToBack.js";
 
-const UpdatePasswordForm = () => {
+const UpdatePasswordForm = ({ userRoleId, userId,}) => {
+
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm({
+        resolver: yupResolver(userSchema),
+        mode: "onSubmit",
+    });
+
+
+    const onSubmit = async (data, event) => {
+        event.preventDefault();
+        console.log(data);
+
+        const passwordFormData = new FormData(event.target);
+
+        try {
+            if (userRoleId === 1) {
+                const res = await updatePasswordAdmin(userId ,passwordFormData);
+                console.log(res);
+            } else if (userRoleId === 2) {
+                const res = await updatePasswordEmployee(userId, passwordFormData);
+                console.log(res);
+            }
+            alert("Les données ont bien été mises à jour");
+            reset();
+        } catch (error) {
+            console.log("Erreur d'envoi des données au back", error);
+            alert(
+                "Il y a eut un problème d'envoi des données, recommencez ulterieurement"
+            );
+        }
+    };
+
     return (
         <div className="w-full">
-            <form className="w-full h-full flex flex-col items-center lg:items-start">
+            <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="w-full h-full flex flex-col items-center lg:items-start"
+            >
                 <div className="flex flex-col mb-4 w-full">
                     <label htmlFor="password">Mot de passe</label>
                     <input
@@ -14,7 +58,15 @@ const UpdatePasswordForm = () => {
                         name="password"
                         id="password"
                         className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                        {...register("password")}
                     />
+                    {errors.password ? (
+                        <p className="error-msg text-center">
+                            {errors.password?.message}
+                        </p>
+                    ) : (
+                        ""
+                    )}
                 </div>
                 <div className="flex flex-col mb-4 w-full">
                     <label htmlFor="confirmation">Confirmation</label>
@@ -23,7 +75,15 @@ const UpdatePasswordForm = () => {
                         name="confirmation"
                         id="confirmation"
                         className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                        {...register("confirmation")}
                     />
+                    {errors.confirmation ? (
+                        <p className="error-msg text-center">
+                            {errors.confirmation?.message}
+                        </p>
+                    ) : (
+                        ""
+                    )}
                 </div>
                 <div className="flex mb-4 w-full">
                     <Button name="Valider" />
