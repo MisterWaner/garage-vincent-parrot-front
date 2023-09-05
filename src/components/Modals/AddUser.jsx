@@ -1,13 +1,13 @@
-import { useEffect } from "react"
+import { useEffect } from "react";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { userSchema } from "../../Validations/userValidation.js";
-import { sendEmployeesDataToBack } from "../../services/sendDataToBack.js";
-import Button from "../Button/Button";
+import { sendUsersDataToBack } from "../../services/sendDataToBack.js";
+import Button from "../Button/Button.jsx";
 
 // eslint-disable-next-line react/prop-types
-const AddEmployee = ({ toggleModal, addEmployeeToList }) => {
+const AddUser = ({ toggleModal, addUserToList }) => {
     const {
         register,
         reset,
@@ -20,15 +20,16 @@ const AddEmployee = ({ toggleModal, addEmployeeToList }) => {
 
     const onSubmit = async (data, event) => {
         event.preventDefault();
-        
-        const employeeFormData = new FormData(event.target);
+
+        const userFormData = new FormData(event.target);
+        const isAdmin = event.target.isAdmin.checked;
         try {
-            const res = await sendEmployeesDataToBack(employeeFormData);
-            const newEmployee = res.data;
-            addEmployeeToList(newEmployee);
+            const res = await sendUsersDataToBack(userFormData, isAdmin);
+            const newUser = res.data;
+            addUserToList(newUser);
             reset();
-            console.log("data envoyé :", newEmployee);
-            alert("L'employé a bien été ajouté");
+            console.log("data envoyé :", newUser);
+            alert("L'utilisateur a bien été ajouté");
             toggleModal();
             console.log(data);
         } catch (error) {
@@ -46,7 +47,11 @@ const AddEmployee = ({ toggleModal, addEmployeeToList }) => {
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black-02 bg-opacity-50 overflow-scroll">
-            <div className={`bg-white p-8 min-h-fit ${errors ? "mt-auto" : "mt-0"}mt-auto rounded-lg w-3/5 text-black-02  lg:w-2/3`}>
+            <div
+                className={`bg-white p-8 min-h-fit ${
+                    errors ? "mt-auto" : "mt-0"
+                }mt-auto rounded-lg w-3/5 text-black-02  lg:w-2/3`}
+            >
                 <div className="w-full flex justify-end">
                     <button
                         onClick={toggleModal}
@@ -56,7 +61,7 @@ const AddEmployee = ({ toggleModal, addEmployeeToList }) => {
                     </button>
                 </div>
                 <h2 className="text-lg text-center font-bold mb-4">
-                    Ajouter un employé
+                    Ajouter un utilisateur
                 </h2>
                 <form
                     onSubmit={handleSubmit(onSubmit)}
@@ -89,7 +94,9 @@ const AddEmployee = ({ toggleModal, addEmployeeToList }) => {
                             {...register("lastname")}
                         />
                         {errors.lastname ? (
-                            <p className="error-msg text-center">{errors.lastname?.message}</p>
+                            <p className="error-msg text-center">
+                                {errors.lastname?.message}
+                            </p>
                         ) : (
                             ""
                         )}
@@ -111,14 +118,30 @@ const AddEmployee = ({ toggleModal, addEmployeeToList }) => {
                             ""
                         )}
                     </div>
+                    <div className="flex flex-col items-start mb-4 w-full">
+                        <label htmlFor="isAdmin">Administrateur</label>
+                        <input
+                            type="checkbox"
+                            name="isAdmin"
+                            id="isAdmin"
+                            className="p-2 mt-3"
+                            {...register("isAdmin")}
+                        />
+                        {errors.isAdmin ? (
+                            <p className="error-msg text-center">
+                                {errors.isAdmin?.message}
+                            </p>
+                        ) : (
+                            ""
+                        )}
+                    </div>
                     <div className="flex mb-4 w-full lg:col-start-2 lg:row-start-3">
                         <Button name="Valider" />
                     </div>
                 </form>
-                
             </div>
         </div>
     );
 };
 
-export default AddEmployee;
+export default AddUser;

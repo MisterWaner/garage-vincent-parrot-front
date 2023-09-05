@@ -16,9 +16,9 @@ const deleteCarDataFromBack = async (carId) => {
     }
 };
 
-const deleteEmployeeDataFromBack = async (employeeId) => {
+const deleteUserDataFromBack = async (userId) => {
     try {
-        const res = await Axios.delete(`/api/users/employees/${employeeId}`);
+        const res = await Axios.delete(`/api/users/${userId}`);
         if (res.status === 200) {
             console.log(res.data, "Les données ont bien été envoyées");
             return true;
@@ -31,4 +31,4 @@ const deleteEmployeeDataFromBack = async (employeeId) => {
         throw error;
     }
 }
-export { deleteCarDataFromBack, deleteEmployeeDataFromBack };
+export { deleteCarDataFromBack, deleteUserDataFromBack };

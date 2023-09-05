@@ -3,34 +3,34 @@ import { useEffect, useState } from "react";
 /* eslint-disable react/prop-types */
 import Button from "../Button/Button";
 import { XCircleIcon } from "@heroicons/react/24/solid";
-import { updateUserEmployeesDataToBack } from "../../services/updateDataToBack";
+import { updateUsersDataToBack } from "../../services/updateDataToBack";
 
-const EmployeeModal = ({ employee, onClose, updateEmployeeInList, handleEmployeeDeletionModal }) => {
+const UserModal = ({ user, onClose, updateUserInList, handleUserDeletionModal }) => {
     const [showInputs, setShowInputs] = useState(false);
-    const [firstnameInput, setFirstnameInput] = useState(employee.firstname);
-    const [lastnameInput, setLastnameInput] = useState(employee.lastname);
-    const [serviceInput, setServiceInput] = useState(employee.services);
+    const [firstnameInput, setFirstnameInput] = useState(user.firstname);
+    const [lastnameInput, setLastnameInput] = useState(user.lastname);
+    const [serviceInput, setServiceInput] = useState(user.services);
     const [isModified, setIsModified] = useState(false);
 
 
     const handleUpdate = async () => {
-        const updatedEmployee = {
-            ...employee,
+        const updatedUser = {
+            ...user,
             firstname: firstnameInput,
             lastname: lastnameInput,
             services: serviceInput,
         }        
 
         try {
-            const res = await updateUserEmployeesDataToBack(
-                employee.id,
-                updatedEmployee
+            const res = await updateUsersDataToBack(
+                user.id,
+                updatedUser
             );
             console.log(res);
 
             if(res) {
-                updateEmployeeInList(updatedEmployee);
-                console.log(updatedEmployee);
+                updateUserInList(updatedUser);
+                console.log(updatedUser);
                 setIsModified(false);
                 alert("Les données ont bien été mises à jour");
                 onClose();
@@ -50,12 +50,12 @@ const EmployeeModal = ({ employee, onClose, updateEmployeeInList, handleEmployee
     };
 
     const handleDeleteButtonClick = async () => {
-        if (employee) {
+        if (user) {
             try {
-                console.log(employee);
-                handleEmployeeDeletionModal(employee);
+                console.log(user);
+                handleUserDeletionModal(user);
 
-                console.log(employee);
+                console.log(user);
                 setTimeout(() => {
                     onClose();
                 }, 1500);
@@ -87,7 +87,7 @@ const EmployeeModal = ({ employee, onClose, updateEmployeeInList, handleEmployee
                     </button>
                 </div>
                 <h2 className="text-lg font-bold mb-4">
-                    {employee.firstname + " " + employee.lastname}
+                    {user.firstname + " " + user.lastname}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2">
                     <>
@@ -103,7 +103,7 @@ const EmployeeModal = ({ employee, onClose, updateEmployeeInList, handleEmployee
                             />
                         ) : (
                             <span className="md:col-start-2">
-                                {employee.lastname}
+                                {user.lastname}
                             </span>
                         )}
                     </>
@@ -120,7 +120,7 @@ const EmployeeModal = ({ employee, onClose, updateEmployeeInList, handleEmployee
                             />
                         ) : (
                             <span className="md:col-start-2">
-                                {employee.firstname}
+                                {user.firstname}
                             </span>
                         )}
                     </>
@@ -137,14 +137,14 @@ const EmployeeModal = ({ employee, onClose, updateEmployeeInList, handleEmployee
                             />
                         ) : (
                             <span className="md:col-start-2">
-                                {employee.services}
+                                {user.services}
                             </span>
                         )}
                     </>
                     <>
                         <p className="font-bold md:col-start-1">Email :</p>
 
-                        <span className="md:col-start-2">{employee.email}</span>
+                        <span className="md:col-start-2">{user.email}</span>
                     </>
                 </div>
 
@@ -163,4 +163,4 @@ const EmployeeModal = ({ employee, onClose, updateEmployeeInList, handleEmployee
     );
 };
 
-export default EmployeeModal;
+export default UserModal;

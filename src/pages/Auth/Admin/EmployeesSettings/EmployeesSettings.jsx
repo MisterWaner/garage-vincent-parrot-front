@@ -1,23 +1,23 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import Button from "../../../../components/Button/Button";
-import AddEmployee from "../../../../components/Modals/AddEmployee";
-import EmployeeModal from "../../../../components/Modals/EmployeeModal";
+import AddUser from "../../../../components/Modals/AddUser";
+import UserModal from "../../../../components/Modals/UserModal";
 import Axios from "../../../../api/axios";
-import { deleteEmployeeDataFromBack } from "../../../../services/deleteDataFromBack";
+import { deleteUserDataFromBack } from "../../../../services/deleteDataFromBack";
 
 const EmployeesSettings = () => {
     const [toggleModal, setToggleModal] = useState(false);
-    const [selectedEmployee, setSelectedEmployee] = useState(null);
+    const [selectedUser, setSelectedUser] = useState(null);
     const [searchResults, setSearchResults] = useState("");
-    const [employees, setEmployees] = useState([]);
+    const [users, setUsers] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [employeePerPage] = useState(10);
+    const [userPerPage] = useState(10);
 
-    const getEmployeesForCurrentPage = () => {
-        const indexOfLastEmployee = currentPage * employeePerPage;
-        const indexOfFirstEmployee = indexOfLastEmployee - employeePerPage;
-        return employees.slice(indexOfFirstEmployee, indexOfLastEmployee);
+    const getUsersForCurrentPage = () => {
+        const indexOfLastUser = currentPage * userPerPage;
+        const indexOfFirstUser = indexOfLastUser - userPerPage;
+        return users.slice(indexOfFirstUser, indexOfLastUser);
     };
 
     const paginate = (pageNumber) => {
@@ -31,18 +31,18 @@ const EmployeesSettings = () => {
         setToggleModal(false);
     };
 
-    const openEmployee = (employee) => {
-        setSelectedEmployee(employee);
+    const openUser = (user) => {
+        setSelectedUser(user);
     };
 
-    const closeEmployee = () => {
-        setSelectedEmployee(null);
+    const closeUser = () => {
+        setSelectedUser(null);
     };
 
     useEffect(() => {
-        const getEmployeesDataFromBack = async () => {
+        const getUsersDataFromBack = async () => {
             try {
-                const res = await Axios.get("/api/users/employees");
+                const res = await Axios.get("/api/users");
                 if (res.status === 200) {
                     console.log(
                         res.data,
@@ -52,42 +52,42 @@ const EmployeesSettings = () => {
                     console.error(res, "Une erreur est survenue");
                 }
 
-                setEmployees(res.data);
+                setUsers(res.data);
             } catch (error) {
                 console.error("Une erreur est survenue", error);
             }
         };
 
-        getEmployeesDataFromBack();
+        getUsersDataFromBack();
     }, []);
 
-    const addNewEmployeeToList = (newEmployee) => {
-        setEmployees((prevEmployees) => [...prevEmployees, newEmployee]);
-        console.log("Ajout d'un nouvel employé : ", newEmployee);
+    const addNewUsersToList = (newUser) => {
+        setUsers((prevUsers) => [...prevUsers, newUser]);
+        console.log("Ajout d'un nouvel employé : ", newUser);
     };
 
-    const updateEmployeeInList = (updatedEmployee) => {
-        console.log(updatedEmployee);
-        const updatedEmployees = employees.map((employee) => {
-            return employee.id === updatedEmployee.id
-                ? { ...employee, ...updatedEmployee }
-                : employee;
+    const updateUserInList = (updatedUser) => {
+        console.log(updatedUser);
+        const updatedUsers = users.map((user) => {
+            return user.id === updatedUser.id
+                ? { ...user, ...updatedUser }
+                : user;
         });
-        console.log(updatedEmployees);
-        setEmployees(updatedEmployees);
+        console.log(updatedUsers);
+        setUsers(updatedUsers);
     };
 
-    const handleEmployeeDeletionModal = async (employee) => {
+    const handleUserDeletionModal = async (user) => {
         try {
-            const res = await deleteEmployeeDataFromBack(employee.id);
+            const res = await deleteUserDataFromBack(user.id);
             if (res) {
-                const updatedEmployees = employees.filter(
-                    (e) => e.id !== employee.id
+                const updatedUsers = users.filter(
+                    (u) => u.id !== user.id
                 );
-                setEmployees(updatedEmployees);
-                setSelectedEmployee(null);
-                alert("L'employé a bien été supprimé");
-                console.log("L'employé a bien été supprimé");
+                setUsers(updatedUsers);
+                setSelectedUser(null);
+                alert("L'utilisateur a bien été supprimé");
+                console.log("L'utilisateur a bien été supprimé");
             } else {
                 console.error(res, "Une erreur est SURVENUE");
             }
@@ -116,12 +116,12 @@ const EmployeesSettings = () => {
                             id="search"
                             onChange={(e) => setSearchResults(e.target.value)}
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"
-                            placeholder="Rechercher un employé"
+                            placeholder="Rechercher un utilisateur"
                         />
                     </div>
 
                     <Button
-                        name={"Ajouter un employé"}
+                        name={"Ajouter un utilisateur"}
                         fn={() => openModal()}
                     />
                 </div>
@@ -144,18 +144,21 @@ const EmployeesSettings = () => {
                                 <th className="py-3 px-6 text-left text-lg font-medium text-black-02 tracking-wider font-racer">
                                     Service
                                 </th>
+                                <th className="py-3 px-6 text-left text-lg font-medium text-black-02 tracking-wider font-racer">
+                                    Rôle
+                                </th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-red-02">
-                            {getEmployeesForCurrentPage()
-                                .filter((employee) => {
+                            {getUsersForCurrentPage()
+                                .filter((user) => {
                                     return searchResults.toLowerCase() === ""
-                                        ? employee
-                                        : employee.firstname
+                                        ? user
+                                        : user.firstname
                                               .toLowerCase()
                                               .includes(searchResults);
                                 })
-                                .map((employee, index) => (
+                                .map((user, index) => (
                                     <tr
                                         key={index}
                                         className="hover:bg-red-02/50"
@@ -164,32 +167,35 @@ const EmployeesSettings = () => {
                                             <Button
                                                 name="Voir la fiche"
                                                 fn={() =>
-                                                    openEmployee(employee)
+                                                    openUser(user)
                                                 }
                                             />
                                         </td>
                                         <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">
-                                            {employee.firstname}
+                                            {user.firstname}
                                         </td>
                                         <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">
-                                            {employee.lastname}
+                                            {user.lastname}
                                         </td>
                                         <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">
-                                            {employee.email}
+                                            {user.email}
                                         </td>
                                         <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">
-                                            {employee.services}
+                                            {user.services}
+                                        </td>
+                                        <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">
+                                            {(user.roleId === 1) ? "Admin" : "Employé"}
                                         </td>
                                     </tr>
                                 ))}
                         </tbody>
                     </table>
-                    {selectedEmployee && (
-                        <EmployeeModal
-                            employee={selectedEmployee}
-                            onClose={closeEmployee}
-                            updateEmployeeInList={updateEmployeeInList}
-                            handleEmployeeDeletionModal={handleEmployeeDeletionModal}
+                    {selectedUser && (
+                        <UserModal
+                            user={selectedUser}
+                            onClose={closeUser}
+                            updateUserInList={updateUserInList}
+                            handleEmployeeDeletionModal={handleUserDeletionModal}
                         />
                     )}
                 </div>
@@ -199,7 +205,7 @@ const EmployeesSettings = () => {
                             {Array.from(
                                 {
                                     length: Math.ceil(
-                                        employees.length / employeePerPage
+                                        users.length / userPerPage
                                     ),
                                 },
                                 (_, index) => (
@@ -222,9 +228,9 @@ const EmployeesSettings = () => {
                 </div>
             </section>
             {toggleModal && (
-                <AddEmployee
+                <AddUser
                     toggleModal={closeModal}
-                    addEmployeeToList={addNewEmployeeToList}
+                    addUserToList={addNewUsersToList}
                 />
             )}
         </main>

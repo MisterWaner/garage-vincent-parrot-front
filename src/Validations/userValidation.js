@@ -15,6 +15,7 @@ const userSchema = yup.object().shape({
     lastname: yup.string().required("Le nom est obligatoire"),
     firstname: yup.string().required("Le prénom est obligatoire"),
     services: yup.string().required("Le nom du service est obligatoire"),
+    isAdmin: yup.boolean().notRequired(),
 });
 
 export { userSchema };

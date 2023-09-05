@@ -3,13 +3,9 @@ import Button from "../Button/Button";
 import { userSchema } from "../../Validations/userValidation.js";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-    updatePasswordAdmin,
-    updatePasswordEmployee,
-} from "../../services/updateDataToBack.js";
+import { updateUsersDataToBack } from "../../services/updateDataToBack.js";
 
-const UpdatePasswordForm = ({ userRoleId, userId,}) => {
-
+const UpdatePasswordForm = () => {
     const {
         register,
         handleSubmit,
@@ -20,7 +16,6 @@ const UpdatePasswordForm = ({ userRoleId, userId,}) => {
         mode: "onSubmit",
     });
 
-
     const onSubmit = async (data, event) => {
         event.preventDefault();
         console.log(data);
@@ -28,19 +23,18 @@ const UpdatePasswordForm = ({ userRoleId, userId,}) => {
         const passwordFormData = new FormData(event.target);
 
         try {
-            if (userRoleId === 1) {
-                const res = await updatePasswordAdmin(userId ,passwordFormData);
-                console.log(res);
-            } else if (userRoleId === 2) {
-                const res = await updatePasswordEmployee(userId, passwordFormData);
-                console.log(res);
-            }
-            alert("Les données ont bien été mises à jour");
+            
+            const res = await updateUsersDataToBack(passwordFormData);
+            console.log(res);
+
+            
+            alert("Le mot de passe a bien été mis à jour");
             reset();
+            
         } catch (error) {
             console.log("Erreur d'envoi des données au back", error);
             alert(
-                "Il y a eut un problème d'envoi des données, recommencez ulterieurement"
+                "Il y a eut un problème pendant la mise à jour du mot de passe, recommencez ulterieurement"
             );
         }
     };

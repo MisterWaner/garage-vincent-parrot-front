@@ -21,9 +21,10 @@ const updateCarsDataToBack = async (carId, formData) => {
     }
 };
 
-const updateUserEmployeesDataToBack = async (userId, formData) => {
+const updateUsersDataToBack = async (userId, formData) => {
     try {
-        const res = await Axios.put(`/api/users/employees/${userId}`, formData, {
+        const route = "api/users";
+        const res = await Axios.put(`${route}/${userId}`, formData, {
             headers: {
                 "Content-Type": "application/json",
             },
@@ -31,56 +32,15 @@ const updateUserEmployeesDataToBack = async (userId, formData) => {
 
         if (res.status === 200) {
             console.log(res.data, "Les données ont bien été envoyées");
+            return res.data;
         } else {
             console.error(res, "Une erreur est SURVENUE");
             throw new Error("Les données n'ont pas pu être envoyées");
         }
-        return res.data;
     } catch (error) {
         console.error("Une erreur est survenue", error);
         throw error;
     }
 }
 
-const updatePasswordAdmin = async (userId, formData) => {
-    try {
-        const res = await Axios.put(`/api/users/admins/${userId}`, formData, {
-            headers: {
-                "Content-Type": "application/json",
-            }
-        });
-
-        if (res.status === 200) {
-            console.log(res.data, "Les données ont bien été envoyées");
-        } else {
-            console.error(res, "Une erreur est SURVENUE");
-            throw new Error("Les données n'ont pas pu être envoyées");
-        }
-        return res.data;
-    } catch (error) {
-        console.error("Une erreur est survenue", error);
-        throw error;
-    }
-}
-
-const updatePasswordEmployee = async (userId, formData) => {
-    try {
-        const res = await Axios.put(`/api/users/employees/${userId}`, formData, {
-            headers: {
-                "Content-Type": "application/json",
-            }
-        });
-
-        if (res.status === 200) {
-            console.log(res.data, "Les données ont bien été envoyées");
-        } else {
-            console.error(res, "Une erreur est SURVENUE");
-            throw new Error("Les données n'ont pas pu être envoyées");
-        }
-        return res.data;
-    } catch (error) {
-        console.error("Une erreur est survenue", error);
-        throw error;
-    }
-}
-export { updateCarsDataToBack, updateUserEmployeesDataToBack, updatePasswordAdmin, updatePasswordEmployee };
+export { updateCarsDataToBack, updateUsersDataToBack };
