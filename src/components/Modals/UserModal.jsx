@@ -24,7 +24,8 @@ const UserModal = ({ user, onClose, updateUserInList, handleUserDeletionModal })
         try {
             const res = await updateUsersDataToBack(
                 user.id,
-                updatedUser
+                updatedUser,
+                user.role
             );
             console.log(res);
 

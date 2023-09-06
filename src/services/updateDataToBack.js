@@ -22,9 +22,9 @@ const updateCarsDataToBack = async (carId, formData) => {
 };
 
 const updateUsersDataToBack = async (userId, formData) => {
+
     try {
-        const route = "api/users";
-        const res = await Axios.put(`${route}/${userId}`, formData, {
+        const res = await Axios.put(`/api/users/${userId}`, formData, {
             headers: {
                 "Content-Type": "application/json",
             },

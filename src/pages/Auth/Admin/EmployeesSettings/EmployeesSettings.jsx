@@ -61,9 +61,10 @@ const EmployeesSettings = () => {
         getUsersDataFromBack();
     }, []);
 
-    const addNewUsersToList = (newUser) => {
+    const addNewUserToList = (newUser) => {
+        console.log(newUser);
         setUsers((prevUsers) => [...prevUsers, newUser]);
-        console.log("Ajout d'un nouvel employé : ", newUser);
+        console.log("Ajout d'un nouvel utilisateur : ", newUser);
     };
 
     const updateUserInList = (updatedUser) => {
@@ -91,6 +92,7 @@ const EmployeesSettings = () => {
             } else {
                 console.error(res, "Une erreur est SURVENUE");
             }
+
         } catch (error) {
             console.error("Une erreur est survenue", error);
         }
@@ -184,7 +186,7 @@ const EmployeesSettings = () => {
                                             {user.services}
                                         </td>
                                         <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">
-                                            {(user.roleId === 1) ? "Admin" : "Employé"}
+                                            {(user.role === "admin") ? "Admin" : "Employé"}
                                         </td>
                                     </tr>
                                 ))}
@@ -195,7 +197,7 @@ const EmployeesSettings = () => {
                             user={selectedUser}
                             onClose={closeUser}
                             updateUserInList={updateUserInList}
-                            handleEmployeeDeletionModal={handleUserDeletionModal}
+                            handleUserDeletionModal={handleUserDeletionModal}
                         />
                     )}
                 </div>
@@ -230,7 +232,7 @@ const EmployeesSettings = () => {
             {toggleModal && (
                 <AddUser
                     toggleModal={closeModal}
-                    addUserToList={addNewUsersToList}
+                    addUserToList={addNewUserToList}
                 />
             )}
         </main>

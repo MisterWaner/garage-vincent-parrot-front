@@ -7,7 +7,7 @@ const sendCarsDataToBack = async (formData) => {
                 "Content-Type": "multipart/form-data",
             },
         });
-        
+
         if (res.status === 200) {
             console.log(res.data, "Les données ont bien été envoyées");
         } else {
@@ -21,25 +21,25 @@ const sendCarsDataToBack = async (formData) => {
     }
 };
 
-const sendUsersDataToBack = async (formData, isAdmin) => {
+const sendUsersDataToBack = async (formData) => {
     try {
-        const route = isAdmin ? "/api/users/admins" : "/api/users/employees";
-
-        const res = await Axios.post(route, formData, {
+        const res = await Axios.post("/api/users", formData, {
             headers: {
                 "Content-Type": "application/json",
             },
         });
+        console.log(res);
 
         if (res.status === 201) {
-            console.log(res.data, "Les données ont bien été envoyées");
+            console.log(res.data, "Les données ont bien été envoyées");
             return res.data;
         } else {
-            throw new Error("Une erreur est survenue lors de la création de l'utilisateur");
+            throw new Error("Une erreur est survenue lors de la creation");
         }
     } catch (error) {
-        console.log("Une erreur est survenue", error);
+        console.error("Une erreur est survenue", error);
+        throw error;
     }
-}
+};
 
 export { sendCarsDataToBack, sendUsersDataToBack };

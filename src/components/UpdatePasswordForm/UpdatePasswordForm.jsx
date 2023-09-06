@@ -49,6 +49,7 @@ const UpdatePasswordForm = () => {
                     <label htmlFor="password">Mot de passe</label>
                     <input
                         type="password"
+                        autoComplete="new-password"
                         name="password"
                         id="password"
                         className="bg-yellow-02 rounded-sm text-black-02 p-2"
@@ -67,6 +68,7 @@ const UpdatePasswordForm = () => {
                     <input
                         type="password"
                         name="confirmation"
+                        autoComplete="new-password"
                         id="confirmation"
                         className="bg-yellow-02 rounded-sm text-black-02 p-2"
                         {...register("confirmation")}

@@ -19,19 +19,17 @@ const AddUser = ({ toggleModal, addUserToList }) => {
     });
 
     const onSubmit = async (data, event) => {
-        event.preventDefault();
-
-        const userFormData = new FormData(event.target);
-        const isAdmin = event.target.isAdmin.checked;
         try {
-            const res = await sendUsersDataToBack(userFormData, isAdmin);
-            const newUser = res.data;
-            addUserToList(newUser);
-            reset();
-            console.log("data envoyé :", newUser);
-            alert("L'utilisateur a bien été ajouté");
-            toggleModal();
             console.log(data);
+            const userFormData = new FormData(event.target);
+            const res = await sendUsersDataToBack(userFormData);
+            const newUser = res.data;
+
+            alert("L'utilisateur a bien été ajouté");
+            addUserToList(newUser);
+            console.log("data envoyé :", newUser);
+            reset();
+            toggleModal();
         } catch (error) {
             console.log("Erreur d'envoi des données au back", error);
         }
@@ -118,18 +116,18 @@ const AddUser = ({ toggleModal, addUserToList }) => {
                             ""
                         )}
                     </div>
-                    <div className="flex flex-col items-start mb-4 w-full">
-                        <label htmlFor="isAdmin">Administrateur</label>
+                    <div className="flex flex-col mb-4 w-full">
+                        <label htmlFor="role">Role</label>
                         <input
-                            type="checkbox"
-                            name="isAdmin"
-                            id="isAdmin"
-                            className="p-2 mt-3"
-                            {...register("isAdmin")}
+                            name="role"
+                            id="role"
+                            type="text"
+                            className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                            {...register("role")}
                         />
-                        {errors.isAdmin ? (
+                        {errors.role ? (
                             <p className="error-msg text-center">
-                                {errors.isAdmin?.message}
+                                {errors.role?.message}
                             </p>
                         ) : (
                             ""
