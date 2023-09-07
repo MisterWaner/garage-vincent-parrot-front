@@ -6,7 +6,6 @@ import {
     InboxIcon,
     UserCircleIcon,
     TruckIcon,
-    PresentationChartBarIcon,
     ChatBubbleOvalLeftEllipsisIcon,
     XMarkIcon,
     Bars3Icon,
@@ -15,13 +14,8 @@ import {
 const SideNavEmployee = () => {
     const Links = [
         {
-            name: "Dashboard",
+            name: "Accueil Employé",
             link: "/account/:id",
-            icon: <PresentationChartBarIcon />,
-        },
-        {
-            name: "Informations personnelles",
-            link: "/account/:id/personal-settings",
             icon: <UserCircleIcon />,
         },
         { name: "Mail", link: "/account/:id/mails", icon: <InboxIcon /> },
@@ -79,6 +73,7 @@ const SideNavEmployee = () => {
                                     color: isActive ? "blue" : "",
                                 })}
                                 to={item.link}
+                                end
                             >
                                 <span onClick={toggleSideNav}>{item.name}</span>
                                 <div className="w-10 pl-2">{item.icon}</div>

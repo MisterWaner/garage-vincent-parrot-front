@@ -8,7 +8,6 @@ import {
     UserCircleIcon,
     UserGroupIcon,
     TruckIcon,
-    PresentationChartBarIcon,
     ChatBubbleOvalLeftEllipsisIcon,
     XMarkIcon,
     Bars3Icon,
@@ -17,34 +16,29 @@ import {
 const SideNavAdmin = () => {
     const Links = [
         {
-            name: "Dashboard",
-            link: "/admin",
-            icon: <PresentationChartBarIcon />,
-        },
-        {
-            name: "Informations personnelles",
-            link: "/admin/settings",
+            name: "Accueil administrateur",
+            link: "/admin/:id",
             icon: <UserCircleIcon />,
         },
-        { name: "Mail", link: "/admin/mails", icon: <InboxIcon /> },
+        { name: "Mail", link: "/admin/:id/mails", icon: <InboxIcon /> },
         {
             name: "Gestion globale",
-            link: "/admin/globals",
+            link: "/admin/:id/globals",
             icon: <Cog6ToothIcon />,
         },
         {
             name: "Gestion des employés",
-            link: "/admin/employees",
+            link: "/admin/:id/employees",
             icon: <UserGroupIcon />,
         },
         {
             name: "Gestion des vehicules",
-            link: "/admin/car-park",
+            link: "/admin/:id/car-park",
             icon: <TruckIcon />,
         },
         {
             name: "Gestion des témoignages",
-            link: "/admin/reviews",
+            link: "/admin/:id/reviews",
             icon: <ChatBubbleOvalLeftEllipsisIcon />,
         },
     ];
@@ -96,6 +90,7 @@ const SideNavAdmin = () => {
                                             color: isActive ? "blue" : "",
                                         })}
                                         to={item.link}
+                                        end
                                     >
                                         <span onClick={toggleSideNav}>
                                             {item.name}

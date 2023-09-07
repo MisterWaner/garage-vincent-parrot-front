@@ -4,7 +4,7 @@ const AdminSettings = () => {
     return (
         <main className="container mx-auto px-24 lg:px-16 py-5 text-white">
             <h1 className="text-center text-2xl text-yellow-02 underline my-6 sm:text-3xl lg:text-5xl decoration-red-02">
-                Informations personnelles
+                Accueil Administrateur
             </h1>
             <section className="mt-10">
                 <p>

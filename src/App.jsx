@@ -13,13 +13,11 @@ import AccountLayout from "./pages/Layout/AccountLayout";
 import Connexion from "./pages/Public/Connexion/Connexion";
 import RgpdPage from "./pages/Public/RGPD/Rgpd";
 import Cars from "./pages/Public/Cars/Cars";
-import Dashboard from "./pages/Auth/Admin/Dashboard/Dashboard";
 import TestimonialsSettings from "./pages/Auth/Admin/TestimonialsSettings/TestimonialsSettings";
 import CarsSettings from "./pages/Auth/Admin/CarsSettings/CarsSettings";
 import EmployeesSettings from "./pages/Auth/Admin/EmployeesSettings/EmployeesSettings";
 import GlobalSettings from "./pages/Auth/Admin/GlobalSettings/GlobalSettings";
 import Mail from "./pages/Auth/Admin/Mail/Mail";
-import Account from "./pages/Auth/Employee/Account/Account";
 import PersonnalSettings from "./pages/Auth/Employee/PersonnalSettings/PersonnalSettings";
 import AdminSettings from "./pages/Auth/Admin/AdminSettings/AdminSettings";
 import MailEmployee from "./pages/Auth/Employee/MailEmployee/MailEmployee";
@@ -36,9 +34,8 @@ const App = () => {
                     <Route path="/cars" element={<Cars />} />
                     <Route path="/rgpd" element={<RgpdPage />} />
                 </Route>
-                <Route path="/admin" element={<AdminLayout />}>
-                    <Route index element={<Dashboard />} />
-                    <Route path="settings" element={<AdminSettings />} />
+                <Route path="/admin/:id" element={<AdminLayout />}>
+                    <Route index element={<AdminSettings />} />
                     <Route path="mails" element={<Mail />} />
                     <Route
                         path="reviews"
@@ -52,8 +49,7 @@ const App = () => {
                     />
                 </Route>
                 <Route path="/account/:id" element={<AccountLayout />}>
-                    <Route index element={<Account />} />
-                    <Route path="personal-settings" element={<PersonnalSettings />} />
+                    <Route index element={<PersonnalSettings />} />
                     <Route path="car-park" element={<CarsSettings />} />
                     <Route path="mails" element={<MailEmployee />} />
                     <Route path="reviews" element={<TestimonialsSettings />} />
