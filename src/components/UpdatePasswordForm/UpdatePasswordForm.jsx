@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import Button from "../Button/Button";
-import { userSchema } from "../../Validations/userValidation.js";
+import {passwordSchema} from "../../Validations/passwordValidation.js";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { updateUsersDataToBack } from "../../services/updateDataToBack.js";
@@ -12,7 +12,7 @@ const UpdatePasswordForm = () => {
         reset,
         formState: { errors },
     } = useForm({
-        resolver: yupResolver(userSchema),
+        resolver: yupResolver(passwordSchema),
         mode: "onSubmit",
     });
 

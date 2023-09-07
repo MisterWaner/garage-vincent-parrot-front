@@ -186,7 +186,7 @@ const EmployeesSettings = () => {
                                             {user.services}
                                         </td>
                                         <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">
-                                            {(user.role === "admin") ? "Admin" : "Employé"}
+                                            {(user.role === "Admin") ? "Admin" : "Utilisateur"}
                                         </td>
                                     </tr>
                                 ))}

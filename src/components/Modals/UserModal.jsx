@@ -10,6 +10,7 @@ const UserModal = ({ user, onClose, updateUserInList, handleUserDeletionModal })
     const [firstnameInput, setFirstnameInput] = useState(user.firstname);
     const [lastnameInput, setLastnameInput] = useState(user.lastname);
     const [serviceInput, setServiceInput] = useState(user.services);
+    const [roleInput, setRoleInput] = useState(user.role);
     const [isModified, setIsModified] = useState(false);
 
 
@@ -19,13 +20,13 @@ const UserModal = ({ user, onClose, updateUserInList, handleUserDeletionModal })
             firstname: firstnameInput,
             lastname: lastnameInput,
             services: serviceInput,
+            role: roleInput,
         }        
 
         try {
             const res = await updateUsersDataToBack(
                 user.id,
                 updatedUser,
-                user.role
             );
             console.log(res);
 
@@ -41,7 +42,9 @@ const UserModal = ({ user, onClose, updateUserInList, handleUserDeletionModal })
         }
         
     };
-    const handleButtonUpdateClick = () => {
+    const onInvalid = (errors) => console.error(errors);
+    const handleButtonUpdateClick = (errors) => {
+        onInvalid(errors);
         if (!isModified) {
             setIsModified(true);
         } else {
@@ -128,14 +131,14 @@ const UserModal = ({ user, onClose, updateUserInList, handleUserDeletionModal })
                     <>
                         <p className="font-bold md:col-start-1">Service :</p>
                         {showInputs ? (
-                            <input
-                                className="bg-yellow-02 md:col-start-2 rounded-sm text-black-02 p-2 mb-4"
-                                type="text"
-                                value={serviceInput}
-                                onChange={(e) =>
-                                    setServiceInput(e.target.value)
-                                }
-                            />
+                            <select className="bg-yellow-02 md:col-start-2 rounded-sm text-black-02 p-2 mb-4"
+                            onChange={(e) => setServiceInput(e.target.value)}>
+                                <option value={serviceInput}>{user.services}</option>
+                                <option value="Mécanique">Mécanique</option>
+                                <option value="Carrosserie">Carrosserie</option>
+                                <option value="Vente">Vente</option>
+                                <option value="Direction">Direction</option>
+                            </select>
                         ) : (
                             <span className="md:col-start-2">
                                 {user.services}
@@ -147,7 +150,23 @@ const UserModal = ({ user, onClose, updateUserInList, handleUserDeletionModal })
 
                         <span className="md:col-start-2">{user.email}</span>
                     </>
+                    <>
+                        <p className="font-bold md:col-start-1">Rôle :</p>
+                        {showInputs ? (
+                            <select className="bg-yellow-02 md:col-start-2 rounded-sm text-black-02 p-2 mb-4"
+                            onChange={(e) => setRoleInput(e.target.value)}>
+                                <option value={roleInput}>{ user.role }</option>
+                                <option value="Utilisateur">Utilisateur</option>
+                                <option value="Admin">Admin</option>
+                            </select>
+                        ) : (
+                            <span className="md:col-start-2">
+                                {user.role}
+                            </span>
+                        )}
+                    </>
                 </div>
+                
 
                 <div className="w-full flex flex-col lg:flex-row lg:gap-2 ">
                     <Button

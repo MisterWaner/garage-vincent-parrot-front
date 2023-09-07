@@ -12,13 +12,14 @@ const AddUser = ({ toggleModal, addUserToList }) => {
         register,
         reset,
         handleSubmit,
+        setValue,
         formState: { errors },
     } = useForm({
         resolver: yupResolver(userSchema),
         mode: "onSubmit",
     });
 
-    const onInvalid = (errors) => console.error(errors)
+    const onInvalid = (errors) => console.error(errors);
 
     const onSubmit = async (data, event) => {
         event.preventDefault();
@@ -105,13 +106,23 @@ const AddUser = ({ toggleModal, addUserToList }) => {
                     </div>
                     <div className="flex flex-col mb-4 w-full">
                         <label htmlFor="services">Service</label>
-                        <input
+                        <select
                             name="services"
                             id="services"
-                            type="text"
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                            onChange={(e) =>
+                                setValue("services", e.target.value, {
+                                    shouldValidate: true,
+                                })
+                            }
                             {...register("services")}
-                        />
+                        >
+                            <option value="">Choisir un service</option>
+                            <option value="Mécanique">Mécanique</option>
+                            <option value="Carrosserie">Carrosserie</option>
+                            <option value="Vente">Vente</option>
+                            <option value="Direction">Direction</option>
+                        </select>
                         {errors.services ? (
                             <p className="error-msg text-center">
                                 {errors.services?.message}
@@ -122,13 +133,21 @@ const AddUser = ({ toggleModal, addUserToList }) => {
                     </div>
                     <div className="flex flex-col mb-4 w-full">
                         <label htmlFor="role">Rôle</label>
-                        <input
+                        <select
                             name="role"
                             id="role"
-                            type="text"
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"
+                            onChange={(e) =>
+                                setValue("role", e.target.value, {
+                                    shouldValidate: true,
+                                })
+                            }
                             {...register("role")}
-                        />
+                        >
+                            <option value="">Choisir un rôle</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Utilisateur">Utilisateur</option>
+                        </select>
                         {errors.role ? (
                             <p className="error-msg text-center">
                                 {errors.role?.message}
