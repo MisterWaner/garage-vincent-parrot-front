@@ -18,18 +18,22 @@ const AddUser = ({ toggleModal, addUserToList }) => {
         mode: "onSubmit",
     });
 
+    const onInvalid = (errors) => console.error(errors)
+
     const onSubmit = async (data, event) => {
+        event.preventDefault();
+
+        const userFormData = new FormData(event.target);
+
         try {
-            console.log(data);
-            const userFormData = new FormData(event.target);
             const res = await sendUsersDataToBack(userFormData);
             const newUser = res.data;
-
-            alert("L'utilisateur a bien été ajouté");
             addUserToList(newUser);
-            console.log("data envoyé :", newUser);
             reset();
+            console.log("data envoyé :", newUser);
+            alert("L'utilisateur a bien été ajouté");
             toggleModal();
+            console.log(data);
         } catch (error) {
             console.log("Erreur d'envoi des données au back", error);
         }
@@ -62,7 +66,7 @@ const AddUser = ({ toggleModal, addUserToList }) => {
                     Ajouter un utilisateur
                 </h2>
                 <form
-                    onSubmit={handleSubmit(onSubmit)}
+                    onSubmit={handleSubmit(onSubmit, onInvalid)}
                     className="w-full h-full flex flex-col items-center lg:grid lg:grid-cols-2 lg:gap-4 lg:items-start "
                 >
                     <div className="flex flex-col mb-4 w-full">
@@ -117,7 +121,7 @@ const AddUser = ({ toggleModal, addUserToList }) => {
                         )}
                     </div>
                     <div className="flex flex-col mb-4 w-full">
-                        <label htmlFor="role">Role</label>
+                        <label htmlFor="role">Rôle</label>
                         <input
                             name="role"
                             id="role"

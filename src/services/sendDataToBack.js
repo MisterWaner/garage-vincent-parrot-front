@@ -30,7 +30,7 @@ const sendUsersDataToBack = async (formData) => {
         });
         console.log(res);
 
-        if (res.status === 201) {
+        if (res.status === 200) {
             console.log(res.data, "Les données ont bien été envoyées");
             return res.data;
         } else {
