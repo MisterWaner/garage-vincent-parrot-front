@@ -24,17 +24,18 @@ import MailEmployee from "./pages/Auth/Employee/MailEmployee/MailEmployee";
 
 
 const App = () => {
+
     const router = createBrowserRouter(
         createRoutesFromElements(
             <>
                 <Route path="/" element={<Layout />}>
                     <Route index path="/" element={<Home />} />
                     <Route path="/contact" element={<Contact />} />
-                    <Route path="/connexion" element={<Connexion />} />
+                    <Route path="/login" element={<Connexion />} />
                     <Route path="/cars" element={<Cars />} />
                     <Route path="/rgpd" element={<RgpdPage />} />
                 </Route>
-                <Route path="/admin/:id" element={<AdminLayout />}>
+                <Route path={`/admin/:id`} element={<AdminLayout />}>
                     <Route index element={<AdminSettings />} />
                     <Route path="mails" element={<Mail />} />
                     <Route
@@ -44,7 +45,7 @@ const App = () => {
                     <Route path="car-park" element={<CarsSettings />} />
                     <Route path="globals" element={<GlobalSettings />} />
                     <Route
-                        path="employees"
+                        path="users"
                         element={<EmployeesSettings />}
                     />
                 </Route>

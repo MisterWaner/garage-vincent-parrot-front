@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 import {
     ArrowRightOnRectangleIcon,
@@ -17,28 +19,28 @@ const SideNavAdmin = () => {
     const Links = [
         {
             name: "Accueil administrateur",
-            link: "/admin/:id",
+            link: `/admin/:id`,
             icon: <UserCircleIcon />,
         },
-        { name: "Mail", link: "/admin/:id/mails", icon: <InboxIcon /> },
+        { name: "Mail", link: `/admin/:id/mails`, icon: <InboxIcon /> },
         {
             name: "Gestion globale",
-            link: "/admin/:id/globals",
+            link: `/admin/:id/globals`,
             icon: <Cog6ToothIcon />,
         },
         {
-            name: "Gestion des employés",
-            link: "/admin/:id/employees",
+            name: "Gestion des utilisateurs",
+            link: `/admin/:id/users`,
             icon: <UserGroupIcon />,
         },
         {
             name: "Gestion des vehicules",
-            link: "/admin/:id/car-park",
+            link: `/admin/:id/car-park`,
             icon: <TruckIcon />,
         },
         {
             name: "Gestion des témoignages",
-            link: "/admin/:id/reviews",
+            link: `/admin/:id/reviews`,
             icon: <ChatBubbleOvalLeftEllipsisIcon />,
         },
     ];
@@ -50,8 +52,11 @@ const SideNavAdmin = () => {
 
     const navigate = useNavigate();
 
-    const handleSignOut = () => {
-        navigate("/");
+    const handleLogout = () => {
+        Cookies.remove("token");
+        Cookies.remove("role");
+        Cookies.remove("id");
+        navigate("/login");
     };
 
     return (
@@ -71,38 +76,27 @@ const SideNavAdmin = () => {
                     className={` w-full h-full absolute  flex flex-col items-center justify-around px-4 py-5 space-y-5 `}
                 >
                     <Link
-                        onClick={handleSignOut}
+                        onClick={handleLogout}
                         className="flex items-center justify-between w-full gap-4 text-lg lg-text-xl hover:text-white duration-300 mt-6 "
                     >
                         Déconnexion
                         <ArrowRightOnRectangleIcon className="w-9 pl-2" />
                     </Link>
-                    {Links.map(
-                        (item) => (
-                            (
-                                <li
-                                    key={item.name}
-                                    className="w-full"
-                                >
-                                    <NavLink
-                                        className="flex items-center justify-between gap-4 text-lg lg-text-xl hover:text-white duration-300"
-                                        style={({ isActive }) => ({
-                                            color: isActive ? "blue" : "",
-                                        })}
-                                        to={item.link}
-                                        end
-                                    >
-                                        <span onClick={toggleSideNav}>
-                                            {item.name}
-                                        </span>
-                                        <div className="w-9 pl-2">
-                                            {item.icon}
-                                        </div>
-                                    </NavLink>
-                                </li>
-                            )
-                        )
-                    )}
+                    {Links.map((item) => (
+                        <li key={item.name} className="w-full">
+                            <NavLink
+                                className="flex items-center justify-between gap-4 text-lg lg-text-xl hover:text-white duration-300"
+                                style={({ isActive }) => ({
+                                    color: isActive ? "blue" : "",
+                                })}
+                                to={item.link}
+                                end
+                            >
+                                <span onClick={toggleSideNav}>{item.name}</span>
+                                <div className="w-9 pl-2">{item.icon}</div>
+                            </NavLink>
+                        </li>
+                    ))}
                 </ul>
             </nav>
         </aside>

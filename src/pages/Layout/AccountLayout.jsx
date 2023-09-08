@@ -1,12 +1,15 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import SideNavEmployee from "../../components/SideNav/SideNavEmployee";
+import EmployeeRouteGuard from "../Auth/AuthGuard/EmployeeRouteGuard";
 
 const AccountLayout = () => {
+    const { id } = useParams();
+
     return (
-        <>
-            <SideNavEmployee />
+        <EmployeeRouteGuard>
+            <SideNavEmployee id={id} />
             <Outlet />
-        </>
+        </EmployeeRouteGuard>
     );
 };
 

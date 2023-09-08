@@ -11,7 +11,7 @@ const Header = () => {
         { name: "Parc automobile", link: "/#auto" },
         { name: "Avis", link: "/#avis" },
         { name: "Contact", link: "/contact" },
-        { name: "Accès professionnel", link: "/connexion" },
+        { name: "Accès professionnel", link: "/login" },
     ];
 
     const [open, setOpen] = useState(false);

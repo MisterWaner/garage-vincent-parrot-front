@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 import {
     ArrowRightOnRectangleIcon,
@@ -11,22 +13,22 @@ import {
     Bars3Icon,
 } from "@heroicons/react/24/solid";
 
-const SideNavEmployee = () => {
+const SideNavEmployee = ({ id }) => {
     const Links = [
         {
             name: "Accueil Employé",
-            link: "/account/:id",
+            link: `/employee/${id}`,
             icon: <UserCircleIcon />,
         },
-        { name: "Mail", link: "/account/:id/mails", icon: <InboxIcon /> },
+        { name: "Mail", link: `/employee/${id}/mails`, icon: <InboxIcon /> },
         {
             name: "Gestion des vehicules",
-            link: "/account/:id/car-park",
+            link: `/employee/${id}/car-park`,
             icon: <TruckIcon />,
         },
         {
             name: "Gestion des commentaires",
-            link: "/account/:id/reviews",
+            link: `/employee/${id}/reviews`,
             icon: <ChatBubbleOvalLeftEllipsisIcon />,
         },
     ];
@@ -38,8 +40,11 @@ const SideNavEmployee = () => {
 
     const navigate = useNavigate();
 
-    const handleSignOut = () => {
-        navigate("/");
+    const handleLogout = () => {
+        Cookies.remove("token");
+        Cookies.remove("role");
+        Cookies.remove("id");
+        navigate("/login");
     };
 
     return (
@@ -59,7 +64,7 @@ const SideNavEmployee = () => {
                     className={` w-full h-full absolute  flex flex-col items-center justify-around px-4 py-5 space-y-5 `}
                 >
                     <Link
-                        onClick={handleSignOut}
+                        onClick={handleLogout}
                         className="flex items-center justify-between w-full gap-4 text-lg lg-text-xl hover:text-white duration-300 mt-6"
                     >
                         Déconnexion
