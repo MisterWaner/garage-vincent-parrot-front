@@ -13,26 +13,28 @@ import {
     Bars3Icon,
 } from "@heroicons/react/24/solid";
 
-const SideNavEmployee = ({ id }) => {
+const SideNavEmployee = () => {
+    //Links data table
     const Links = [
         {
             name: "Accueil Employé",
-            link: `/employee/${id}`,
+            link: `/employee`,
             icon: <UserCircleIcon />,
         },
-        { name: "Mail", link: `/employee/${id}/mails`, icon: <InboxIcon /> },
+        { name: "Mail", link: `/employee/mails`, icon: <InboxIcon /> },
         {
             name: "Gestion des vehicules",
-            link: `/employee/${id}/car-park`,
+            link: `/employee/car-park`,
             icon: <TruckIcon />,
         },
         {
             name: "Gestion des commentaires",
-            link: `/employee/${id}/reviews`,
+            link: `/employee/reviews`,
             icon: <ChatBubbleOvalLeftEllipsisIcon />,
         },
     ];
 
+    //State of side nav
     const [open, setOpen] = useState(false);
     const toggleSideNav = () => {
         setOpen(!open);
@@ -40,10 +42,11 @@ const SideNavEmployee = ({ id }) => {
 
     const navigate = useNavigate();
 
+    //Logout
     const handleLogout = () => {
         Cookies.remove("token");
         Cookies.remove("role");
-        Cookies.remove("id");
+        Cookies.remove("firstname");
         navigate("/login");
     };
 
@@ -70,6 +73,7 @@ const SideNavEmployee = ({ id }) => {
                         Déconnexion
                         <ArrowRightOnRectangleIcon className="w-9 pl-2" />
                     </Link>
+                    {/* Mapping through links table to set all links */}
                     {Links.map((item) => (
                         <li className="w-full" key={item.name}>
                             <NavLink

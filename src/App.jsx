@@ -5,11 +5,9 @@ import {
     RouterProvider,
 } from "react-router-dom";
 
+//Pages
 import Home from "./pages/Public/Home/Home";
 import Contact from "./pages/Public/Contact/Contact";
-import Layout from "./pages/Layout/Layout";
-import AdminLayout from "./pages/Layout/AdminLayout";
-import AccountLayout from "./pages/Layout/AccountLayout";
 import Connexion from "./pages/Public/Connexion/Connexion";
 import RgpdPage from "./pages/Public/RGPD/Rgpd";
 import Cars from "./pages/Public/Cars/Cars";
@@ -22,20 +20,27 @@ import PersonnalSettings from "./pages/Auth/Employee/PersonnalSettings/Personnal
 import AdminSettings from "./pages/Auth/Admin/AdminSettings/AdminSettings";
 import MailEmployee from "./pages/Auth/Employee/MailEmployee/MailEmployee";
 
+//Layouts
+import Layout from "./pages/Layout/Layout";
+import AdminLayout from "./pages/Layout/AdminLayout";
+import EmployeeLayout from "./pages/Layout/EmployeeLayout";
 
 const App = () => {
 
     const router = createBrowserRouter(
         createRoutesFromElements(
             <>
+                {/* Public routes */}
                 <Route path="/" element={<Layout />}>
-                    <Route index path="/" element={<Home />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/login" element={<Connexion />} />
-                    <Route path="/cars" element={<Cars />} />
-                    <Route path="/rgpd" element={<RgpdPage />} />
+                    <Route index element={<Home />} />
+                    <Route path="contact" element={<Contact />} />
+                    <Route path="login" element={<Connexion />} />
+                    <Route path="cars" element={<Cars />} />
+                    <Route path="rgpd" element={<RgpdPage />} />
                 </Route>
-                <Route path={`/admin/:id`} element={<AdminLayout />}>
+
+                {/* Admin routes */}
+                <Route path={`/admin`} element={<AdminLayout />}>
                     <Route index element={<AdminSettings />} />
                     <Route path="mails" element={<Mail />} />
                     <Route
@@ -49,7 +54,9 @@ const App = () => {
                         element={<EmployeesSettings />}
                     />
                 </Route>
-                <Route path="/employee/:id" element={<AccountLayout />}>
+
+                {/* Employee routes */}
+                <Route path="/employee" element={<EmployeeLayout />}>
                     <Route index element={<PersonnalSettings />} />
                     <Route path="car-park" element={<CarsSettings />} />
                     <Route path="mails" element={<MailEmployee />} />

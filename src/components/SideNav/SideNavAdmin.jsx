@@ -16,35 +16,37 @@ import {
 } from "@heroicons/react/24/solid";
 
 const SideNavAdmin = () => {
+    //Links data table
     const Links = [
         {
             name: "Accueil administrateur",
-            link: `/admin/:id`,
+            link: `/admin`,
             icon: <UserCircleIcon />,
         },
-        { name: "Mail", link: `/admin/:id/mails`, icon: <InboxIcon /> },
+        { name: "Mail", link: `/admin/mails`, icon: <InboxIcon /> },
         {
             name: "Gestion globale",
-            link: `/admin/:id/globals`,
+            link: `/admin/globals`,
             icon: <Cog6ToothIcon />,
         },
         {
             name: "Gestion des utilisateurs",
-            link: `/admin/:id/users`,
+            link: `/admin/users`,
             icon: <UserGroupIcon />,
         },
         {
             name: "Gestion des vehicules",
-            link: `/admin/:id/car-park`,
+            link: `/admin/car-park`,
             icon: <TruckIcon />,
         },
         {
             name: "Gestion des témoignages",
-            link: `/admin/:id/reviews`,
+            link: `/admin/reviews`,
             icon: <ChatBubbleOvalLeftEllipsisIcon />,
         },
     ];
 
+    //State of side nav
     const [open, setOpen] = useState(false);
     const toggleSideNav = () => {
         setOpen(!open);
@@ -52,10 +54,11 @@ const SideNavAdmin = () => {
 
     const navigate = useNavigate();
 
+    //Logout
     const handleLogout = () => {
         Cookies.remove("token");
         Cookies.remove("role");
-        Cookies.remove("id");
+        Cookies.remove("firstname");
         navigate("/login");
     };
 
@@ -75,6 +78,7 @@ const SideNavAdmin = () => {
                 <ul
                     className={` w-full h-full absolute  flex flex-col items-center justify-around px-4 py-5 space-y-5 `}
                 >
+                    {/* Mapping through links table to set all links */}
                     <Link
                         onClick={handleLogout}
                         className="flex items-center justify-between w-full gap-4 text-lg lg-text-xl hover:text-white duration-300 mt-6 "

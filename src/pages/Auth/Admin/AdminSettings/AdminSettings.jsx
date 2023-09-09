@@ -1,10 +1,20 @@
+import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
+
 import UpdatePasswordForm from "../../../../components/UpdatePasswordForm/UpdatePasswordForm";
 
 const AdminSettings = () => {
+    const [firstname, setFirstname] = useState("");
+
+    useEffect(() => {
+        const storedFirstname = Cookies.get("firstname");
+        setFirstname(storedFirstname);
+    }, []);
+
     return (
         <main className="container mx-auto px-24 lg:px-16 py-5 text-white">
             <h1 className="text-center text-2xl text-yellow-02 underline my-6 sm:text-3xl lg:text-5xl decoration-red-02">
-                Accueil Administrateur
+                Bonjour {firstname}, bienvenue dans votre compte
             </h1>
             <section className="mt-10">
                 <p>
@@ -20,7 +30,7 @@ const AdminSettings = () => {
                 <h2 className="text-lg text-center font-bold mb-4">
                     Modifier mon mot de passe
                 </h2>
-                <UpdatePasswordForm userId={""} userRoleId={""}/>
+                <UpdatePasswordForm userId={""} userRoleId={""} />
             </section>
         </main>
     );

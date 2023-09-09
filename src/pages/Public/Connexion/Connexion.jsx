@@ -26,13 +26,12 @@ const Connexion = () => {
 
         if (storedToken) {
             const storedRole = Cookies.get("role");
-            const storedUserId = Cookies.get("id");
             setRole(storedRole);
 
             navigate(
                 `/${
                     storedRole === "Admin" ? "admin" : "employee"
-                }/${storedUserId}`
+                }`
             );
         }
     }, [navigate]);
@@ -46,14 +45,9 @@ const Connexion = () => {
             console.log(res.data);
 
             if (res.status === 200) {
-                const { token, role, id } = res.data;
+                const { token, role, firstname } = res.data;
 
                 Cookies.set("token", token, {
-                    secure: true,
-                    sameSite: "None",
-                    expires: 1,
-                });
-                Cookies.set("id", id, {
                     secure: true,
                     sameSite: "None",
                     expires: 1,
@@ -63,10 +57,15 @@ const Connexion = () => {
                     sameSite: "None",
                     expires: 1,
                 });
+                Cookies.set("firstname", firstname, {
+                    secure: true,
+                    sameSite: "None",
+                    expires: 1,
+                });
 
                 const route = `/${
                     role === "Admin" ? "admin" : "employee"
-                }/${id}`;
+                }`;
                 navigate(route);
             } else {
                 console.error(res, "Échec de l'authentification");
