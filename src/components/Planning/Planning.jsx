@@ -15,19 +15,19 @@ const Planning = () => {
                     </tr>
                 </thead>
                 <tbody className="text-black-02 text-center">
-                    {planning.map((day, index) => (
+                    {planning.map((data, index) => (
                         <tr key={index} className="w-full">
                             <td className="w-1/3">
-                                {day.day.charAt(0).toUpperCase() +
-                                    day.day.slice(1)}
+                                {data.day.charAt(0).toUpperCase() +
+                                    data.day.slice(1)}
                             </td>
                             <td className="w-1/3">
-                                <span>{day.openingMorning + "  "}</span>
-                                <span>{day.closingMorning}</span>
+                                <span>{data.openingMorning + "  "}</span>
+                                <span>{data.closingMorning}</span>
                             </td>
                             <td className="w-1/3">
-                                <span>{day.openingAfternoon + "  "}</span>
-                                <span>{day.closingAfternoon}</span>
+                                <span>{data.openingAfternoon + "  "}</span>
+                                <span>{data.closingAfternoon}</span>
                             </td>
                         </tr>
                     ))}
