@@ -1,27 +1,40 @@
 /* eslint-disable react/prop-types */
-import { Slider } from "@material-tailwind/react";
+import { Slider, Typography, Grid } from "@mui/material";
+import { useState } from "react";
 
-const FilterSlider = ({ id, min, max, step, value, label, onChange }) => {
+const FilterSlider = ({ id, label, min, max, step, marks }) => {
+    const [value, setValue] = useState([min, max]);
+
+    const handleSliderChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
     return (
-        <div className="w-full grid grid-cols-5 ">
-            <label htmlFor={id}>{label}: </label>
-            <Slider
-                id={id}
-                min={min}
-                max={max}
-                color="red"
-                step={step}
-                value={value}
-                className="w-3/4 col-span-3"
-                size="md"
-                onChange={onChange}
-            />
-            <span>
-                {value[0] === min && value[1] === max
-                    ? "Aucun filtre"
-                    : `Min: ${value[0]} - Max: ${value[1]}`
-                }
-            </span>
+        <div id={id}>
+            <Grid container spacing={4} alignItems="center" flexGrow={1}>
+                <Grid item xs>
+                    <Typography>{label}:</Typography>
+                </Grid>
+                <Grid item xs>
+                    <Typography>{value[0]}</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                    <Slider
+                        color="secondary"
+                        value={value}
+                        onChange={handleSliderChange}
+                        min={min}
+                        max={max}
+                        marks={marks}
+                        step={step}
+                    />
+                </Grid>
+                <Grid item xs>
+                    <Typography>{value[1]}</Typography>
+                </Grid>
+            </Grid>
+
+            
         </div>
     );
 };

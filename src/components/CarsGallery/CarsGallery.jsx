@@ -1,67 +1,77 @@
 /* eslint-disable react/prop-types */
-import { useFilter } from "../../context/FilterContext";
+import { useState, useEffect } from "react";
 import CarCard from "../CarCard/CarCard";
+import { useFilter } from "../../context/FilterContext";
+import Axios from "../../api/axios.js";
 
-const CarsGallery = ({ cars }) => {
+const CarsGallery = () => {
     const { filters } = useFilter();
+    const [filteredCars, setFilteredCars] = useState([]);
+    const [carsData, setCarsData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    const filteredCars = cars.filter((car) => {
-        const {
-            priceMin,
-            priceMax,
-            yearMin,
-            yearMax,
-            kilometersMin,
-            kilometersMax,
-            powerMin,
-            powerMax,
-            brand,
-        } = filters;
+    useEffect(() => {
+        const getCarsDataFromBack = async () => {
+            try {
+                const res = await Axios.get("/api/cars");
+                if (res.status === 200) {
+                    console.log(
+                        res.data,
+                        "Les données ont bien été récupérées"
+                    );
+                } else {
+                    console.error(res, "Une erreur est survenue");
+                }
 
-        const passesPriceFilter =
-            (priceMin === "" || car.price >= parseInt(priceMin)) &&
-            (priceMax === "" || car.price <= parseInt(priceMax));
-        const passesYearFilter =
-            (yearMin === "" || car.year >= parseInt(yearMin)) &&
-            (yearMax === "" || car.year <= parseInt(yearMax));
-        const passesKilometersFilter =
-            (kilometersMin === "" ||
-                car.kilometers >= parseInt(kilometersMin)) &&
-            (kilometersMax === "" || car.kilometers <= parseInt(kilometersMax));
-        const passesPowerFilter =
-            (powerMin === "" || car.puissance >= parseInt(powerMin)) &&
-            (powerMax === "" || car.puissance <= parseInt(powerMax));
-        const passesBrandFilter =
-            brand === "" || car.brand.toLowerCase().includes(brand.toLowerCase());
+                setCarsData(res.data);
+                setLoading(false);
+            } catch (error) {
+                console.error(
+                    "Erreur lors de la récupération des données",
+                    error
+                );
+                setLoading(false);
+            }
+            const filterCars = () => {
+                const filtered = carsData.filter((car) => {
+                    const priceInRange =
+                        car.price >= filters.priceMin &&
+                        car.price <= filters.priceMax;
+                    const yearInRange =
+                        car.year >= filters.yearMin &&
+                        car.year <= filters.yearMax;
+                    const kilometersInRange =
+                        car.kilometers >= filters.kilometersMin &&
+                        car.kilometers <= filters.kilometersMax;
+                    const powerInRange =
+                        car.puissance >= filters.powerMin &&
+                        car.puissance <= filters.powerMax;
+                    const brandMatches =
+                        filters.brand === "" || car.brand === filters.brand;
 
-        return (
-            passesPriceFilter &&
-            passesYearFilter &&
-            passesKilometersFilter &&
-            passesPowerFilter &&
-            passesBrandFilter
-        );
-    });
-    
-  
+                    return (
+                        priceInRange &&
+                        yearInRange &&
+                        kilometersInRange &&
+                        powerInRange &&
+                        brandMatches
+                    );
+                });
+                setFilteredCars(filtered);
+            };
+        };
+        getCarsDataFromBack();
+    }, [carsData, filters]);
 
-    if (filteredCars.length === 0) {
-        return (
-            <p className="text-center text-red-02 bg-red-300 px-5 py-2">
-                Aucun véhicule ne correspond à vos critères
-            </p>
-        );
-    }
     return (
         <div className="flex flex-wrap gap-6 justify-center lg:justify-normal">
-            {filteredCars.length === cars.length
-                ? cars.map((car) => (
-                    <CarCard key={car.immat} car={car} />
-                ))
-                : filteredCars.map((car) => (
-                    <CarCard key={car.immat} car={car} />
-                ))
-            }
+            {carsData.length === 0 ? (
+                <p className="w-full text-center text-2xl text-red-02 mt-6 bg-red-300 rounded-md py-2 px-5 border-2 border-red-02">
+                    Aucun véhicule à afficher
+                </p>
+            ) : (
+                carsData.map((car) => <CarCard key={car.immat} car={car} />)
+            )}
         </div>
     );
 };
