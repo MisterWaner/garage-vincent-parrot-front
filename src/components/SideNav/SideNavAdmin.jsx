@@ -55,11 +55,17 @@ const SideNavAdmin = () => {
     const navigate = useNavigate();
 
     //Logout
-    const handleLogout = () => {
-        Cookies.remove("token");
-        Cookies.remove("role");
-        Cookies.remove("firstname");
-        navigate("/login");
+    const handleLogout = async () => {
+        try {
+            Cookies.remove("token");
+            Cookies.remove("role");
+            Cookies.remove("firstname");
+
+            navigate("/login");
+
+        } catch (error) {
+            console.error("Une erreur est survenue", error);
+        }
     };
 
     return (
