@@ -3,13 +3,13 @@ import FilterSlider from "../FilterSlider/FilterSlider";
 import { useFilter } from "../../context/FilterContext";
 import Button from "../Button/Button";
 
-const CarFilter = ({filterCars}) => {
+const CarFilter = ({ filterCars }) => {
     const { filters, setFilters } = useFilter();
     console.log("filtre dans CarFilter", filters);
 
     const handleFilter = () => {
-        filterCars()
-    }
+        filterCars();
+    };
 
     const handleSliderChange = (filterKey, value) => {
         setFilters({
@@ -26,17 +26,17 @@ const CarFilter = ({filterCars}) => {
     };
 
     return (
-        <div className="w-full rounded-md flex flex-col gap-4 bg-white text-black-02 p-5">
-            <h2 className="text-2xl">Filtrer les véhicules</h2>
+        <div className="w-full rounded-md flex flex-col gap-4 bg-white text-black-02 p-5 md:w-2/3 md:h-fit lg:gap-0 lg:w-1/3">
+            <h2 className="text-2xl text-center">Filtrer les véhicules</h2>
             {/* Filtre par prix */}
             <FilterSlider
                 id="priceRange"
                 min={0}
                 max={300000}
-                step={500}
+                step={1000}
                 marks={true}
                 onChange={(value) => handleSliderChange("price", value)}
-                label="Prix"
+                label="Prix (en €)"
             />
             {/* Filtre par année */}
             <FilterSlider
@@ -69,9 +69,10 @@ const CarFilter = ({filterCars}) => {
                 label="Puissance"
             />
             {/* Filtre par marque */}
-            <div>
-                <label htmlFor="brand">Marque:</label>
+            <div className="grid grid-cols-1 grid-rows-2 w-full md:w-1/2 md:mx-auto">
+                <label className="font-bold" htmlFor="brand">Marque:</label>
                 <select
+                    className="bg-yellow-02 p-2 rounded-md "
                     name="brand"
                     id="brand"
                     value={filters.brand}
@@ -92,8 +93,10 @@ const CarFilter = ({filterCars}) => {
                     <option value="Subaru">Subaru</option>
                 </select>
             </div>
-            <div className="w-1/6">
-                <Button name="Filtrer" fn={handleFilter} />
+            <div className="w-full ">
+                <div className="sm:flex sm:justify-end">
+                    <Button name="Filtrer" fn={handleFilter} />
+                </div>
             </div>
         </div>
     );

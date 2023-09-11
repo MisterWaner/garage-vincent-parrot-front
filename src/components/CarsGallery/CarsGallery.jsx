@@ -32,40 +32,45 @@ const CarsGallery = () => {
                 );
                 setLoading(false);
             }
-            const filterCars = () => {
-                const filtered = carsData.filter((car) => {
-                    const priceInRange =
-                        car.price >= filters.priceMin &&
-                        car.price <= filters.priceMax;
-                    const yearInRange =
-                        car.year >= filters.yearMin &&
-                        car.year <= filters.yearMax;
-                    const kilometersInRange =
-                        car.kilometers >= filters.kilometersMin &&
-                        car.kilometers <= filters.kilometersMax;
-                    const powerInRange =
-                        car.puissance >= filters.powerMin &&
-                        car.puissance <= filters.powerMax;
-                    const brandMatches =
-                        filters.brand === "" || car.brand === filters.brand;
-
-                    return (
-                        priceInRange &&
-                        yearInRange &&
-                        kilometersInRange &&
-                        powerInRange &&
-                        brandMatches
-                    );
-                });
-                setFilteredCars(filtered);
-            };
         };
         getCarsDataFromBack();
-    }, [carsData, filters]);
+    }, []);
+
+    // const filterCars = () => {
+    //     const filtered = carsData.filter((car) => {
+    //         const priceInRange =
+    //             car.price >= filters.priceMin &&
+    //             car.price <= filters.priceMax;
+    //         const yearInRange =
+    //             car.year >= filters.yearMin &&
+    //             car.year <= filters.yearMax;
+    //         const kilometersInRange =
+    //             car.kilometers >= filters.kilometersMin &&
+    //             car.kilometers <= filters.kilometersMax;
+    //         const powerInRange =
+    //             car.puissance >= filters.powerMin &&
+    //             car.puissance <= filters.powerMax;
+    //         const brandMatches =
+    //             filters.brand === "" || car.brand === filters.brand;
+
+    //         return (
+    //             priceInRange &&
+    //             yearInRange &&
+    //             kilometersInRange &&
+    //             powerInRange &&
+    //             brandMatches
+    //         );
+    //     });
+    //     setFilteredCars(filtered);
+    // };
 
     return (
-        <div className="flex flex-wrap gap-6 justify-center lg:justify-normal">
-            {carsData.length === 0 ? (
+        <div className="flex flex-wrap gap-6 xs:justify-center md:justify-normal ">
+            {loading ? (
+                <p className="w-full text-center text-2xl text-red-02 mt-6 bg-red-300 rounded-md py-2 px-5 border-2 border-red-02 md:mt-0 md:h-fit">
+                    Chargement des véhicules...
+                </p>
+            ) : carsData.length === 0 ? (
                 <p className="w-full text-center text-2xl text-red-02 mt-6 bg-red-300 rounded-md py-2 px-5 border-2 border-red-02">
                     Aucun véhicule à afficher
                 </p>

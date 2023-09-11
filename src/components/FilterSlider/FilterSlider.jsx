@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import { Slider, Typography, Grid } from "@mui/material";
+import { red } from "@mui/material/colors";
+import { Slider } from "@mui/material";
 import { useState } from "react";
 
 const FilterSlider = ({ id, label, min, max, step, marks }) => {
@@ -10,31 +11,25 @@ const FilterSlider = ({ id, label, min, max, step, marks }) => {
     };
 
     return (
-        <div id={id}>
-            <Grid container spacing={4} alignItems="center" flexGrow={1}>
-                <Grid item xs>
-                    <Typography>{label}:</Typography>
-                </Grid>
-                <Grid item xs>
-                    <Typography>{value[0]}</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                    <Slider
-                        color="secondary"
-                        value={value}
-                        onChange={handleSliderChange}
-                        min={min}
-                        max={max}
-                        marks={marks}
-                        step={step}
-                    />
-                </Grid>
-                <Grid item xs>
-                    <Typography>{value[1]}</Typography>
-                </Grid>
-            </Grid>
-
-            
+        <div id={id} className="grid grid-cols-1 grid-rows-4 w-full md:w-1/2 md:mx-auto">
+            <div className="self-center">
+                <span className="font-bold">{label} :</span>
+            </div>
+            <div className=" self-center flex justify-between">
+                <span>{value[0]}</span>
+                <span>{value[1]}</span>
+            </div>
+            <Slider
+                className="self-center"
+                getAriaLabel={() => label}
+                value={value}
+                onChange={handleSliderChange}
+                min={min}
+                max={max}
+                thumbColor={red}
+                step={step}
+                marks={marks}
+            />
         </div>
     );
 };
