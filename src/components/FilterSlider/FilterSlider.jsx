@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { red } from "@mui/material/colors";
 import { Slider } from "@mui/material";
 import { useState } from "react";
 
@@ -26,7 +25,6 @@ const FilterSlider = ({ id, label, min, max, step, marks }) => {
                 onChange={handleSliderChange}
                 min={min}
                 max={max}
-                thumbColor={red}
                 step={step}
                 marks={marks}
             />

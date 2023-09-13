@@ -1,29 +1,29 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import FilterSlider from "../FilterSlider/FilterSlider";
-import { useFilter } from "../../context/FilterContext";
 import Button from "../Button/Button";
 
-const CarFilter = ({ filterCars }) => {
-    const { filters, setFilters } = useFilter();
-    console.log("filtre dans CarFilter", filters);
+const CarFilter = ({ onFilterChange, onResetFilters }) => {
+    
+    const defaultFilters = {
+        priceRange: [0, 300000],
+        yearRange: [1960, 2022],
+        kilometersRange: [0, 300000],
+        powerRange: [100, 500],
+        brand: ''
+    }
 
-    const handleFilter = () => {
-        filterCars();
-    };
+    const [filters, setFilters] = useState(defaultFilters);
 
-    const handleSliderChange = (filterKey, value) => {
-        setFilters({
-            ...filters,
-            [filterKey]: value,
-        });
-    };
+    const handleFilterChange = () => {
+        onFilterChange(filters);
+        console.log(filters);
+    }
 
-    const handleBrandChange = (event) => {
-        setFilters({
-            ...filters,
-            brand: event.target.value,
-        });
-    };
+    const handleResetFilters = () => {
+        setFilters(defaultFilters);
+        onResetFilters();
+    }
 
     return (
         <div className="w-full rounded-md flex flex-col gap-4 bg-white text-black-02 p-5 md:w-2/3 md:h-fit lg:gap-0 lg:w-1/3">
@@ -33,9 +33,10 @@ const CarFilter = ({ filterCars }) => {
                 id="priceRange"
                 min={0}
                 max={300000}
+                value={filters.priceRange}
                 step={1000}
                 marks={true}
-                onChange={(value) => handleSliderChange("price", value)}
+                onChange={(event, newValue) => setFilters({ ...filters, priceRange: newValue })}
                 label="Prix (en €)"
             />
             {/* Filtre par année */}
@@ -44,8 +45,9 @@ const CarFilter = ({ filterCars }) => {
                 min={1960}
                 max={2022}
                 step={1}
+                value={filters.yearRange}
                 marks={true}
-                onChange={(value) => handleSliderChange("year", value)}
+                onChange={(event, newValue) => setFilters({ ...filters, yearRange: newValue })}
                 label="Année"
             />
             {/* Filtre par kilomètres */}
@@ -55,7 +57,8 @@ const CarFilter = ({ filterCars }) => {
                 max={300000}
                 step={1000}
                 marks={true}
-                onChange={(value) => handleSliderChange("kilometers", value)}
+                value={filters.kilometersRange}
+                onChange={(event, newValue) => setFilters({ ...filters, kilometersRange: newValue })}
                 label="Kilomètres"
             />
             {/* Filtre par puissance */}
@@ -64,8 +67,9 @@ const CarFilter = ({ filterCars }) => {
                 min={100}
                 max={500}
                 step={50}
+                value={filters.powerRange}
                 marks={true}
-                onChange={(value) => handleSliderChange("power", value)}
+                onChange={(event, newValue) => setFilters({ ...filters, powerRange: newValue })}
                 label="Puissance"
             />
             {/* Filtre par marque */}
@@ -76,7 +80,7 @@ const CarFilter = ({ filterCars }) => {
                     name="brand"
                     id="brand"
                     value={filters.brand}
-                    onChange={handleBrandChange}
+                    onChange={(event) => setFilters({ ...filters, brand: event.target.value })}
                 >
                     <option value="">Toutes les marques</option>
                     <option value="Alpine">Alpine</option>
@@ -94,8 +98,9 @@ const CarFilter = ({ filterCars }) => {
                 </select>
             </div>
             <div className="w-full ">
-                <div className="sm:flex sm:justify-end">
-                    <Button name="Filtrer" fn={handleFilter} />
+                <div className="sm:flex sm:gap-4">
+                    <Button name="Filtrer" fn={handleFilterChange} />
+                    <Button name="Réinitialiser" fn={handleResetFilters} />
                 </div>
             </div>
         </div>
