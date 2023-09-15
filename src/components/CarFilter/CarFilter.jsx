@@ -3,27 +3,45 @@ import { useState } from "react";
 import FilterSlider from "../FilterSlider/FilterSlider";
 import Button from "../Button/Button";
 
-const CarFilter = ({ onFilterChange, onResetFilters }) => {
-    
-    const defaultFilters = {
+const CarFilter = ({ filterCars, resetFilters }) => {
+    const [filters, setFilters] = useState({
         priceRange: [0, 300000],
         yearRange: [1960, 2022],
         kilometersRange: [0, 300000],
         powerRange: [100, 500],
-        brand: ''
-    }
+        brand: "",
+    });
 
-    const [filters, setFilters] = useState(defaultFilters);
+    const applyFilters = () => {
+        filterCars(filters);
+    };
 
-    const handleFilterChange = () => {
-        onFilterChange(filters);
-        console.log(filters);
-    }
+    const handleSliderChange = (event, newValue, filterName) => {
+        setFilters({
+            ...filters,
+            [filterName]: newValue,
+        });
+        //applyFilters();
+    };
 
-    const handleResetFilters = () => {
-        setFilters(defaultFilters);
-        onResetFilters();
-    }
+    const handleSelectChange = (event) => {
+        setFilters({
+            ...filters,
+            brand: event.target.value,
+        });
+        applyFilters();
+    };
+
+    const reset = () => {
+        setFilters({
+            priceRange: [0, 300000],
+            yearRange: [1960, 2022],
+            kilometersRange: [0, 300000],
+            powerRange: [100, 500],
+            brand: "",
+        });
+        resetFilters();
+    };
 
     return (
         <div className="w-full rounded-md flex flex-col gap-4 bg-white text-black-02 p-5 md:w-2/3 md:h-fit lg:gap-0 lg:w-1/3">
@@ -36,7 +54,9 @@ const CarFilter = ({ onFilterChange, onResetFilters }) => {
                 value={filters.priceRange}
                 step={1000}
                 marks={true}
-                onChange={(event, newValue) => setFilters({ ...filters, priceRange: newValue })}
+                onChange={(event, newValue) => {
+                    handleSliderChange(event, newValue, "priceRange");
+                }}
                 label="Prix (en €)"
             />
             {/* Filtre par année */}
@@ -47,7 +67,9 @@ const CarFilter = ({ onFilterChange, onResetFilters }) => {
                 step={1}
                 value={filters.yearRange}
                 marks={true}
-                onChange={(event, newValue) => setFilters({ ...filters, yearRange: newValue })}
+                onChange={(event, newValue) => {
+                    handleSliderChange(event, newValue, "yearRange");
+                }}
                 label="Année"
             />
             {/* Filtre par kilomètres */}
@@ -58,7 +80,9 @@ const CarFilter = ({ onFilterChange, onResetFilters }) => {
                 step={1000}
                 marks={true}
                 value={filters.kilometersRange}
-                onChange={(event, newValue) => setFilters({ ...filters, kilometersRange: newValue })}
+                onChange={(event, newValue) => {
+                    handleSliderChange(event, newValue, "kilometersRange");
+                }}
                 label="Kilomètres"
             />
             {/* Filtre par puissance */}
@@ -69,18 +93,22 @@ const CarFilter = ({ onFilterChange, onResetFilters }) => {
                 step={50}
                 value={filters.powerRange}
                 marks={true}
-                onChange={(event, newValue) => setFilters({ ...filters, powerRange: newValue })}
+                onChange={(event, newValue) => {
+                    handleSliderChange(event, newValue, "powerRange");
+                }}
                 label="Puissance"
             />
             {/* Filtre par marque */}
-            <div className="grid grid-cols-1 grid-rows-2 w-full md:w-1/2 md:mx-auto">
-                <label className="font-bold" htmlFor="brand">Marque:</label>
+            <div className="grid grid-cols-1 grid-rows-2 w-full md:w-2/3 md:mx-auto">
+                <label className="font-bold" htmlFor="brand">
+                    Marque:
+                </label>
                 <select
                     className="bg-yellow-02 p-2 rounded-md "
                     name="brand"
                     id="brand"
                     value={filters.brand}
-                    onChange={(event) => setFilters({ ...filters, brand: event.target.value })}
+                    onChange={handleSelectChange}
                 >
                     <option value="">Toutes les marques</option>
                     <option value="Alpine">Alpine</option>
@@ -97,10 +125,10 @@ const CarFilter = ({ onFilterChange, onResetFilters }) => {
                     <option value="Subaru">Subaru</option>
                 </select>
             </div>
-            <div className="w-full ">
+            <div className="w-full mt-4">
                 <div className="sm:flex sm:gap-4">
-                    <Button name="Filtrer" fn={handleFilterChange} />
-                    <Button name="Réinitialiser" fn={handleResetFilters} />
+                    <Button name="Filtrer" fn={applyFilters} />
+                    <Button name="Réinitialiser" fn={reset} />
                 </div>
             </div>
         </div>

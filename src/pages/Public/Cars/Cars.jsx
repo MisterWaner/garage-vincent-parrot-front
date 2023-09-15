@@ -7,73 +7,48 @@ const Cars = () => {
     const [cars, setCars] = useState([]);
     const [filteredCars, setFilteredCars] = useState([]);
 
-    useEffect(() => {
-        const getCarsDataFromBack = async () => {
-            try {
-                const res = await Axios.get("/api/cars");
-                if (res.status === 200) {
-                    console.log(
-                        res.data,
-                        "Les données ont bien été récupérées"
-                    );
-                } else {
-                    console.error(res, "Une erreur est survenue");
-                }
-
-                setCars(res.data);
-                setFilteredCars(res.data);
-            } catch (error) {
-                console.error(
-                    "Erreur lors de la récupération des données",
-                    error
-                );
+    const getCarsDataFromBack = async () => {
+        try {
+            const res = await Axios.get("/api/cars");
+            if (res.status === 200) {
+                console.log("Données récupérées :", res.data);
+            } else {
+                console.error(res, "Une erreur est SURVENUE");
             }
-        };
+            setCars(res.data);
+            setFilteredCars(res.data);
+        } catch (error) {
+            console.error("Erreur lors de la récupération des données", error);
+        }
+    };
+
+    useEffect(() => {
         getCarsDataFromBack();
     }, []);
 
+    const filterCars = (appliedFilters) => {
+        console.log("Critères de filtrage :", appliedFilters);
+        const filtered = cars.filter((car) => {
+            return (
+                car.price >= appliedFilters.priceRange[0] &&
+                car.price <= appliedFilters.priceRange[1] &&
+                car.year >= appliedFilters.yearRange[0] &&
+                car.year <= appliedFilters.yearRange[1] &&
+                car.kilometers >= appliedFilters.kilometersRange[0] &&
+                car.kilometers <= appliedFilters.kilometersRange[1] &&
+                car.puissance >= appliedFilters.powerRange[0] &&
+                car.puissance <= appliedFilters.powerRange[1] &&
+                (appliedFilters.brand === "" || car.brand === appliedFilters.brand)
+            );
+        });
+        console.log(appliedFilters, "Les critères de filtrage après filtrage");
+        console.log("Nombres de véhicules filtrés :", filtered.length);
+        setFilteredCars(filtered);
+        console.log(filtered, "Les véhicules filtrés");
+    };
+
     const resetFilters = () => {
         setFilteredCars(cars);
-    }
-
-    console.log(cars);
-    console.log(filteredCars);
-    const handleFilterChange = (filters) => {
-        let filtered = [...cars];
-        console.log(filtered);
-        console.log(filters);
-
-        filtered = filtered.filter(
-            (car) =>
-                car.price >= filters.priceRange[0] &&
-                car.price <= filters.priceRange[1]
-        );
-        filtered = filtered.filter(
-            (car) => car.brand === filters.brand
-        );
-        filtered = filtered.filter(
-            (car) =>
-                car.year >= filters.yearRange[0] &&
-                car.year <= filters.yearRange[1]
-        );
-        filtered = filtered.filter(
-            (car) =>
-                car.kilometers >= filters.kilometersRange[0] &&
-                car.kilometers <= filters.kilometersRange[1]
-        );
-        filtered = filtered.filter(
-            (car) =>
-                car.puissance >= filters.powerRange[0] &&
-                car.puissance <= filters.powerRange[1]
-        );
-
-        if (filters.brand !== "") {
-            filtered = filtered.filter((car) => car.brand === filters.brand);
-        }
-
-        setFilteredCars(filtered);
-        console.log(filtered);
-        console.log(filteredCars);
     };
 
     return (
@@ -82,7 +57,10 @@ const Cars = () => {
                 Notre parc automobile
             </h1>
             <section className="py-14 md:flex gap-6">
-                <CarFilter onFilterChange={handleFilterChange} onResetFilters={resetFilters} />
+                <CarFilter
+                    filterCars={filterCars}
+                    resetFilters={resetFilters}
+                />
                 <CarsGallery cars={filteredCars} />
             </section>
         </main>

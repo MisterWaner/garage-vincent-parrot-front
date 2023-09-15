@@ -11,7 +11,7 @@ const CarCard = ({ car }) => {
     return (
         <>
             {/*<!-- Car card component --> */}
-            <div className="overflow-hidden rounded bg-white w-80 text-black-02 mt-5 h-fit md:mt-0">
+            <div className="overflow-hidden rounded bg-white w-80 text-black-02 mt-5 h-fit md:mt-0 md:w-80">
                 {/*  <!-- Image --> */}
                 <figure>
                     <img
