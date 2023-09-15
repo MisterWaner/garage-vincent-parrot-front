@@ -8,6 +8,8 @@ import {
 //Pages
 import Home from "./pages/Public/Home/Home";
 import Contact from "./pages/Public/Contact/Contact";
+import Carrosserie from "./pages/Public/Carrosserie/Carrosserie";
+import Mecanique from "./pages/Public/Mecanique/Mecanique";
 import Connexion from "./pages/Public/Connexion/Connexion";
 import RgpdPage from "./pages/Public/RGPD/Rgpd";
 import Cars from "./pages/Public/Cars/Cars";
@@ -33,6 +35,8 @@ const App = () => {
                 {/* Public routes */}
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
+                    <Route path="carrosserie" element={<Carrosserie />} />
+                    <Route path="mecanique" element={<Mecanique />} />
                     <Route path="contact" element={<Contact />} />
                     <Route path="login" element={<Connexion />} />
                     <Route path="cars" element={<Cars />} />

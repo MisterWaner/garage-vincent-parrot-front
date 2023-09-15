@@ -1,14 +1,13 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { HashLink } from "react-router-hash-link";
+import { Link, NavLink } from "react-router-dom";
 import Logo from "../../assets/logo-garage.png";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 
 const Header = () => {
     const Links = [
-        { name: "Mécanique", link: "/#mecanique" },
-        { name: "Carrosserie", link: "/#carrosserie" },
-        { name: "Parc automobile", link: "/#auto" },
+        { name: "Mécanique", link: "/mecanique" },
+        { name: "Carrosserie", link: "/carrosserie" },
+        { name: "Parc automobile", link: "/cars" },
         { name: "Avis", link: "/#avis" },
         { name: "Contact", link: "/contact" },
         { name: "Accès professionnel", link: "/login" },
@@ -40,9 +39,9 @@ const Header = () => {
                             className="text-lg lg:text-xl hover:text-white duration-300"
                             onClick={toggleMenu}
                         >
-                            <HashLink to={item.link} smooth>
+                            <NavLink to={item.link} smooth>
                                 {item.name}
-                            </HashLink>
+                            </ NavLink>
                         </li>
                     ))}
                 </ul>
