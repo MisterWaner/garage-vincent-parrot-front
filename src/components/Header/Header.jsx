@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "../../assets/logo-garage.png";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 
@@ -39,9 +39,9 @@ const Header = () => {
                             className="text-lg lg:text-xl hover:text-white duration-300"
                             onClick={toggleMenu}
                         >
-                            <NavLink to={item.link} smooth>
+                            <Link to={item.link} smooth>
                                 {item.name}
-                            </ NavLink>
+                            </Link>
                         </li>
                     ))}
                 </ul>
