@@ -53,7 +53,7 @@ const Mecanique = () => {
                         Service Personnalisé
                     </h2>
                     <p className="mt-2 text-lg">
-                        Chez <span className="text-yellow-02 font-bold underline underline-offset-2 decoration-red-02">Garage V. Parrot</span>, nous considérons chaque client
+                        Chez <span className="text-yellow-02 font-bold underline underline-offset-2 italic decoration-red-02">Garage V. Parrot</span>, nous considérons chaque client
                         comme un membre de notre famille automobile. Notre
                         approche personnalisée signifie que nous écoutons
                         attentivement vos besoins, discutons des options et vous
@@ -83,7 +83,7 @@ const Mecanique = () => {
                         sommes impatients de vous aider à garder votre véhicule
                         en parfait état de marche.<br/><br/>  Merci de nous faire confiance
                         pour prendre soin de votre précieux moyen de transport.
-                        Chez <span className="text-yellow-02 font-bold underline underline-offset-2 decoration-red-02">Garage V. Parrot</span>, la mécanique automobile est notre
+                        Chez <span className="text-yellow-02 font-bold underline underline-offset-2 decoration-red-02 italic">Garage V. Parrot</span>, la mécanique automobile est notre
                         passion et notre promesse de qualité.
                     </p>
                 </article>

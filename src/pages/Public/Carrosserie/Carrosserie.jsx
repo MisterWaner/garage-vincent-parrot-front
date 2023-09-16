@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Carrosserie = () => {
     return (
         <main className="text-white max-w-[1440px] mx-auto mt-[160px] p-5">
@@ -63,7 +65,7 @@ const Carrosserie = () => {
                         Service Personnalisé
                     </h2>
                     <p className="mt-2 text-lg">
-                        Chez <span className="text-yellow-02 font-bold underline underline-offset-2 decoration-red-02">Garage V. Parrot</span>, chaque véhicule a son
+                        Chez <span className="text-yellow-02 font-bold underline underline-offset-2 italic decoration-red-02">Garage V. Parrot</span>, chaque véhicule a son
                         histoire unique, et nous en sommes conscients. Notre
                         approche personnalisée signifie que nous écoutons
                         attentivement vos besoins, discutons des options et
@@ -87,7 +89,10 @@ const Carrosserie = () => {
                         Nous Contacter
                     </h2>
                     <p className="mt-2 text-lg">
-                        N&apos;hésitez pas à nous contacter pour discuter de vos
+                    N&apos;hésitez pas à nous{" "}
+                        <span className="bg-yellow-02 text-red-02 p-1 rounded-md">
+                            <Link to="/contact">contacter</Link>
+                        </span>{" "} pour discuter de vos
                         besoins en matière de carrosserie automobile. Que vous
                         ayez besoin d&apos;une réparation mineure, d&apos;une rénovation
                         de carrosserie complète ou d&apos;une peinture sur mesure,
@@ -95,7 +100,7 @@ const Carrosserie = () => {
                         redonner à votre véhicule son aspect d&apos;origine, voire de
                         le transformer en une œuvre d&apos;art roulante.<br/><br/> Merci de
                         nous faire confiance pour prendre soin de l&apos;apparence de
-                        votre précieux moyen de transport. Chez <span className="text-yellow-02 font-bold underline underline-offset-2 decoration-red-02">Garage V. Parrot</span>, la carrosserie automobile est plus qu&apos;une
+                        votre précieux moyen de transport. Chez <span className="text-yellow-02 font-bold italic underline underline-offset-2 decoration-red-02">Garage V. Parrot</span>, la carrosserie automobile est plus qu&apos;une
                         réparation, c&apos;est une restauration de l&apos;âme de votre
                         véhicule.
                     </p>
