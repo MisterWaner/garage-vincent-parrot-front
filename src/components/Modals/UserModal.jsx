@@ -62,7 +62,7 @@ const UserModal = ({ user, onClose, updateUserInList, handleUserDeletionModal })
                 console.log(user);
                 setTimeout(() => {
                     onClose();
-                }, 1500);
+                }, 1000);
             } catch (error) {
                 console.error("Une erreur est survenue", error);
             }

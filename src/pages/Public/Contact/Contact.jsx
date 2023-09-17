@@ -2,6 +2,7 @@ import Button from "../../../components/Button/Button";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { contactSchema } from "../../../Validations/contactValidation.js";
+import { sendMailDataToBack } from "../../../services/sendDataToBack";
 
 const Contact = () => {
     const {
@@ -14,10 +15,22 @@ const Contact = () => {
         mode: "onTouched",
     });
 
+    const onInvalid = (errors) => console.error(errors);
+
     const onSubmit = async (data, event) => {
         event.preventDefault();
-        console.log(data);
-        reset();
+
+        const mailFormData = new FormData(event.target);
+        try {
+            const res = await sendMailDataToBack(mailFormData);
+            const newMail = res.data;
+            console.log("data envoyé :", newMail);
+            alert("Votre message a bien été envoyé et sera traité dans les plus brefs délais");
+            reset();
+            console.log(data);
+        } catch (error) {
+            console.error("Une erreur est survenue", error);
+        }
     };
 
     return (
@@ -27,22 +40,22 @@ const Contact = () => {
             </h1>
             <section className="w-1/2 mx-auto h-full mt-6 mb-12 lg:w-[500px]">
                 <form
-                    onSubmit={handleSubmit(onSubmit)}
+                    onSubmit={handleSubmit(onSubmit, onInvalid)}
                     action=""
                     className="w-full h-full flex flex-col items-center"
                 >
                     <div className="flex flex-col mb-4 w-full">
-                        <label htmlFor="name">Nom</label>
+                        <label htmlFor="lastname">Nom</label>
                         <input
                             type="text"
-                            name="name"
-                            id="name"
+                            name="lastname"
+                            id="lastname"
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"
-                            {...register("name")}
+                            {...register("lastname")}
                         />
-                        {errors.name ? (
+                        {errors.lastname ? (
                             <p className="error-msg text-center">
-                                {errors.name?.message}
+                                {errors.lastname?.message}
                             </p>
                         ) : (
                             ""
@@ -100,23 +113,23 @@ const Contact = () => {
                         )}
                     </div>
                     <div className="flex flex-col mb-4 w-full">
-                        <label htmlFor="object">Sujet du message</label>
+                        <label htmlFor="subject">Sujet du message</label>
                         <select
-                            name="object"
-                            id="object"
+                            name="subject"
+                            id="subject"
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"
                         >
                             <option value="">
                                 Veuillez choisir un sujet
                             </option>
-                            <option value="">
+                            <option value="Devis Mecanique / Entretien">
                                 Devis Mécanique / Entretien
                             </option>
-                            <option value="">Devis Carrosserie</option>
-                            <option value="">Achat d&apos;un véhicule</option>
-                            <option value="">Vente d&apos;un véhicule</option>
-                            <option value="">Prendre un rendez-vous</option>
-                            <option value="">Autre...</option>
+                            <option value="Devis Carrosserie">Devis Carrosserie</option>
+                            <option value="Achat d'un véhicule">Achat d&apos;un véhicule</option>
+                            <option value="Vente d'un véhicule">Vente d&apos;un véhicule</option>
+                            <option value="Prendre un rendez-vous">Prendre un rendez-vous</option>
+                            <option value="Autre...">Autre...</option>
                         </select>
                     </div>
                     <div className="flex flex-col mb-4 w-full">

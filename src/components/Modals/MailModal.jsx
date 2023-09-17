@@ -2,8 +2,10 @@
 import { useEffect } from "react";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import Button from "../Button/Button";
+import formatBackendDate from "../../services/formatBackendDate";
+import formatPhoneNumber from "../../services/formatPhoneNumber";
 
-const MailModal = ({ mail, onClose }) => {
+const MailModal = ({ mail, onClose, handleMailDeletionModal }) => {
     useEffect(() => {
         document.body.style.overflow = "hidden";
         return () => {
@@ -11,6 +13,31 @@ const MailModal = ({ mail, onClose }) => {
         };
     }, []);
 
+    const formatDate = (date) => {
+        const jsDate = formatBackendDate(date);
+        return jsDate.toLocaleDateString("fr-FR");
+    };
+
+    const formatPhone = (phoneNumber) => {
+        return formatPhoneNumber(phoneNumber);
+    };
+
+    const handleDeleteButtonClick = async () => {
+        if (mail) {
+            try {
+                console.log(mail);
+                handleMailDeletionModal(mail);
+
+                setTimeout(() => {
+                    onClose();
+                }, 1000);
+            } catch (error) {
+                console.error("Une erreur est survenue", error);
+            }
+        } else {
+            console.error("Aucun mail selectionné pour la suppression");
+        }
+    };
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black-02 bg-opacity-50 overflow-scroll">
             <div className="bg-white p-8 rounded-lg w-2/3  min-h-fit text-black-02 lg:w-1/2">
@@ -33,22 +60,16 @@ const MailModal = ({ mail, onClose }) => {
                     <p className="font-bold mt-4 md:my-4">Message: </p>
                     <span className="mb-4 md:my-4">{mail.message}</span>
                     <p className="font-bold">Coordonnées de contact: </p>
-                    <div className="flex flex-col xl:flex-row">
-                        <span className="break-word">
-                            {mail.email}
-                            {" - "}
-                        </span>
-                        <span className="break-word">
-                            {"- "}
-                            {mail.phone}
-                        </span>
+                    <div className="flex flex-col">
+                        <p>{mail.email}</p>
+                        <p className="mb-4">{mail.phone && formatPhone(mail.phone)}</p>
                     </div>
                     <p className="font-bold">Date: </p>
-                    <span>{mail.date}</span>
+                    <span>{mail.date && formatDate(mail.date)}</span>
                 </div>
                 <div className="w-full flex flex-col lg:flex-row lg:gap-2 ">
                     <Button name="Répondre" fn={onClose} />
-                    <Button name="Supprimer" fn={onClose} />
+                    <Button name="Supprimer" fn={handleDeleteButtonClick} />
                 </div>
             </div>
         </div>
