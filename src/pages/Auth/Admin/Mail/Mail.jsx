@@ -5,13 +5,12 @@ import Pagination from "../../../../components/Pagination/Pagination";
 import Axios from "../../../../api/axios";
 import { deleteMailDataFromBack } from "../../../../services/deleteDataFromBack";
 import formatBackendDate from "../../../../services/formatBackendDate";
-import formatPhoneNumber from "../../../../services/formatPhoneNumber";
 
 const Mail = () => {
     const [selectedMail, setSelectedMail] = useState(null);
     const [mails, setMails] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const mailPerPage = 10;
+    const mailPerPage = 5;
 
     // Pagination
     const indexOfLastItem = currentPage * mailPerPage;
@@ -52,9 +51,6 @@ const Mail = () => {
         const jsDate = formatBackendDate(date);
         return jsDate.toLocaleDateString("fr-FR");
     };
-    const formatPhone = (phoneNumber) => {
-        return formatPhoneNumber(phoneNumber);
-    };
 
     const markMailAsRead = async (mailId) => {
         const updatedMails = mails.map((mail) => {
@@ -65,15 +61,15 @@ const Mail = () => {
         });
 
         setMails(updatedMails);
-        setSelectedMail(updatedMails)
+
         try {
             const res = await Axios.put(`/api/mails/${mailId}`);
             if (res.status === 200) {
-                setSelectedMail({ ...selectedMail, isRead: true });
                 console.log(res.data, "La lecture a bien été mise à jour");
+                return res.data;
             } else {
                 console.error(
-                    res,
+                    res.data,
                     "Une erreur est survenue lors de la mise à jour de la lecture"
                 );
             }
@@ -165,7 +161,7 @@ const Mail = () => {
                                         {mail.email}
                                     </td>
                                     <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02 w-1/6">
-                                        {formatPhone(mail.phone)}
+                                        {mail.phone}
                                     </td>
                                     <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02 w-1/6">
                                         {mail.subject}

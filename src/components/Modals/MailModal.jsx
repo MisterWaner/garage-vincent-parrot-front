@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import Button from "../Button/Button";
 import formatBackendDate from "../../services/formatBackendDate";
-import formatPhoneNumber from "../../services/formatPhoneNumber";
 
 const MailModal = ({ mail, onClose, handleMailDeletionModal }) => {
     useEffect(() => {
@@ -14,23 +13,21 @@ const MailModal = ({ mail, onClose, handleMailDeletionModal }) => {
     }, []);
 
     const formatDate = (date) => {
-        const jsDate = formatBackendDate(date);
-        return jsDate.toLocaleDateString("fr-FR");
+        if (date) {
+            const jsDate = formatBackendDate(date);
+            return jsDate.toLocaleDateString("fr-FR");
+        }
+        return "";
     };
 
-    const formatPhone = (phoneNumber) => {
-        return formatPhoneNumber(phoneNumber);
-    };
-
-    const handleDeleteButtonClick = async () => {
+    const handleMailDeleteButtonClick = async () => {
         if (mail) {
             try {
                 console.log(mail);
                 handleMailDeletionModal(mail);
+                alert("Le mail a bien été supprimé");
 
-                setTimeout(() => {
-                    onClose();
-                }, 1000);
+                onClose();
             } catch (error) {
                 console.error("Une erreur est survenue", error);
             }
@@ -62,14 +59,14 @@ const MailModal = ({ mail, onClose, handleMailDeletionModal }) => {
                     <p className="font-bold">Coordonnées de contact: </p>
                     <div className="flex flex-col">
                         <p>{mail.email}</p>
-                        <p className="mb-4">{mail.phone && formatPhone(mail.phone)}</p>
+                        <p className="mb-4">{mail.phone}</p>
                     </div>
                     <p className="font-bold">Date: </p>
-                    <span>{mail.date && formatDate(mail.date)}</span>
+                    <span>{formatDate(mail.date)}</span>
                 </div>
                 <div className="w-full flex flex-col lg:flex-row lg:gap-2 ">
                     <Button name="Répondre" fn={onClose} />
-                    <Button name="Supprimer" fn={handleDeleteButtonClick} />
+                    <Button name="Supprimer" fn={handleMailDeleteButtonClick} />
                 </div>
             </div>
         </div>

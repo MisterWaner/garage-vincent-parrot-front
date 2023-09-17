@@ -72,7 +72,6 @@ const CarModal = ({
             try {
                 console.log(car);
                 await handleCarDeletionModal(car);
-                //updateCarInList(null);
 
                 console.log(car);
                 setTimeout(() => {

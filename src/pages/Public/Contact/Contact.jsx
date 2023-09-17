@@ -50,6 +50,7 @@ const Contact = () => {
                             type="text"
                             name="lastname"
                             id="lastname"
+                            placeholder="Doe"
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"
                             {...register("lastname")}
                         />
@@ -67,6 +68,7 @@ const Contact = () => {
                             type="text"
                             name="firstname"
                             id="firstname"
+                            placeholder="John"
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"
                             {...register("firstname")}
                         />
@@ -84,6 +86,7 @@ const Contact = () => {
                             type="email"
                             name="email"
                             id="email"
+                            placeholder="email@example.com"
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"
                             {...register("email")}
                         />
@@ -101,6 +104,7 @@ const Contact = () => {
                             type="phone"
                             name="phone"
                             id="phone"
+                            placeholder="01-00-00-00-00"
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"
                             {...register("phone")}
                         />
@@ -139,6 +143,7 @@ const Contact = () => {
                             id="message"
                             cols="30"
                             rows="10"
+                            placeholder="Votre message"
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"
                             {...register("message")}
                         ></textarea>
