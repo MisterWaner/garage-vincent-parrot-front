@@ -2,8 +2,9 @@
 import { useEffect } from "react";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import Button from "../Button/Button";
+import formatBackendDate from "../../services/formatBackendDate";
 
-const ReviewModal = ({ review, onClose }) => {
+const ReviewModal = ({ review, onClose, handleReviewDeletionModal, markReviewAsValidated }) => {
     useEffect(() => {
         document.body.style.overflow = "hidden";
         return () => {
@@ -11,9 +12,49 @@ const ReviewModal = ({ review, onClose }) => {
         };
     }, []);
 
+    const formatDate = (date) => {
+        if (date) {
+            const jsDate = formatBackendDate(date);
+            return jsDate.toLocaleDateString("fr-FR");
+        }
+        return "";
+    };
+
+    const handleReviewDeleteButtonClick = async () => {
+        if (review) {
+            try {
+                console.log(review);
+                handleReviewDeletionModal(review);
+                alert("Le commentaire a bien été supprimé");
+
+                onClose();
+            } catch (error) {
+                console.error("Une erreur est survenue", error);
+            }
+        } else {
+            console.error("Aucun commentaire selectionné pour la suppression");
+        }
+    }
+
+    const handleReviewValidationButtonClick = async () => {
+        if (review) {
+            try {
+                console.log(review);
+                markReviewAsValidated(review.id);
+                alert("Le commentaire a bien été validé");
+
+                onClose();
+            } catch (error) {
+                console.error("Une erreur est survenue", error);
+            }
+        } else {
+            console.error("Aucun commentaire selectionné pour la validation");
+        }
+    }
+
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black-02 bg-opacity-50 overflow-scroll">
-            <div className="bg-white p-8 rounded-lg min-w-fit min-h-fit mt-auto text-black-02 lg:w-1/2 lg:mt-0">
+            <div className="bg-white p-8 rounded-lg w-2/3 min-h-fit mt-auto text-black-02 lg:w-1/2 lg:mt-0">
                 <div className="w-full flex justify-end">
                     <button
                         onClick={onClose}
@@ -26,18 +67,20 @@ const ReviewModal = ({ review, onClose }) => {
                 <div className="grid grid-cols-1 md:grid-cols-2">
                     <p className="font-bold">Auteur: </p>
                     <span>{review.firstname} {review.lastname}</span>
+                    <p className="font-bold">Email:</p>
+                    <span>{review.email}</span>
                     <p className="font-bold">Titre: </p>
                     <span>{review.title}</span>
                     <p className="font-bold">Message: </p>
-                    <span>{review.message}</span>
+                    <span className="mb-4 md:my-4">{review.comment}</span>
                     <p className="font-bold">Note: </p>
                     <span>{review.rating}</span>
                     <p className="font-bold">Date: </p>
-                    <span>{review.date}</span>
+                    <span>{formatDate(review.date)}</span>
                 </div>
                 <div className="w-full flex flex-col lg:flex-row lg:gap-2 ">
-                    <Button name="Approuver" fn={onClose} />
-                    <Button name="Refuser" fn={onClose} />
+                    <Button name="Approuver" fn={handleReviewValidationButtonClick} />
+                    <Button name="Supprimer" fn={handleReviewDeleteButtonClick} />
                     <Button name="Répondre" fn={onClose} />
                 </div>
             </div>

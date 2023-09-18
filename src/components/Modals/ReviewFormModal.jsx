@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-
+import { sendReviewDataToBack } from "../../services/sendDataToBack.js";
 import Button from "../Button/Button";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import { reviewSchema } from "../../Validations/reviewValidation.js";
@@ -26,14 +26,24 @@ const ReviewFormModal = ({ toggleModal }) => {
         };
     }, []);
 
+    const onInvalid = (errors) => console.error(errors);
+
     const onSubmit = async (data, event) => {
         event.preventDefault();
-        console.log(data);
-
-        reset();
-        setTimeout(() => {
+        
+        const reviewFormData = new FormData(event.target);
+        try {
+            const res = await sendReviewDataToBack(reviewFormData);
+            const newReview = res.data;
+            console.log("data envoyé :", newReview);
+            alert("Votre avis a bien été envoyé et sera traité dans les plus brefs délais");
+            reset();
             toggleModal();
-        }, 1500);
+            console.log(data);
+        } catch (error) {
+            console.error("Une erreur est survenue", error);
+        }
+
     };
 
     return (
@@ -52,17 +62,17 @@ const ReviewFormModal = ({ toggleModal }) => {
                     Donnez nous votre avis
                 </h2>
                 <form
-                    onSubmit={handleSubmit(onSubmit)}
+                    onSubmit={handleSubmit(onSubmit, onInvalid)}
                     className="w-full h-full flex flex-col items-center lg:grid lg:grid-cols-2 lg:grid-rows-auto lg:gap-2 lg:items-start "
                 >
                     <div className="flex flex-col mb-4 w-full">
-                        <label htmlFor="name">Nom</label>
+                        <label htmlFor="lastname">Nom</label>
                         <input
-                            name="name"
-                            id="name"
+                            name="lastname"
+                            id="lastname"
                             type="text"
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"
-                            {...register("name")}
+                            {...register("lastname")}
                         />
                         {errors.name ? (
                             <p className="error-msg text-center">
@@ -141,18 +151,18 @@ const ReviewFormModal = ({ toggleModal }) => {
                         )}
                     </div>
                     <div className="flex flex-col mb-4 w-full">
-                        <label htmlFor="message">Message</label>
+                        <label htmlFor="comment">Message</label>
                         <textarea
-                            name="message"
-                            id="message"
+                            name="comment"
+                            id="comment"
                             cols="30"
                             rows="5"
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"
-                            {...register("message")}
+                            {...register("comment")}
                         />
-                        {errors.message ? (
+                        {errors.comment ? (
                             <p className="error-msg text-center">
-                                {errors.message?.message}
+                                {errors.comment?.message}
                             </p>
                         ) : (
                             ""

@@ -113,7 +113,7 @@ const Mail = () => {
             <section className="mt-10">
                 <p>
                     Vous avez actuellement {mails.length} messages dont{" "}
-                    {countUnreadMails()} non lus
+                    {countUnreadMails()} non lus.
                 </p>
             </section>
             <section className="mt-10">
@@ -181,12 +181,12 @@ const Mail = () => {
                         />
                     )}
                 </div>
+            </section>
                 <Pagination
                     itemsPerPage={mailPerPage}
                     totalItems={mails.length}
                     paginate={paginate}
                 />
-            </section>
         </main>
     );
 };

@@ -20,7 +20,6 @@ import GlobalSettings from "./pages/Auth/Admin/GlobalSettings/GlobalSettings";
 import Mail from "./pages/Auth/Admin/Mail/Mail";
 import PersonnalSettings from "./pages/Auth/Employee/PersonnalSettings/PersonnalSettings";
 import AdminSettings from "./pages/Auth/Admin/AdminSettings/AdminSettings";
-import MailEmployee from "./pages/Auth/Employee/MailEmployee/MailEmployee";
 
 //Layouts
 import Layout from "./pages/Layout/Layout";
@@ -63,7 +62,7 @@ const App = () => {
                 <Route path="/employee" element={<EmployeeLayout />}>
                     <Route index element={<PersonnalSettings />} />
                     <Route path="car-park" element={<CarsSettings />} />
-                    <Route path="mails" element={<MailEmployee />} />
+                    <Route path="mails" element={<Mail />} />
                     <Route path="reviews" element={<TestimonialsSettings />} />
                 </Route>
             </>

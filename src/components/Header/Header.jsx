@@ -8,7 +8,6 @@ const Header = () => {
         { name: "Mécanique", link: "/mecanique" },
         { name: "Carrosserie", link: "/carrosserie" },
         { name: "Parc automobile", link: "/cars" },
-        { name: "Avis", link: "/#avis" },
         { name: "Contact", link: "/contact" },
         { name: "Accès professionnel", link: "/login" },
     ];
@@ -39,7 +38,7 @@ const Header = () => {
                             className="text-lg lg:text-xl hover:text-white duration-300"
                             onClick={toggleMenu}
                         >
-                            <Link to={item.link} smooth>
+                            <Link to={item.link}>
                                 {item.name}
                             </Link>
                         </li>
