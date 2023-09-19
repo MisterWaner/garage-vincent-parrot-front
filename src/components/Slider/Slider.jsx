@@ -7,14 +7,14 @@ const Slider = () => {
         <>
             <Carousel
                 autoplay
-                autoplayInterval={3000}
+                autoplayInterval={6000}
                 wrapAround={true}
                 withoutControls={true}
                 slideWidth={"100%"}
                 cellAlign="center"
                 cellSpacing={10}
                 cellAlignHorizontal="center"
-                speed={1500}
+                speed={3000}
                 className="my-10"
             >
                 {dataSlider.map((obj, index) => (
