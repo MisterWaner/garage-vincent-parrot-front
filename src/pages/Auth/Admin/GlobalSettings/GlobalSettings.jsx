@@ -1,3 +1,5 @@
+import Planning from "../../../../components/Planning/Planning";
+
 const GlobalSettings = () => {
     return (
         <main className="container mx-auto px-24 lg:px-16 py-5 text-white">
@@ -5,13 +7,10 @@ const GlobalSettings = () => {
                 Gestion globale
             </h1>
             <section>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Quisquam rerum, placeat numquam laborum aspernatur laudantium,
-                est modi harum soluta laboriosam fugiat maxime explicabo odit
-                itaque repellat, et reprehenderit? Natus, consequuntur? Tempora
-                qui harum ex maiores animi cumque, magni facere, veniam amet
-                debitis enim. Dolorem placeat dicta exercitationem, vero
-                repellendus mollitia.
+                <h2>Gestion des horaires d&apos;ouverture</h2>
+                <div>
+                    <Planning />
+                </div>
             </section>
         </main>
     );
