@@ -23,8 +23,7 @@ const Testimonial = ({review}) => {
     }
     return (
         <>
-            {/*      <!-- Component: Elevated base sized testimonial with rating stars --> */}
-            <div className="overflow-hidden rounded bg-yellow-02 text-black-02 h-full my-4">
+            <div className="flex flex-col justify-between px-10 rounded-md max-w-md sm:mx-auto h-full bg-yellow-02 text-black-02 ">
                 <div className="relative p-6">
                     <figure className="relative z-10">
                         <blockquote className="p-6 text-lg leading-relaxed">
