@@ -46,16 +46,10 @@ const App = () => {
                 <Route path={`/admin`} element={<AdminLayout />}>
                     <Route index element={<AdminSettings />} />
                     <Route path="mails" element={<Mail />} />
-                    <Route
-                        path="reviews"
-                        element={<TestimonialsSettings />}
-                    />
+                    <Route path="reviews" element={<TestimonialsSettings />} />
                     <Route path="car-park" element={<CarsSettings />} />
                     <Route path="globals" element={<GlobalSettings />} />
-                    <Route
-                        path="users"
-                        element={<EmployeesSettings />}
-                    />
+                    <Route path="users" element={<EmployeesSettings />} />
                 </Route>
 
                 {/* Employee routes */}

@@ -21,9 +21,9 @@ const Home = () => {
                 <Slider />
                 <AnimatedSection>
                     <section className="py-14 flex flex-col md:flex-row gap-4 md:items-center ">
-                        <div className="w-full md:w-1/2 lg:w-1/3 my-2">
+                        <div className="w-full flex justify-center md:w-1/2 md:block lg:w-1/3 my-2 ">
                             <img
-                                className="w-full rounded-md"
+                                className="w-1/2  md:w-full "
                                 src={Logo}
                                 alt=""
                             />

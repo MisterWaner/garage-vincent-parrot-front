@@ -43,7 +43,7 @@ const CarousselTestimonials = () => {
                 pauseOnHover={true}
             >
                 {reviews.map((review) => (
-                    <Testimonial key={review._id} review={review} />
+                    <Testimonial key={review.id} review={review} />
                 ))}
             </Carousel>
         </div>
