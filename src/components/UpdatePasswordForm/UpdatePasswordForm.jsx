@@ -21,7 +21,7 @@ const UpdatePasswordForm = () => {
 
     const onInvalid = (errors) => console.error(errors);
 
-    const onSubmit = async (data, event) => {
+    const onSubmit = async (_, event) => {
         event.preventDefault();
         const passwordFormData = new FormData(event.target);
         try {
@@ -29,10 +29,10 @@ const UpdatePasswordForm = () => {
 
             if (res.status === 200) {
                 reset();
-                console.log("data envoyé:", res.data);
                 alert("Le mot de passe a bien été mis à jour");
+            } else {
+                console.log("Une erreur est survenue lors de la mise à jour du mot de passe", res);
             }
-
         } catch (error) {
             console.error(
                 "Une erreur est survenue lors de la mise à jour du mot de passe",
