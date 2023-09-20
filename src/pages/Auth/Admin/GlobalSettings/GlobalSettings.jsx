@@ -1,17 +1,167 @@
-import Planning from "../../../../components/Planning/Planning";
+import { useState, useEffect } from "react";
+import Button from "../../../../components/Button/Button";
+import Axios from "../../../../api/axios";
+import AddPlanningForm from "../../../../components/AddPlanningForm/AddPlanningForm";
+import Pagination from "../../../../components/Pagination/Pagination";
+import PlanningModal from "../../../../components/Modals/PlanningModal";
 
 const GlobalSettings = () => {
+    const [plannings, setPlannings] = useState([]);
+    const [selectedPlanning, setSelectedPlanning] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [planningPerPage] = useState(5);
+
+    // Pagination
+    const indexOfLastPlanning = currentPage * planningPerPage;
+    const indexOfFirstPlanning = indexOfLastPlanning - planningPerPage;
+    const currentPlannings = plannings.slice(
+        indexOfFirstPlanning,
+        indexOfLastPlanning
+    );
+
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
+    useEffect(() => {
+        const getPlanningsDataFromBack = async () => {
+            try {
+                const res = await Axios.get("/api/plannings");
+                if (res.status === 200) {
+                    console.log(
+                        res.data,
+                        "Les données ont bien été récupérées"
+                    );
+                } else {
+                    console.error(res, "Une erreur est survenue");
+                }
+
+                setPlannings(res.data);
+            } catch (error) {
+                console.error("Une erreur est survenue", error);
+            }
+        };
+
+        getPlanningsDataFromBack();
+    }, []);
+
+    const openPlanning = (planning) => {
+        setSelectedPlanning(planning);
+    };
+
+    const closePlanning = () => {
+        setSelectedPlanning(null);
+    };
+
+    const addPlanningToList = (newPlanning) => {
+        console.log(newPlanning);
+        setPlannings((prevPlannings) => [...prevPlannings, newPlanning]);
+        console.log("Ajout d'un nouveau planning: ", newPlanning);
+    };
+
+    const updatePlanningInList = (updatedPlanning) => {
+        console.log(updatedPlanning);
+        const updatedPlannings = plannings.map((planning) => {
+            return planning.id === updatedPlanning.id ? {...planning, ...updatedPlanning} : planning;
+        }
+        );
+        setPlannings(updatedPlannings);
+        console.log("Mise à jour du planning: ", updatedPlanning);
+    };
+
+            
     return (
         <main className="container mx-auto px-24 lg:px-16 py-5 text-white">
             <h1 className="text-center text-2xl text-yellow-02 underline my-6 sm:text-3xl lg:text-5xl decoration-red-02">
                 Gestion globale
             </h1>
-            <section>
-                <h2>Gestion des horaires d&apos;ouverture</h2>
-                <div>
-                    <Planning />
+            <section className="mt-10">
+                <h2 className="text-lg text-yellow-02 underline decoration-red-02 my-6 lg:text-2xl">
+                    Gestion des horaires d&apos;ouverture
+                </h2>
+                <div className="mt-10 p-4 bg-white text-black-02 w-full lg:w-3/5 rounded-md">
+                    <h3 className="text-lg text-center font-bold mb-4">
+                        Ajouter un horaire d&apos;ouverture
+                    </h3>
+                    <AddPlanningForm addPlanningToList={addPlanningToList}/>
                 </div>
             </section>
+            <section className="mt-10">
+                <div className="overflow-x-auto">
+                    <table className="min-w-full divide-y divide-red-02 bg-yellow-02">
+                        <thead>
+                            <tr>
+                                <th className="py-3 px-6 text-left text-lg font-medium text-black-02 tracking-wider font-racer">
+                                    Action
+                                </th>
+                                <th className="py-3 px-6 text-left text-lg font-medium text-black-02 tracking-wider font-racer">
+                                    Jour
+                                </th>
+                                <th className="py-3 px-6 text-left text-lg font-medium text-black-02 tracking-wider font-racer">
+                                    Ouverture du matin
+                                </th>
+                                <th className="py-3 px-6 text-left text-lg font-medium text-black-02 tracking-wider font-racer">
+                                    Fermeture du matin
+                                </th>
+                                <th className="py-3 px-6 text-left text-lg font-medium text-black-02 tracking-wider font-racer">
+                                    Ouverture de l&apos;après-midi
+                                </th>
+                                <th className="py-3 px-6 text-left text-lg font-medium text-black-02 tracking-wider font-racer">
+                                    Fermeture de l&apos;après-midi
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-red-02">
+                            {currentPlannings.map((planning) => {
+                                return (
+                                    <tr
+                                        key={planning.id}
+                                        className="hover:bg-red-02/50"
+                                    >
+                                        <td className="py-4 px-6 whitespace-nowrap">
+                                            <Button
+                                                name="Lire"
+                                                fn={() =>
+                                                    openPlanning(planning)
+                                                }
+                                            />
+                                        </td>
+                                        <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">
+                                            {planning.day}
+                                        </td>
+                                        <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">
+                                            {planning.morningOpeningHour}
+                                        </td>
+                                        <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">
+                                            {planning.morningClosingHour}
+                                        </td>
+                                        <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">
+                                            {planning.afternoonOpeningHour}
+                                        </td>
+                                        <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">
+                                            {planning.afternoonClosingHour}
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                    {selectedPlanning && (
+                        <PlanningModal
+                            planning={selectedPlanning}
+                            onClose={closePlanning}
+                            updatePlanningInList={updatePlanningInList}
+                            handlePlanningDeletationModal={closePlanning}
+                        />
+                    )}
+                </div>
+
+            </section>
+            <Pagination
+                itemsPerPage={planningPerPage}
+                totalItems={plannings.length}
+                paginate={paginate}
+            />
         </main>
     );
 };

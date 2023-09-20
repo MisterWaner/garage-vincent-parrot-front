@@ -12,7 +12,7 @@ const EmployeesSettings = () => {
     const [searchResults, setSearchResults] = useState("");
     const [users, setUsers] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [userPerPage] = useState(10);
+    const [userPerPage] = useState(5);
 
     const getUsersForCurrentPage = () => {
         const indexOfLastUser = currentPage * userPerPage;
@@ -82,9 +82,7 @@ const EmployeesSettings = () => {
         try {
             const res = await deleteUserDataFromBack(user.id);
             if (res) {
-                const updatedUsers = users.filter(
-                    (u) => u.id !== user.id
-                );
+                const updatedUsers = users.filter((u) => u.id !== user.id);
                 setUsers(updatedUsers);
                 setSelectedUser(null);
                 alert("L'utilisateur a bien été supprimé");
@@ -92,11 +90,10 @@ const EmployeesSettings = () => {
             } else {
                 console.error(res, "Une erreur est SURVENUE");
             }
-
         } catch (error) {
             console.error("Une erreur est survenue", error);
         }
-    }
+    };
 
     return (
         <main className="container mx-auto px-24 lg:px-16 py-5 text-white">
@@ -104,11 +101,22 @@ const EmployeesSettings = () => {
                 Gestion des employés
             </h1>
             <section className="mt-10">
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Corrupti laborum vel sit suscipit iusto magnam eius fuga
-                    obcaecati dolorum optio.
-                </p>
+                <div>
+                    <p>Sur cette page vous pouvez: </p>
+                    <ul className="mt-4 list-inside list-disc">
+                        <li className="px-4">
+                            Créer un compte employé ou administrateur
+                        </li>
+                        <li className="px-4">
+                            Gérer les compte existant (suppression,
+                            modification, modification de droit...)
+                        </li>
+                        <li className="px-4">
+                            Rechercher un compte précis grâce au prénom
+                        </li>
+                    </ul>
+                </div>
+
                 <div className="mt-4 w-2/3 md:w-1/3">
                     <div className="flex flex-col mb-4 w-full">
                         <label htmlFor="search">Rechercher</label>
@@ -133,7 +141,9 @@ const EmployeesSettings = () => {
                     <table className="min-w-full divide-y divide-red-02 bg-yellow-02">
                         <thead>
                             <tr>
-                                <th></th>
+                                <th className="py-3 px-6 text-left text-lg font-medium text-black-02 tracking-wider font-racer">
+                                    Action
+                                </th>
                                 <th className="py-3 px-6 text-left text-lg font-medium text-black-02 tracking-wider font-racer">
                                     Prénom
                                 </th>
@@ -168,9 +178,7 @@ const EmployeesSettings = () => {
                                         <td className="py-4 px-6 whitespace-nowrap">
                                             <Button
                                                 name="Voir la fiche"
-                                                fn={() =>
-                                                    openUser(user)
-                                                }
+                                                fn={() => openUser(user)}
                                             />
                                         </td>
                                         <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">
@@ -186,7 +194,9 @@ const EmployeesSettings = () => {
                                             {user.services}
                                         </td>
                                         <td className="py-4 px-6 whitespace-nowrap font-semibold text-black-02">
-                                            {(user.role === "Admin") ? "Admin" : "Utilisateur"}
+                                            {user.role === "Admin"
+                                                ? "Admin"
+                                                : "Utilisateur"}
                                         </td>
                                     </tr>
                                 ))}

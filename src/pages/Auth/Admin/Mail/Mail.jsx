@@ -182,11 +182,11 @@ const Mail = () => {
                     )}
                 </div>
             </section>
-                <Pagination
-                    itemsPerPage={mailPerPage}
-                    totalItems={mails.length}
-                    paginate={paginate}
-                />
+            <Pagination
+                itemsPerPage={mailPerPage}
+                totalItems={mails.length}
+                paginate={paginate}
+            />
         </main>
     );
 };

@@ -55,13 +55,15 @@ const sendMailDataToBack = async (formData) => {
             console.log(res.data, "Les données ont bien été envoyées");
             return res.data;
         } else {
-            throw new Error("Une erreur est survenue lors de l'envoie du message");
+            throw new Error(
+                "Une erreur est survenue lors de l'envoie du message"
+            );
         }
     } catch (error) {
         console.error("Une erreur est survenue", error);
         throw error;
     }
-}
+};
 
 const sendReviewDataToBack = async (formData) => {
     try {
@@ -76,12 +78,43 @@ const sendReviewDataToBack = async (formData) => {
             console.log(res.data, "Les données ont bien été envoyées");
             return res.data;
         } else {
-            throw new Error("Une erreur est survenue lors de l'envoie du commentaire");
+            throw new Error(
+                "Une erreur est survenue lors de l'envoie du commentaire"
+            );
         }
     } catch (error) {
         console.error("Une erreur est survenue", error);
         throw error;
     }
-}
+};
 
-export { sendCarsDataToBack, sendUsersDataToBack, sendMailDataToBack, sendReviewDataToBack };
+const sendPlanningDataToBack = async (formData) => {
+    try {
+        const res = await Axios.post("/api/plannings", formData, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        console.log(res);
+
+        if (res.status === 200) {
+            console.log(res.data, "Les données ont bien été envoyées");
+            return res.data;
+        } else {
+            throw new Error(
+                "Une erreur est survenue lors de l'envoie du planning"
+            );
+        }
+    } catch (error) {
+        console.error("Une erreur est survenue", error);
+        throw error;
+    }
+};
+
+export {
+    sendCarsDataToBack,
+    sendUsersDataToBack,
+    sendMailDataToBack,
+    sendReviewDataToBack,
+    sendPlanningDataToBack,
+};
