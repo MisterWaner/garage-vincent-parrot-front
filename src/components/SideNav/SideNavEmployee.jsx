@@ -21,15 +21,15 @@ const SideNavEmployee = () => {
             link: `/employee/${Cookies.get("id")}`,
             icon: <UserCircleIcon />,
         },
-        { name: "Mail", link: `/employee/${Cookies.get("id")}/mails`, icon: <InboxIcon /> },
+        { name: "Mail", link: `/employee/mails`, icon: <InboxIcon /> },
         {
             name: "Gestion des vehicules",
-            link: `/employee/${Cookies.get("id")}/car-park`,
+            link: `/employee/car-park`,
             icon: <TruckIcon />,
         },
         {
             name: "Gestion des commentaires",
-            link: `/employee/${Cookies.get("id")}/reviews`,
+            link: `/employee/reviews`,
             icon: <ChatBubbleOvalLeftEllipsisIcon />,
         },
     ];

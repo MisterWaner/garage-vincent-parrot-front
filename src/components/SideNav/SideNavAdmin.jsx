@@ -23,25 +23,25 @@ const SideNavAdmin = () => {
             link: `/admin/${Cookies.get("id")}`,
             icon: <UserCircleIcon />,
         },
-        { name: "Mail", link: `/admin/${Cookies.get("id")}/mails`, icon: <InboxIcon /> },
+        { name: "Mail", link: `/admin/mails`, icon: <InboxIcon /> },
         {
             name: "Gestion globale",
-            link: `/admin/${Cookies.get("id")}/globals`,
+            link: `/admin/globals`,
             icon: <Cog6ToothIcon />,
         },
         {
             name: "Gestion des utilisateurs",
-            link: `/admin/${Cookies.get("id")}/users`,
+            link: `/admin/users`,
             icon: <UserGroupIcon />,
         },
         {
             name: "Gestion des vehicules",
-            link: `/admin/${Cookies.get("id")}/car-park`,
+            link: `/admin/car-park`,
             icon: <TruckIcon />,
         },
         {
             name: "Gestion des témoignages",
-            link: `/admin/${Cookies.get("id")}/reviews`,
+            link: `/admin/reviews`,
             icon: <ChatBubbleOvalLeftEllipsisIcon />,
         },
     ];
