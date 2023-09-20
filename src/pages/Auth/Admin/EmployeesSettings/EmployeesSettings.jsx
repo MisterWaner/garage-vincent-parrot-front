@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Button from "../../../../components/Button/Button";
 import AddUser from "../../../../components/Modals/AddUser";
 import UserModal from "../../../../components/Modals/UserModal";
+import Pagination from "../../../../components/Pagination/Pagination";
 import Axios from "../../../../api/axios";
 import { deleteUserDataFromBack } from "../../../../services/deleteDataFromBack";
 
@@ -14,11 +15,10 @@ const EmployeesSettings = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [userPerPage] = useState(5);
 
-    const getUsersForCurrentPage = () => {
-        const indexOfLastUser = currentPage * userPerPage;
-        const indexOfFirstUser = indexOfLastUser - userPerPage;
-        return users.slice(indexOfFirstUser, indexOfLastUser);
-    };
+    // Pagination
+    const indexOfLastUser = currentPage * userPerPage;
+    const indexOfFirstUser = indexOfLastUser - userPerPage;
+    const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
 
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -162,7 +162,7 @@ const EmployeesSettings = () => {
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-red-02">
-                            {getUsersForCurrentPage()
+                            {currentUsers
                                 .filter((user) => {
                                     return searchResults.toLowerCase() === ""
                                         ? user
@@ -211,34 +211,13 @@ const EmployeesSettings = () => {
                         />
                     )}
                 </div>
-                <div className="flex justify-center mt-5">
-                    <nav>
-                        <ul className="flex items-center">
-                            {Array.from(
-                                {
-                                    length: Math.ceil(
-                                        users.length / userPerPage
-                                    ),
-                                },
-                                (_, index) => (
-                                    <li key={index + 1}>
-                                        <button
-                                            className={`bg-yellow-02 text-black-02 px-2 py-1 rounded-md mx-1 ${
-                                                currentPage === index + 1
-                                                    ? "font-bold"
-                                                    : ""
-                                            } hover:bg-red-02`}
-                                            onClick={() => paginate(index + 1)}
-                                        >
-                                            {index + 1}
-                                        </button>
-                                    </li>
-                                )
-                            )}
-                        </ul>
-                    </nav>
-                </div>
+                
             </section>
+            <Pagination
+                itemsPerPage={userPerPage}
+                totalItems={users.length}
+                paginate={paginate}
+            />
             {toggleModal && (
                 <AddUser
                     toggleModal={closeModal}

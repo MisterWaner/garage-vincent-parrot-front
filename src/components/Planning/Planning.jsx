@@ -1,6 +1,45 @@
-
+import { useState, useEffect } from "react";
+import Axios from "../../api/axios";
 
 const Planning = () => {
+    const [plannings, setPlannings] = useState([]);
+
+    useEffect(() => {
+        const getPlanningsDataFromBack = async () => {
+            try {
+                const res = await Axios.get("/api/plannings");
+                if (res.status === 200) {
+                    console.log(
+                        res.data,
+                        "Les données ont bien été récupérées"
+                    );
+                } else {
+                    console.error(res, "Une erreur est survenue");
+                }
+                const data = res.data;
+
+                const indexJours = {
+                    Lundi: 1,
+                    Mardi: 2,
+                    Mercredi: 3,
+                    Jeudi: 4,
+                    Vendredi: 5,
+                    Samedi: 6,
+                    Dimanche: 7,
+                    Fériés: 8,
+                };
+
+                data.sort((a, b) => indexJours[a.day] - indexJours[b.day]);
+
+                setPlannings(data);
+            } catch (error) {
+                console.error("Une erreur est survenue", error);
+            }
+        };
+
+        getPlanningsDataFromBack();
+    }, []);
+
     return (
         <div className="bg-white/50 p-4 rounded-md border border-black-02">
             <table className="w-full">
@@ -15,19 +54,19 @@ const Planning = () => {
                     </tr>
                 </thead>
                 <tbody className="text-black-02 text-center">
-                    {planning.map((data, index) => (
-                        <tr key={index} className="w-full">
+                    {plannings.map((data) => (
+                        <tr key={data.id} className="w-full">
                             <td className="w-1/3">
                                 {data.day.charAt(0).toUpperCase() +
                                     data.day.slice(1)}
                             </td>
                             <td className="w-1/3">
-                                <span>{data.openingMorning + "  "}</span>
-                                <span>{data.closingMorning}</span>
+                                <span>{data.morningOpeningHour + " / "}</span>
+                                <span>{data.morningClosingHour}</span>
                             </td>
                             <td className="w-1/3">
-                                <span>{data.openingAfternoon + "  "}</span>
-                                <span>{data.closingAfternoon}</span>
+                                <span>{data.afternoonOpeningHour + " / "}</span>
+                                <span>{data.afternoonClosingHour}</span>
                             </td>
                         </tr>
                     ))}

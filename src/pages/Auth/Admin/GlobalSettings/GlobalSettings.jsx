@@ -36,7 +36,22 @@ const GlobalSettings = () => {
                     console.error(res, "Une erreur est survenue");
                 }
 
-                setPlannings(res.data);
+                const data = res.data;
+
+                const indexJours = {
+                    Lundi: 1,
+                    Mardi: 2,
+                    Mercredi: 3,
+                    Jeudi: 4,
+                    Vendredi: 5,
+                    Samedi: 6,
+                    Dimanche: 7,
+                    Fériés: 8
+                };
+
+                data.sort((a, b) => indexJours[a.day] - indexJours[b.day])
+                
+                setPlannings(data);
             } catch (error) {
                 console.error("Une erreur est survenue", error);
             }
@@ -69,6 +84,22 @@ const GlobalSettings = () => {
         console.log("Mise à jour du planning: ", updatedPlanning);
     };
 
+    const handlePlanningDeletationModal = async (planning) => { 
+        try {
+            const res = await Axios.delete(`/api/plannings/${planning.id}`);
+            if (res) {
+                const updatedPlannings = plannings.filter((p) => p.id !== planning.id);
+                setPlannings(updatedPlannings);
+                setSelectedPlanning(null);
+                alert("Le planning a bien été supprimé");
+                console.log("Le planning a bien été supprimé");
+            } else {
+                console.error("Une erreur est survenue");
+            }
+        } catch (error) {
+            console.error("Une erreur est survenue", error);
+        }
+    }
             
     return (
         <main className="container mx-auto px-24 lg:px-16 py-5 text-white">
@@ -151,7 +182,7 @@ const GlobalSettings = () => {
                             planning={selectedPlanning}
                             onClose={closePlanning}
                             updatePlanningInList={updatePlanningInList}
-                            handlePlanningDeletationModal={closePlanning}
+                            handlePlanningDeletationModal={handlePlanningDeletationModal}
                         />
                     )}
                 </div>

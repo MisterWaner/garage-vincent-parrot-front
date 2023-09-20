@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import CarModal from "../../../../components/Modals/CarModal.jsx";
 import AddCar from "../../../../components/Modals/AddCar.jsx";
+import Pagination from "../../../../components/Pagination/Pagination.jsx";
 import Button from "../../../../components/Button/Button";
 import Axios from "../../../../api/axios.js";
 import { deleteCarDataFromBack } from "../../../../services/deleteDataFromBack.js";
@@ -11,13 +12,12 @@ const CarsSettings = () => {
     const [searchResults, setSearchResults] = useState("");
     const [cars, setCars] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [carsPerPage] = useState(10);
+    const [carsPerPage] = useState(5);
 
-    const getCarsForCurrentPage = () => {
-        const indexOfLastCar = currentPage * carsPerPage;
-        const indexOfFirstCar = indexOfLastCar - carsPerPage;
-        return cars.slice(indexOfFirstCar, indexOfLastCar);
-    };
+    // Pagination
+    const indexOfLastCar = currentPage * carsPerPage;
+    const indexOfFirstCar = indexOfLastCar - carsPerPage;
+    const currentCars = cars.slice(indexOfFirstCar, indexOfLastCar);
 
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -149,7 +149,7 @@ const CarsSettings = () => {
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-red-02">
-                            {getCarsForCurrentPage()
+                            {currentCars
                                 .filter((car) => {
                                     return searchResults.toLowerCase() === ""
                                         ? car
@@ -207,34 +207,12 @@ const CarsSettings = () => {
                         />
                     )}
                 </div>
-                <div className="flex justify-center mt-5">
-                    <nav>
-                        <ul className="flex items-center">
-                            {Array.from(
-                                {
-                                    length: Math.ceil(
-                                        cars.length / carsPerPage
-                                    ),
-                                },
-                                (_, index) => (
-                                    <li key={index + 1}>
-                                        <button
-                                            className={`bg-yellow-02 text-black-02 px-2 py-1 rounded-md mx-1 ${
-                                                currentPage === index + 1
-                                                    ? "font-bold"
-                                                    : ""
-                                            } hover:bg-red-02`}
-                                            onClick={() => paginate(index + 1)}
-                                        >
-                                            {index + 1}
-                                        </button>
-                                    </li>
-                                )
-                            )}
-                        </ul>
-                    </nav>
-                </div>
             </section>
+            <Pagination
+                itemsPerPage={carsPerPage}
+                totalItems={cars.length}
+                paginate={paginate}
+            />
             {toggleModal && (
                 <AddCar
                     toggleModal={closeModal}

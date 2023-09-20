@@ -4,7 +4,12 @@ import { XCircleIcon } from "@heroicons/react/24/solid";
 import Button from "../Button/Button";
 import { updatePlanningDataToBack } from "../../services/updateDataToBack";
 
-const PlanningModal = ({ planning, onClose, updatePlanningInList }) => {
+const PlanningModal = ({
+    planning,
+    onClose,
+    updatePlanningInList,
+    handlePlanningDeletationModal,
+}) => {
     const [showInputs, setShowInputs] = useState(false);
     const [dayInput, setDayInput] = useState(planning.day);
     const [morningOpeningHourInput, setMorningOpeningHourInput] = useState(
@@ -59,7 +64,21 @@ const PlanningModal = ({ planning, onClose, updatePlanningInList }) => {
         setShowInputs(!showInputs);
     };
 
-    const handleDeleteButtonClick = () => {};
+    const handleDeleteButtonClick = async () => {
+        if (planning) {
+            try {
+                console.log(planning);
+                handlePlanningDeletationModal(planning);
+
+                console.log(planning);
+                setTimeout(() => {
+                    onClose();
+                }, 1000);
+            } catch (error) {
+                console.error("Une erreur est survenue", error);
+            }
+        }
+    };
 
     useEffect(() => {
         document.body.style.overflow = "hidden";
