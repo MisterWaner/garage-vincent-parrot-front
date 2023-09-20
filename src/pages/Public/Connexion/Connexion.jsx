@@ -11,6 +11,7 @@ const Connexion = () => {
     const navigate = useNavigate();
 
     const [role, setRole] = useState("");
+    const [id, setId] = useState("");
 
     const {
         register,
@@ -23,18 +24,20 @@ const Connexion = () => {
 
     useEffect(() => {
         const storedToken = Cookies.get("token");
+        const storedId = Cookies.get("id");
 
-        if (storedToken) {
+        if (storedToken && storedId) {
             const storedRole = Cookies.get("role");
             setRole(storedRole);
+            setId(storedId);
 
             navigate(
                 `/${
-                    storedRole === "Admin" ? "admin" : "employee"
+                    storedRole === "Admin" ? `admin/${id}` : `employee/${id}`
                 }`
             );
         }
-    }, [navigate]);
+    }, [navigate, role, id]);
 
     const handleLogin = async (data, event) => {
         event.preventDefault();
@@ -45,7 +48,7 @@ const Connexion = () => {
             console.log(res.data);
 
             if (res.status === 200) {
-                const { token, role, firstname } = res.data;
+                const { token, role, firstname, id } = res.data;
 
                 Cookies.set("token", token, {
                     secure: true,
@@ -62,9 +65,14 @@ const Connexion = () => {
                     sameSite: "None",
                     expires: 1,
                 });
+                Cookies.set("id", id, {
+                    secure: true,
+                    sameSite: "None",
+                    expires: 1,
+                });
 
                 const route = `/${
-                    role === "Admin" ? "admin" : "employee"
+                    role === "Admin" ? `admin/${id}` : `employee/${id}`
                 }`;
                 navigate(route);
             } else {

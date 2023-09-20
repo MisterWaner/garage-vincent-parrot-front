@@ -27,7 +27,6 @@ import AdminLayout from "./pages/Layout/AdminLayout";
 import EmployeeLayout from "./pages/Layout/EmployeeLayout";
 
 const App = () => {
-
     const router = createBrowserRouter(
         createRoutesFromElements(
             <>
@@ -43,7 +42,9 @@ const App = () => {
                 </Route>
 
                 {/* Admin routes */}
-                <Route path={`/admin`} element={<AdminLayout />}>
+                <Route
+                    path={`/admin/:id`}
+                    element={<AdminLayout />}>
                     <Route index element={<AdminSettings />} />
                     <Route path="mails" element={<Mail />} />
                     <Route path="reviews" element={<TestimonialsSettings />} />
@@ -53,7 +54,7 @@ const App = () => {
                 </Route>
 
                 {/* Employee routes */}
-                <Route path="/employee" element={<EmployeeLayout />}>
+                <Route path="/employee/:id" element={<EmployeeLayout />}>
                     <Route index element={<PersonnalSettings />} />
                     <Route path="car-park" element={<CarsSettings />} />
                     <Route path="mails" element={<Mail />} />

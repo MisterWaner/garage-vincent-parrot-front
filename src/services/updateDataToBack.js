@@ -7,7 +7,7 @@ const updateCarsDataToBack = async (carId, formData) => {
                 "Content-Type": "application/json",
             },
         });
-        
+
         if (res.status === 200) {
             console.log(res.data, "Les données ont bien été envoyées");
         } else {
@@ -22,13 +22,12 @@ const updateCarsDataToBack = async (carId, formData) => {
 };
 
 const updateUsersDataToBack = async (userId, formData) => {
-
     try {
         const res = await Axios.put(`/api/users/${userId}`, formData, {
             headers: {
                 "Content-Type": "application/json",
             },
-        })
+        });
 
         if (res.status === 200) {
             console.log(res.data, "Les données ont bien été envoyées");
@@ -41,7 +40,7 @@ const updateUsersDataToBack = async (userId, formData) => {
         console.error("Une erreur est survenue", error);
         throw error;
     }
-}
+};
 
 const updatePlanningDataToBack = async (planningId, formData) => {
     try {
@@ -64,5 +63,30 @@ const updatePlanningDataToBack = async (planningId, formData) => {
     }
 };
 
+const updatePasswordDataToBack = async (userId, formData) => {
+    try {
+        const res = await Axios.put(`/api/users/${userId}/reset-password`, formData, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
 
-export { updateCarsDataToBack, updateUsersDataToBack, updatePlanningDataToBack };
+        if (res.status === 200) {
+            console.log(res.data, "Les données ont bien été envoyées");
+            return res.data;
+        } else {
+            console.error(res, "Une erreur est SURVENUE");
+            throw new Error("Les données n'ont pas pu être envoyées");
+        }
+    } catch (error) {
+        console.error("Une erreur est survenue", error);
+        throw error;
+    }
+}
+
+export {
+    updateCarsDataToBack,
+    updateUsersDataToBack,
+    updatePlanningDataToBack,
+    updatePasswordDataToBack,
+};

@@ -1,40 +1,42 @@
 /* eslint-disable react/prop-types */
-import Button from "../Button/Button";
-import {passwordSchema} from "../../Validations/passwordValidation.js";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { updateUsersDataToBack } from "../../services/updateDataToBack.js";
+import { passwordSchema } from "../../Validations/passwordValidation";
+import { updatePasswordDataToBack } from "../../services/updateDataToBack";
+//import Axios from "../../api/axios";
+import Button from "../Button/Button";
+import Cookies from "js-cookie";
 
 const UpdatePasswordForm = () => {
     const {
         register,
         handleSubmit,
-        reset,
         formState: { errors },
+        reset,
     } = useForm({
         resolver: yupResolver(passwordSchema),
         mode: "onSubmit",
     });
+    const userId = Cookies.get("id");
+
+    const onInvalid = (errors) => console.error(errors);
 
     const onSubmit = async (data, event) => {
         event.preventDefault();
-        console.log(data);
-
         const passwordFormData = new FormData(event.target);
-
         try {
-            
-            const res = await updateUsersDataToBack(passwordFormData);
-            console.log(res);
+            const res = await updatePasswordDataToBack(userId, passwordFormData)
 
-            
-            alert("Le mot de passe a bien été mis à jour");
-            reset();
-            
+            if (res.status === 200) {
+                reset();
+                console.log("data envoyé:", res.data);
+                alert("Le mot de passe a bien été mis à jour");
+            }
+
         } catch (error) {
-            console.log("Erreur d'envoi des données au back", error);
-            alert(
-                "Il y a eut un problème pendant la mise à jour du mot de passe, recommencez ulterieurement"
+            console.error(
+                "Une erreur est survenue lors de la mise à jour du mot de passe",
+                error
             );
         }
     };
@@ -42,7 +44,7 @@ const UpdatePasswordForm = () => {
     return (
         <div className="w-full">
             <form
-                onSubmit={handleSubmit(onSubmit)}
+                onSubmit={handleSubmit(onSubmit, onInvalid)}
                 className="w-full h-full flex flex-col items-center lg:items-start"
             >
                 <div className="flex flex-col mb-4 w-full">

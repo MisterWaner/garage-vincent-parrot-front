@@ -20,28 +20,28 @@ const SideNavAdmin = () => {
     const Links = [
         {
             name: "Accueil administrateur",
-            link: `/admin`,
+            link: `/admin/${Cookies.get("id")}`,
             icon: <UserCircleIcon />,
         },
-        { name: "Mail", link: `/admin/mails`, icon: <InboxIcon /> },
+        { name: "Mail", link: `/admin/${Cookies.get("id")}/mails`, icon: <InboxIcon /> },
         {
             name: "Gestion globale",
-            link: `/admin/globals`,
+            link: `/admin/${Cookies.get("id")}/globals`,
             icon: <Cog6ToothIcon />,
         },
         {
             name: "Gestion des utilisateurs",
-            link: `/admin/users`,
+            link: `/admin/${Cookies.get("id")}/users`,
             icon: <UserGroupIcon />,
         },
         {
             name: "Gestion des vehicules",
-            link: `/admin/car-park`,
+            link: `/admin/${Cookies.get("id")}/car-park`,
             icon: <TruckIcon />,
         },
         {
             name: "Gestion des témoignages",
-            link: `/admin/reviews`,
+            link: `/admin/${Cookies.get("id")}/reviews`,
             icon: <ChatBubbleOvalLeftEllipsisIcon />,
         },
     ];
@@ -60,6 +60,7 @@ const SideNavAdmin = () => {
             Cookies.remove("token");
             Cookies.remove("role");
             Cookies.remove("firstname");
+            Cookies.remove("id");
 
             navigate("/login");
 

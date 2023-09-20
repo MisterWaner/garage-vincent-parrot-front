@@ -18,18 +18,18 @@ const SideNavEmployee = () => {
     const Links = [
         {
             name: "Accueil Employé",
-            link: `/employee`,
+            link: `/employee/${Cookies.get("id")}`,
             icon: <UserCircleIcon />,
         },
-        { name: "Mail", link: `/employee/mails`, icon: <InboxIcon /> },
+        { name: "Mail", link: `/employee/${Cookies.get("id")}/mails`, icon: <InboxIcon /> },
         {
             name: "Gestion des vehicules",
-            link: `/employee/car-park`,
+            link: `/employee/${Cookies.get("id")}/car-park`,
             icon: <TruckIcon />,
         },
         {
             name: "Gestion des commentaires",
-            link: `/employee/reviews`,
+            link: `/employee/${Cookies.get("id")}/reviews`,
             icon: <ChatBubbleOvalLeftEllipsisIcon />,
         },
     ];
@@ -47,6 +47,7 @@ const SideNavEmployee = () => {
         Cookies.remove("token");
         Cookies.remove("role");
         Cookies.remove("firstname");
+        Cookies.remove("id");
         navigate("/login");
     };
 
