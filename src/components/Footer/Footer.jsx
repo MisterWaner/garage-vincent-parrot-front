@@ -7,6 +7,7 @@ import {
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 
+//Footer component to use in the app
 const Footer = () => {
     const emailAddress = "garage-vincent.parrot@example.com";
     const phoneNumber = "+33612345678";

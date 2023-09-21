@@ -5,6 +5,7 @@ import AddPlanningForm from "../../../../components/AddPlanningForm/AddPlanningF
 import Pagination from "../../../../components/Pagination/Pagination";
 import PlanningModal from "../../../../components/Modals/PlanningModal";
 
+//Component to display the global settings
 const GlobalSettings = () => {
     const [plannings, setPlannings] = useState([]);
     const [selectedPlanning, setSelectedPlanning] = useState(null);
@@ -24,6 +25,7 @@ const GlobalSettings = () => {
     };
 
     useEffect(() => {
+        // Get the plannings data from the back
         const getPlanningsDataFromBack = async () => {
             try {
                 const res = await Axios.get("/api/plannings");
@@ -36,8 +38,8 @@ const GlobalSettings = () => {
                     console.error(res, "Une erreur est survenue");
                 }
 
+                // Sort the plannings by day
                 const data = res.data;
-
                 const indexJours = {
                     Lundi: 1,
                     Mardi: 2,
@@ -48,32 +50,32 @@ const GlobalSettings = () => {
                     Dimanche: 7,
                     Fériés: 8
                 };
-
                 data.sort((a, b) => indexJours[a.day] - indexJours[b.day])
                 
+                // Set the plannings
                 setPlannings(data);
             } catch (error) {
                 console.error("Une erreur est survenue", error);
             }
         };
-
         getPlanningsDataFromBack();
     }, []);
 
     const openPlanning = (planning) => {
         setSelectedPlanning(planning);
     };
-
     const closePlanning = () => {
         setSelectedPlanning(null);
     };
 
+    // Add a planning to the list
     const addPlanningToList = (newPlanning) => {
         console.log(newPlanning);
         setPlannings((prevPlannings) => [...prevPlannings, newPlanning]);
         console.log("Ajout d'un nouveau planning: ", newPlanning);
     };
 
+    // Update a planning in the list
     const updatePlanningInList = (updatedPlanning) => {
         console.log(updatedPlanning);
         const updatedPlannings = plannings.map((planning) => {
@@ -84,6 +86,7 @@ const GlobalSettings = () => {
         console.log("Mise à jour du planning: ", updatedPlanning);
     };
 
+    // Delete a planning in the list
     const handlePlanningDeletationModal = async (planning) => { 
         try {
             const res = await Axios.delete(`/api/plannings/${planning.id}`);

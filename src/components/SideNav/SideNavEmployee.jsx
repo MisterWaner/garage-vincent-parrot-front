@@ -2,7 +2,6 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Cookies from "js-cookie";
-
 import {
     ArrowRightOnRectangleIcon,
     InboxIcon,
@@ -13,6 +12,7 @@ import {
     Bars3Icon,
 } from "@heroicons/react/24/solid";
 
+//Component to display the side nav for the employee
 const SideNavEmployee = () => {
     //Links data table
     const Links = [

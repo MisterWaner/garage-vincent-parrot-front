@@ -7,6 +7,7 @@ import Pagination from "../../../../components/Pagination/Pagination";
 import Axios from "../../../../api/axios";
 import { deleteUserDataFromBack } from "../../../../services/deleteDataFromBack";
 
+//Component to display the employees settings page
 const EmployeesSettings = () => {
     const [toggleModal, setToggleModal] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
@@ -23,10 +24,10 @@ const EmployeesSettings = () => {
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
+
     const openModal = () => {
         setToggleModal(true);
     };
-
     const closeModal = () => {
         setToggleModal(false);
     };
@@ -34,12 +35,12 @@ const EmployeesSettings = () => {
     const openUser = (user) => {
         setSelectedUser(user);
     };
-
     const closeUser = () => {
         setSelectedUser(null);
     };
 
     useEffect(() => {
+        // Get users data from back
         const getUsersDataFromBack = async () => {
             try {
                 const res = await Axios.get("/api/users");
@@ -52,21 +53,23 @@ const EmployeesSettings = () => {
                     console.error(res, "Une erreur est survenue");
                 }
 
+                // Set users data in state
                 setUsers(res.data);
             } catch (error) {
                 console.error("Une erreur est survenue", error);
             }
         };
-
         getUsersDataFromBack();
     }, []);
 
+    // Add new user to list
     const addNewUserToList = (newUser) => {
         console.log(newUser);
         setUsers((prevUsers) => [...prevUsers, newUser]);
         console.log("Ajout d'un nouvel utilisateur : ", newUser);
     };
 
+    // Update user in list
     const updateUserInList = (updatedUser) => {
         console.log(updatedUser);
         const updatedUsers = users.map((user) => {
@@ -78,6 +81,7 @@ const EmployeesSettings = () => {
         setUsers(updatedUsers);
     };
 
+    // Delete user in list
     const handleUserDeletionModal = async (user) => {
         try {
             const res = await deleteUserDataFromBack(user.id);

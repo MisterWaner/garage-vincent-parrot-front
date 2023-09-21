@@ -1,4 +1,6 @@
-// eslint-disable-next-line react/prop-types
+/* eslint-disable react/prop-types */
+
+//Button component to use in the app, it takes a name and a function as props
 const Button = ({ name, fn }) => {
     return (
         <button

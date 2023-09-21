@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 import {StarIcon} from "@heroicons/react/24/solid";
 
+//Component to display a testimonial
 const Testimonial = ({review}) => {
 
+    //Function to render the stars
     const renderStars = () => {
         const stars = [];
         const totalStars = 5;
@@ -21,6 +23,7 @@ const Testimonial = ({review}) => {
         }
         return stars;
     }
+    
     return (
         <>
             <div className="flex flex-col justify-between px-10 rounded-md max-w-md sm:mx-auto h-full bg-yellow-02 text-black-02 ">

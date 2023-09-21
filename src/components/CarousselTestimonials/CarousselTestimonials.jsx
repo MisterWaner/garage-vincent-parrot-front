@@ -3,6 +3,7 @@ import Testimonial from "../Testimonial/Testimonial";
 import Carousel from "nuka-carousel";
 import Axios from "../../api/axios";
 
+//Caroussel component to display the testimonials in the home page
 const CarousselTestimonials = () => {
     const [reviews, setReviews] = useState([]);
 

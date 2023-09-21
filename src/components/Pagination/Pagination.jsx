@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 
+//Component to display a pagination
 const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
     const pageNumbers = [];
 

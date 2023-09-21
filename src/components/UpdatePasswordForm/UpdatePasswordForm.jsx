@@ -3,10 +3,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { passwordSchema } from "../../Validations/passwordValidation";
 import { updatePasswordDataToBack } from "../../services/updateDataToBack";
-//import Axios from "../../api/axios";
 import Button from "../Button/Button";
 import Cookies from "js-cookie";
 
+//Component to display a form to update the password
 const UpdatePasswordForm = () => {
     const {
         register,
@@ -18,8 +18,6 @@ const UpdatePasswordForm = () => {
         mode: "onSubmit",
     });
     const userId = Cookies.get("id");
-
-    const onInvalid = (errors) => console.error(errors);
 
     const onSubmit = async (_, event) => {
         event.preventDefault();
@@ -44,7 +42,7 @@ const UpdatePasswordForm = () => {
     return (
         <div className="w-full">
             <form
-                onSubmit={handleSubmit(onSubmit, onInvalid)}
+                onSubmit={handleSubmit(onSubmit)}
                 className="w-full h-full flex flex-col items-center lg:items-start"
             >
                 <div className="flex flex-col mb-4 w-full">

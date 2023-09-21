@@ -5,9 +5,11 @@ import CarousselTestimonials from "../../../components/CarousselTestimonials/Car
 import ReviewFormModal from "../../../components/Modals/ReviewFormModal";
 import Logo from "../../../assets/logo-garage.png"
 
+// Component to display the home page
 const Home = () => {
     const [showModal, setShowModal] = useState(false);
 
+    // Function to toggle the modal to add a review
     const toggleModal = () => {
         setShowModal(!showModal);
     };

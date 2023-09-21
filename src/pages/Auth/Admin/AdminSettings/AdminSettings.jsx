@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
-
 import UpdatePasswordForm from "../../../../components/UpdatePasswordForm/UpdatePasswordForm";
 
+//Component to display the admin settings page
 const AdminSettings = () => {
     const [firstname, setFirstname] = useState("");
 
+    //Get the firstname of the user
     useEffect(() => {
         const storedFirstname = Cookies.get("firstname");
         setFirstname(storedFirstname);

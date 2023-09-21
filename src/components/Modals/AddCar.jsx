@@ -1,13 +1,14 @@
+/* eslint-disable react/prop-types */
 import { useEffect } from "react";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { carSchema } from "../../Validations/carValidation.js";
 import Button from "../Button/Button.jsx";
-
 import { sendCarsDataToBack } from "../../services/sendDataToBack.js";
 
-// eslint-disable-next-line react/prop-types
+
+//Component to add a car to the list
 const AddCar = ({ toggleModal, addCarToList }) => {
     const {
         register,

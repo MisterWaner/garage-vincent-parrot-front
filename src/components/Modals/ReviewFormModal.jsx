@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect } from "react";
 import { sendReviewDataToBack } from "../../services/sendDataToBack.js";
 import Button from "../Button/Button";
@@ -6,7 +7,8 @@ import { reviewSchema } from "../../Validations/reviewValidation.js";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-// eslint-disable-next-line react/prop-types
+
+//Component to send a review to the backend
 const ReviewFormModal = ({ toggleModal }) => {
     const {
         register,

@@ -1,5 +1,6 @@
 import Axios from "../api/axios";
 
+//Fonction to update car data to back
 const updateCarsDataToBack = async (carId, formData) => {
     try {
         const res = await Axios.put(`/api/cars/${carId}`, formData, {
@@ -21,6 +22,7 @@ const updateCarsDataToBack = async (carId, formData) => {
     }
 };
 
+//Fonction to update user data to back
 const updateUsersDataToBack = async (userId, formData) => {
     try {
         const res = await Axios.put(`/api/users/${userId}`, formData, {
@@ -42,6 +44,7 @@ const updateUsersDataToBack = async (userId, formData) => {
     }
 };
 
+//Fonction to update planning data to back
 const updatePlanningDataToBack = async (planningId, formData) => {
     try {
         const res = await Axios.put(`/api/plannings/${planningId}`, formData, {
@@ -63,6 +66,7 @@ const updatePlanningDataToBack = async (planningId, formData) => {
     }
 };
 
+//Fonction to update password data to back
 const updatePasswordDataToBack = async (userId, formData) => {
     try {
         const res = await Axios.put(`/api/users/${userId}/reset-password`, formData, {

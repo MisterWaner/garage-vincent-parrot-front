@@ -6,6 +6,7 @@ import Axios from "../../../../api/axios";
 import formatBackendDate from "../../../../services/formatBackendDate";
 import { deleteReviewDataFromBack } from "../../../../services/deleteDataFromBack";
 
+// Component to display the testimonials
 const TestimonialsSettings = () => {
     const [reviews, setReviews] = useState([]);
     const [selectedReview, setSelectedReview] = useState(null);
@@ -21,11 +22,13 @@ const TestimonialsSettings = () => {
         setCurrentPage(pageNumber);
     }
 
+    // Count the number of unvalidated reviews
     const countUnvalidatedReviews = () => {
         return reviews.filter((review) => !review.isValidated).length;
     }
 
     useEffect(() => {
+        // Get the reviews from the back
         const getReviewsDataFromBack = async () => {
             try {
                 const res = await Axios.get("/api/reviews");
@@ -38,20 +41,22 @@ const TestimonialsSettings = () => {
                     console.error(res, "Une erreur est survenue");
                 }
 
+                // Sort the reviews by date
                 setReviews(res.data);
             } catch (error) {
                 console.error("Une erreur est survenue", error);
             }
         }
-
         getReviewsDataFromBack();
     }, []);
 
+    // Format the date to display it in french format
     const formatDate = (date) => {
         const jsDate = formatBackendDate(date);
         return jsDate.toLocaleDateString("fr-FR");
     }
 
+    // Mark a review as validated
     const markReviewAsValidated = async (reviewId) => {
         const updatedReviews = reviews.map((review) => {
             if (review.id === reviewId) {
@@ -75,6 +80,7 @@ const TestimonialsSettings = () => {
         }
     };
 
+    // Delete a review
     const handleReviewDeletionModal = async (review) => {
         try {
             const res = await deleteReviewDataFromBack(review.id);
@@ -92,11 +98,9 @@ const TestimonialsSettings = () => {
         }
     }
     
-
     const openReview = (review) => {
         setSelectedReview(review);
     };
-
     const closeReview = () => {
         setSelectedReview(null);
     };

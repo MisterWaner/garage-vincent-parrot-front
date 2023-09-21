@@ -2,7 +2,6 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Cookies from "js-cookie";
-
 import {
     ArrowRightOnRectangleIcon,
     InboxIcon,
@@ -15,6 +14,7 @@ import {
     Bars3Icon,
 } from "@heroicons/react/24/solid";
 
+//Component to display the side nav for the admin
 const SideNavAdmin = () => {
     //Links data table
     const Links = [

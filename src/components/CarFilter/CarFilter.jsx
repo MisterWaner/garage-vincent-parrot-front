@@ -3,6 +3,7 @@ import { useState } from "react";
 import FilterSlider from "../FilterSlider/FilterSlider";
 import Button from "../Button/Button";
 
+//Car filter component to filter the cars in the cars page
 const CarFilter = ({ filterCars, resetFilters }) => {
     const [filters, setFilters] = useState({
         priceRange: [0, 300000],
@@ -21,7 +22,6 @@ const CarFilter = ({ filterCars, resetFilters }) => {
             ...filters,
             [filterName]: newValue,
         });
-        //applyFilters();
     };
 
     const handleSelectChange = (event) => {

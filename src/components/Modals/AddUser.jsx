@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect } from "react";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import { useForm } from "react-hook-form";
@@ -6,7 +7,8 @@ import { userSchema } from "../../Validations/userValidation.js";
 import { sendUsersDataToBack } from "../../services/sendDataToBack.js";
 import Button from "../Button/Button.jsx";
 
-// eslint-disable-next-line react/prop-types
+
+//Component to add a user to the list
 const AddUser = ({ toggleModal, addUserToList }) => {
     const {
         register,

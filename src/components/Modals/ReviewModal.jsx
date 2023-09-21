@@ -4,6 +4,8 @@ import { XCircleIcon } from "@heroicons/react/24/solid";
 import Button from "../Button/Button";
 import formatBackendDate from "../../services/formatBackendDate";
 
+
+//Component to display a review, validate it and delete it
 const ReviewModal = ({ review, onClose, handleReviewDeletionModal, markReviewAsValidated }) => {
     useEffect(() => {
         document.body.style.overflow = "hidden";
@@ -12,6 +14,7 @@ const ReviewModal = ({ review, onClose, handleReviewDeletionModal, markReviewAsV
         };
     }, []);
 
+    //Function to format the date in french format
     const formatDate = (date) => {
         if (date) {
             const jsDate = formatBackendDate(date);
@@ -20,6 +23,7 @@ const ReviewModal = ({ review, onClose, handleReviewDeletionModal, markReviewAsV
         return "";
     };
 
+    //Function to delete a review
     const handleReviewDeleteButtonClick = async () => {
         if (review) {
             try {
@@ -36,6 +40,7 @@ const ReviewModal = ({ review, onClose, handleReviewDeletionModal, markReviewAsV
         }
     }
 
+    //Function to validate a review
     const handleReviewValidationButtonClick = async () => {
         if (review) {
             try {

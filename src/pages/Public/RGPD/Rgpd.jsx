@@ -1,3 +1,4 @@
+//Component to display the RGPD page
 const RgpdPage = () => {
     return (
         <main className="max-w-[1440px] mx-auto mt-[160px] p-5 text-white">

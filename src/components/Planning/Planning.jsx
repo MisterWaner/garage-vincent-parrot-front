@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Axios from "../../api/axios";
 
+//Component to display the planning in the footer
 const Planning = () => {
     const [plannings, setPlannings] = useState([]);
 

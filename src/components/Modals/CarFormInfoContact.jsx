@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { askForCarSchema } from "../../Validations/askForCarValidation.js";
 
+//Component to ask for more info about a car
 const CarFormInfoContact = ({ toggleModal }) => {
     const {
         register,

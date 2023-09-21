@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/logo-garage.png";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 
+//Header component to use in the public pages
 const Header = () => {
     const Links = [
         { name: "Mécanique", link: "/mecanique" },

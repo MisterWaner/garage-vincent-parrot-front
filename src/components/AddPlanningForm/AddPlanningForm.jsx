@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { planningSchema } from "../../Validations/planningValidation.js";
 import { sendPlanningDataToBack } from "../../services/sendDataToBack.js";
 
+//Component to add a planning to the list
 const AddPlanningForm = ({ addPlanningToList }) => {
     const {
         register,

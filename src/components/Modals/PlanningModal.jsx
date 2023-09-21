@@ -4,6 +4,7 @@ import { XCircleIcon } from "@heroicons/react/24/solid";
 import Button from "../Button/Button";
 import { updatePlanningDataToBack } from "../../services/updateDataToBack";
 
+//Component to display a planning, update it and delete it
 const PlanningModal = ({
     planning,
     onClose,
@@ -26,6 +27,7 @@ const PlanningModal = ({
     );
     const [isModified, setIsModified] = useState(false);
 
+    //Function to update a planning
     const handleUpdate = async () => {
         const updatedPlanning = {
             ...planning,
@@ -55,6 +57,7 @@ const PlanningModal = ({
         }
     };
 
+    //Function to handle the update button
     const handleButtonUpdateClick = () => {
         if (!isModified) {
             setIsModified(true);
@@ -64,6 +67,7 @@ const PlanningModal = ({
         setShowInputs(!showInputs);
     };
 
+    //Function to handle the delete button
     const handleDeleteButtonClick = async () => {
         if (planning) {
             try {

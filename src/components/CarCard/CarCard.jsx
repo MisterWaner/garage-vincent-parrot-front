@@ -3,6 +3,7 @@ import { useState } from "react";
 import Button from "../Button/Button";
 import CarFormInfoContact from "../Modals/CarFormInfoContact";
 
+//Car card component to display the cars in the cars page
 const CarCard = ({ car }) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggleModal = () => {

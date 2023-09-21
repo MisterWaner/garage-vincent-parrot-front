@@ -6,6 +6,7 @@ import Button from "../../../../components/Button/Button";
 import Axios from "../../../../api/axios.js";
 import { deleteCarDataFromBack } from "../../../../services/deleteDataFromBack.js";
 
+//Component to display the car settings page
 const CarsSettings = () => {
     const [toggleModal, setToggleModal] = useState(false);
     const [selectedCar, setSelectedCar] = useState(null);
@@ -22,10 +23,10 @@ const CarsSettings = () => {
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
+
     const openModal = () => {
         setToggleModal(true);
     };
-
     const closeModal = () => {
         setToggleModal(false);
     };
@@ -33,12 +34,12 @@ const CarsSettings = () => {
     const openCar = (car) => {
         setSelectedCar(car);
     };
-
     const closeCar = () => {
         setSelectedCar(null);
     };
 
     useEffect(() => {
+        //Get the cars data from the back
         const getCarsDataFromBack = async () => {
             try {
                 const res = await Axios.get("/api/cars");
@@ -50,7 +51,7 @@ const CarsSettings = () => {
                 } else {
                     console.error(res, "Une erreur est survenue");
                 }
-
+                //Set the cars data in the state
                 setCars(res.data);
             } catch (error) {
                 console.error("Une erreur est survenue", error);
@@ -60,11 +61,13 @@ const CarsSettings = () => {
         getCarsDataFromBack();
     }, []);
 
+    //Function to add a new car to the list
     const addNewCarToList = (newCar) => {
         setCars((prevCars) => [...prevCars, newCar]);
         console.log("Ajout d'un nouveau véhicule : ", newCar);
     };
 
+    //Function to update a car in the list
     const updtateCarInList = (updatedCar) => {
         const updatedCars = cars.map((car) => {
             return car.immat === updatedCar.immat
@@ -74,6 +77,7 @@ const CarsSettings = () => {
         setCars(updatedCars);
     };
 
+    //Function to delete a car in the list
     const handleCarDeletionModal = async (car) => {
         try {
             const res = await deleteCarDataFromBack(car.immat);

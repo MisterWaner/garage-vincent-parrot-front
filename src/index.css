@@ -1,7 +1,9 @@
+/* Implement tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Custom styles */
 html, body, #root {
    height: 100%;
    scroll-behavior: smooth;

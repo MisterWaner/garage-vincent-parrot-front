@@ -5,6 +5,7 @@ import Button from "../Button/Button";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import { updateCarsDataToBack } from "../../services/updateDataToBack";
 
+//Component to display details of cars and update them in the list
 const CarModal = ({
     car,
     onClose,

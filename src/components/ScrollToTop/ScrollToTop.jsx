@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaCircleArrowUp } from "react-icons/fa6";
 
+//Component to scroll to the top of the page
 const ScrollToTop = () => {
     const [showButton, setShowButton] = useState(false);
 

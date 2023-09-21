@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { contactSchema } from "../../../Validations/contactValidation.js";
 import { sendMailDataToBack } from "../../../services/sendDataToBack";
 
+// Component to display the contact page
 const Contact = () => {
     const {
         register,
@@ -14,8 +15,6 @@ const Contact = () => {
         resolver: yupResolver(contactSchema),
         mode: "onTouched",
     });
-
-    const onInvalid = (errors) => console.error(errors);
 
     const onSubmit = async (data, event) => {
         event.preventDefault();
@@ -40,7 +39,7 @@ const Contact = () => {
             </h1>
             <section className="w-1/2 mx-auto h-full mt-6 mb-12 lg:w-[500px]">
                 <form
-                    onSubmit={handleSubmit(onSubmit, onInvalid)}
+                    onSubmit={handleSubmit(onSubmit)}
                     action=""
                     className="w-full h-full flex flex-col items-center"
                 >

@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-
 /* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import { updateUsersDataToBack } from "../../services/updateDataToBack";
 
+//Component to display a user, update it and delete it
 const UserModal = ({ user, onClose, updateUserInList, handleUserDeletionModal }) => {
     const [showInputs, setShowInputs] = useState(false);
     const [firstnameInput, setFirstnameInput] = useState(user.firstname);

@@ -7,9 +7,9 @@ import { connectionSchema } from "../../../Validations/connectionValidation.js";
 import Cookies from "js-cookie";
 import Axios from "../../../api/axios.js";
 
+// Component to display the connection page
 const Connexion = () => {
     const navigate = useNavigate();
-
     const [role, setRole] = useState("");
 
     const {
@@ -21,21 +21,20 @@ const Connexion = () => {
         mode: "onTouched",
     });
 
+    // Check if the user is already connected
     useEffect(() => {
         const storedToken = Cookies.get("token");
 
+        // If the user is already connected, redirect him to the right page
         if (storedToken) {
             const storedRole = Cookies.get("role");
             setRole(storedRole);
 
-            navigate(
-                `/${
-                    storedRole === "Admin" ? `admin` : `employee`
-                }`
-            );
+            navigate(`/${storedRole === "Admin" ? `admin` : `employee`}`);
         }
     }, [navigate]);
 
+    // Function to handle the login
     const handleLogin = async (data, event) => {
         event.preventDefault();
         console.log(data);
@@ -44,6 +43,7 @@ const Connexion = () => {
             const res = await Axios.post("/api/login", data);
             console.log(res.data);
 
+            // If the login is successful, store the token and redirect the user to the right page
             if (res.status === 200) {
                 const { token, role, firstname, id } = res.data;
 
@@ -68,9 +68,7 @@ const Connexion = () => {
                     expires: 1,
                 });
 
-                const route = `/${
-                    role === "Admin" ? `admin` : `employee`
-                }`;
+                const route = `/${role === "Admin" ? `admin` : `employee`}`;
                 navigate(route);
             } else {
                 console.error(res, "Échec de l'authentification");

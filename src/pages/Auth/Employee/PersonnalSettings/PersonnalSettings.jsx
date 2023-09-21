@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
-
 import UpdatePasswordForm from "../../../../components/UpdatePasswordForm/UpdatePasswordForm";
 
+//Component to display the personnal settings of the employee
 const PersonnalSettings = () => {
-
     const [firstname, setFirstname] = useState("");
 
+    //Get the firstname of the user
     useEffect(() => {
         const storedFirstname = Cookies.get("firstname");
         setFirstname(storedFirstname);
@@ -31,7 +31,7 @@ const PersonnalSettings = () => {
                 <h2 className="text-lg text-center font-bold mb-4">
                     Modifier mon mot de passe
                 </h2>
-                <UpdatePasswordForm userId={""} userRoleId={""}/>
+                <UpdatePasswordForm />
             </section>
         </main>
     );

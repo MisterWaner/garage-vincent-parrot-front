@@ -1,5 +1,6 @@
 import Axios from "../api/axios";
 
+//Fonction to delete car data from back
 const deleteCarDataFromBack = async (carId) => {
     try {
         const res = await Axios.delete(`/api/cars/${carId}`);
@@ -16,6 +17,7 @@ const deleteCarDataFromBack = async (carId) => {
     }
 };
 
+//Fonction to delete user data from back
 const deleteUserDataFromBack = async (userId) => {
     try {
         const res = await Axios.delete(`/api/users/${userId}`);
@@ -33,6 +35,7 @@ const deleteUserDataFromBack = async (userId) => {
     }
 }
 
+//Fonction to delete mail data from back
 const deleteMailDataFromBack = async (mailId) => {
     try {
         const res = await Axios.delete(`/api/mails/${mailId}`);
@@ -49,6 +52,7 @@ const deleteMailDataFromBack = async (mailId) => {
     }
 }
 
+//Fonction to delete review data from back
 const deleteReviewDataFromBack = async (reviewId) => {
     try {
         const res = await Axios.delete(`/api/reviews/${reviewId}`);
@@ -65,6 +69,7 @@ const deleteReviewDataFromBack = async (reviewId) => {
     }
 }
 
+//Fonction to delete planning data from back
 const deletePlanningDataFromBack = async (planningId) => {
     try {
         const res = await Axios.delete(`/api/plannings/${planningId}`);

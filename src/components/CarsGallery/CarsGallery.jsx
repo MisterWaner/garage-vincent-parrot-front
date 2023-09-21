@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import CarCard from "../CarCard/CarCard";
 
+//Cars gallery component to display the cars card in the cars page
 const CarsGallery = ({ cars }) => {
     const [isLoading, setIsLoading] = useState(true);
 

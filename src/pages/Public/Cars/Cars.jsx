@@ -3,10 +3,12 @@ import Axios from "../../../api/axios";
 import CarsGallery from "../../../components/CarsGallery/CarsGallery";
 import CarFilter from "../../../components/CarFilter/CarFilter";
 
+// Component to display the cars
 const Cars = () => {
     const [cars, setCars] = useState([]);
     const [filteredCars, setFilteredCars] = useState([]);
 
+    // Get the cars data from the back
     const getCarsDataFromBack = async () => {
         try {
             const res = await Axios.get("/api/cars");
@@ -26,6 +28,7 @@ const Cars = () => {
         getCarsDataFromBack();
     }, []);
 
+    // Function to filter the cars
     const filterCars = (appliedFilters) => {
         console.log("Critères de filtrage :", appliedFilters);
         const filtered = cars.filter((car) => {
@@ -47,6 +50,7 @@ const Cars = () => {
         console.log(filtered, "Les véhicules filtrés");
     };
 
+    // Function to reset the filters
     const resetFilters = () => {
         setFilteredCars(cars);
     };

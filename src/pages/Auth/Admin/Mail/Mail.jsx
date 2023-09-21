@@ -6,6 +6,7 @@ import Axios from "../../../../api/axios";
 import { deleteMailDataFromBack } from "../../../../services/deleteDataFromBack";
 import formatBackendDate from "../../../../services/formatBackendDate";
 
+// Component to display the mails
 const Mail = () => {
     const [selectedMail, setSelectedMail] = useState(null);
     const [mails, setMails] = useState([]);
@@ -21,11 +22,13 @@ const Mail = () => {
         setCurrentPage(pageNumber);
     };
 
+    // Count the number of unread mails
     const countUnreadMails = () => {
         return mails.filter((mail) => !mail.isRead).length;
     };
 
     useEffect(() => {
+        // Get the mails data from the back
         const getMailsDataFromBack = async () => {
             try {
                 const res = await Axios.get("/api/mails");
@@ -38,6 +41,7 @@ const Mail = () => {
                     console.error(res, "Une erreur est survenue");
                 }
 
+                //Set the mails
                 setMails(res.data);
             } catch (error) {
                 console.error("Une erreur est survenue", error);
@@ -47,11 +51,13 @@ const Mail = () => {
         getMailsDataFromBack();
     }, []);
 
+    // Format the date to display it in french format
     const formatDate = (date) => {
         const jsDate = formatBackendDate(date);
         return jsDate.toLocaleDateString("fr-FR");
     };
 
+    // Function to mark a mail as read
     const markMailAsRead = async (mailId) => {
         const updatedMails = mails.map((mail) => {
             if (mail.id === mailId) {
@@ -78,6 +84,7 @@ const Mail = () => {
         }
     };
 
+    // Function to handle the mail deletion
     const handleMailDeletionModal = async (mail) => {
         try {
             const res = await deleteMailDataFromBack(mail.id);

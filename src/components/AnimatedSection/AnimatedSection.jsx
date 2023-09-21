@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
+//Component to animate the sections of home page mécanique and carrosserie using framer-motion
 const sectionVariant = {
     hidden: { opacity: 0, scale: 0 },
     visible: {

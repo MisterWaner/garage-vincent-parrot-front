@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import AnimatedSection from "../../../components/AnimatedSection/AnimatedSection"
 
+// Component to display the carrosserie page
 const Carrosserie = () => {
     return (
         <main className="text-white max-w-[1440px] mx-auto mt-[160px] p-5">

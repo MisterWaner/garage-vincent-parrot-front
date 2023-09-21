@@ -4,6 +4,7 @@ import { XCircleIcon } from "@heroicons/react/24/solid";
 import Button from "../Button/Button";
 import formatBackendDate from "../../services/formatBackendDate";
 
+//Component to display a mail, answer it and delete it
 const MailModal = ({ mail, onClose, handleMailDeletionModal }) => {
     useEffect(() => {
         document.body.style.overflow = "hidden";
