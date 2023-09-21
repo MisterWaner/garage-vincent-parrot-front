@@ -18,7 +18,7 @@ const SideNavEmployee = () => {
     const Links = [
         {
             name: "Accueil Employé",
-            link: `/employee/${Cookies.get("id")}`,
+            link: `/employee`,
             icon: <UserCircleIcon />,
         },
         { name: "Mail", link: `/employee/mails`, icon: <InboxIcon /> },

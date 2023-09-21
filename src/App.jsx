@@ -45,7 +45,7 @@ const App = () => {
                 <Route
                     path={`/admin`}
                     element={<AdminLayout />}>
-                    <Route index path=":id" element={<AdminSettings />} />
+                    <Route index element={<AdminSettings />} />
                     <Route path="mails" element={<Mail />} />
                     <Route path="reviews" element={<TestimonialsSettings />} />
                     <Route path="car-park" element={<CarsSettings />} />
@@ -55,7 +55,7 @@ const App = () => {
 
                 {/* Employee routes */}
                 <Route path="/employee" element={<EmployeeLayout />}>
-                    <Route index path=":id" element={<PersonnalSettings />} />
+                    <Route index element={<PersonnalSettings />} />
                     <Route path="car-park" element={<CarsSettings />} />
                     <Route path="mails" element={<Mail />} />
                     <Route path="reviews" element={<TestimonialsSettings />} />

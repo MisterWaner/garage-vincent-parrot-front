@@ -20,7 +20,7 @@ const SideNavAdmin = () => {
     const Links = [
         {
             name: "Accueil administrateur",
-            link: `/admin/${Cookies.get("id")}`,
+            link: `/admin`,
             icon: <UserCircleIcon />,
         },
         { name: "Mail", link: `/admin/mails`, icon: <InboxIcon /> },
