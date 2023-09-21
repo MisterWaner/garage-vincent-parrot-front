@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { askForCarSchema } from "../../Validations/askForCarValidation.js";
 
 //Component to ask for more info about a car
-const CarFormInfoContact = ({ toggleModal }) => {
+const CarFormInfoContact = ({ toggleModal, reference }) => {
     const {
         register,
         reset,
@@ -58,7 +58,7 @@ const CarFormInfoContact = ({ toggleModal }) => {
                         <input
                             type="text"
                             id="ref"
-                            defaultValue={"ref"}
+                            defaultValue={reference}
                             placeholder="Référence du véhicule"
                             name="ref"
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"

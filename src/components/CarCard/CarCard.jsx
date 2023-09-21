@@ -9,6 +9,8 @@ const CarCard = ({ car }) => {
     const toggleModal = () => {
         setIsOpen(!isOpen);
     };
+
+    const reference = car.reference;
     return (
         <>
             {/*<!-- Car card component --> */}
@@ -58,7 +60,7 @@ const CarCard = ({ car }) => {
                     <Button name="En savoir plus" fn={() => toggleModal()} />
                 </div>
             </div>
-            {isOpen && <CarFormInfoContact toggleModal={toggleModal} />}
+            {isOpen && <CarFormInfoContact toggleModal={toggleModal} reference={reference} />}
             {/*<!-- End car card component --> */}
         </>
     );
