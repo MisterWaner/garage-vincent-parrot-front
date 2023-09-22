@@ -29,7 +29,7 @@ const Header = () => {
                 <ul
                     className={`w-full h-fit absolute lg:static transition-all duration-300 ease-in flex flex-col items-center py-5 space-y-5 z-[-1] list-none lg:z-auto lg:flex-row lg:space-y-0 lg:py-0 lg:justify-around ${
                         open
-                            ? "top-[160px] backdrop-blur-sm bg-yellow-02/30"
+                            ? "top-[160px] backdrop-blur-sm bg-yellow-02/30 lg:bg-transparent"
                             : "top-[-490px] backdrop-blur-none"
                     }`}
                 >
