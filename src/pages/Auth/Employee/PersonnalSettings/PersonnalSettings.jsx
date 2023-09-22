@@ -18,7 +18,7 @@ const PersonnalSettings = () => {
                 Bonjour {firstname}, bienvenue dans votre compte
             </h1>
             <section className="mt-10">
-                <p>
+                <p className="w-full text-sm md:text-base">
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea
                     iusto est quo autem, cumque quos? Recusandae amet minus
                     corrupti illo, sed optio eaque, ad veritatis quasi debitis

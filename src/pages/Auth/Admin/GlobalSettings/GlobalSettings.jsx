@@ -113,7 +113,7 @@ const GlobalSettings = () => {
                 <h2 className="text-lg text-yellow-02 underline decoration-red-02 my-6 lg:text-2xl">
                     Gestion des horaires d&apos;ouverture
                 </h2>
-                <div className="mt-10 p-4 bg-white text-black-02 w-full lg:w-3/5 rounded-md">
+                <div className="mt-10 p-4 bg-white text-black-02 w-full min-w-fit lg:w-3/5 rounded-md">
                     <h3 className="text-lg text-center font-bold mb-4">
                         Ajouter un horaire d&apos;ouverture
                     </h3>
@@ -121,7 +121,7 @@ const GlobalSettings = () => {
                 </div>
             </section>
             <section className="mt-10">
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto rounded-md">
                     <table className="min-w-full divide-y divide-red-02 bg-yellow-02">
                         <thead>
                             <tr>

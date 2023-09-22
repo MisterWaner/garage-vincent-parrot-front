@@ -36,7 +36,7 @@ const Home = () => {
                                 <span className="text-red-02">.</span> Parrot -
                                 L&apos;Art de la Conduite
                             </h2>
-                            <p className="mt-2 text-lg">
+                            <p className="mt-2 text-sm md:text-base">
                                 Chez{" "}
                                 <span className="text-yellow-02 italic font-bold underline underline-offset-2 decoration-red-02">
                                     Garage V. Parrot
@@ -65,7 +65,7 @@ const Home = () => {
                             <h2 className="text-xl text-yellow-02 underline underline-offset-2 decoration-red-02 lg:text-2xl">
                                 Notre Univers Automobile
                             </h2>
-                            <p className="mt-2 text-lg">
+                            <p className="mt-2 text-sm md:text-base">
                                 Notre garage est bien plus qu&apos;un endroit où
                                 l&apos;on répare des voitures. C&apos;est un
                                 lieu où les moteurs chantent, où les problèmes
@@ -93,7 +93,7 @@ const Home = () => {
                             <h2 className="text-xl text-yellow-02 underline underline-offset-2 decoration-red-02 lg:text-2xl">
                                 L&apos;Expertise qui Fait la Différence
                             </h2>
-                            <p className="mt-2 text-lg">
+                            <p className="mt-2 text-sm md:text-base">
                                 Notre équipe de mécaniciens et de spécialistes
                                 en carrosserie est composée de passionnés de
                                 l&apos;automobile. Chacun d&apos;entre nous est
@@ -120,7 +120,7 @@ const Home = () => {
                             <h2 className="text-xl text-yellow-02 underline underline-offset-2 decoration-red-02 lg:text-2xl">
                                 Votre Satisfaction, Notre Priorité
                             </h2>
-                            <p className="mt-2 text-lg">
+                            <p className="mt-2 text-sm md:text-base">
                                 Chez{" "}
                                 <span className="text-yellow-02 italic font-bold underline underline-offset-2 decoration-red-02">
                                     Garage V. Parrot
@@ -150,7 +150,7 @@ const Home = () => {
                             <h2 className="text-xl text-yellow-02 underline underline-offset-2 decoration-red-02 lg:text-2xl">
                                 Au-Delà de la Route
                             </h2>
-                            <p className="mt-2 text-lg">
+                            <p className="mt-2 text-sm md:text-base">
                                 Pour nous, les voitures sont plus qu&apos;un
                                 simple métier, elles sont une passion qui nous
                                 anime. Nous organisons régulièrement des
@@ -193,7 +193,7 @@ const Home = () => {
                             <h2 className="text-xl text-yellow-02 underline underline-offset-2 decoration-red-02 lg:text-2xl">
                                 Contactez-nous
                             </h2>
-                            <p className="mt-2 text-lg">
+                            <p className="mt-2 text-sm md:text-base">
                                 Que vous soyez un passionné de voitures
                                 classiques, un conducteur au quotidien ou
                                 simplement à la recherche d&apos;un service de

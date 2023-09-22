@@ -17,7 +17,7 @@ const Mecanique = () => {
                         <h2 className="text-xl text-yellow-02 underline underline-offset-2 decoration-red-02 lg:text-2xl">
                             Notre Expertise Mécanique
                         </h2>
-                        <p className="mt-2 text-lg">
+                        <p className="mt-2 text-sm md:text-base">
                             Avec des années d&apos;expérience dans le domaine de la
                             mécanique automobile, notre équipe de mécaniciens
                             qualifiés est prête à relever tous les défis mécaniques.
@@ -38,7 +38,7 @@ const Mecanique = () => {
                         <h2 className="text-xl text-yellow-02 underline underline-offset-2 decoration-red-02 lg:text-2xl">
                             Qualité et Engagement
                         </h2>
-                        <p className="mt-2 text-lg">
+                        <p className="mt-2 text-sm md:text-base">
                             La qualité est notre credo. Nous nous engageons à
                             n&apos;utiliser que des pièces de rechange de haute
                             qualité et les dernières technologies pour réparer et
@@ -58,7 +58,7 @@ const Mecanique = () => {
                         <h2 className="text-xl text-yellow-02 underline underline-offset-2 decoration-red-02 lg:text-2xl">
                             Service Personnalisé
                         </h2>
-                        <p className="mt-2 text-lg">
+                        <p className="mt-2 text-sm md:text-base">
                             Chez <span className="text-yellow-02 font-bold underline underline-offset-2 italic decoration-red-02">Garage V. Parrot</span>, nous considérons chaque client
                             comme un membre de notre famille automobile. Notre
                             approche personnalisée signifie que nous écoutons
@@ -79,7 +79,7 @@ const Mecanique = () => {
                         <h2 className="text-xl text-yellow-02 underline underline-offset-2 decoration-red-02 lg:text-2xl">
                             Nous Contacter
                         </h2>
-                        <p className="mt-2 text-lg">
+                        <p className="mt-2 text-sm md:text-base">
                             N&apos;hésitez pas à nous{" "}
                             <span className="bg-yellow-02 text-red-02 p-1 rounded-md">
                                 <Link to="/contact">contacter</Link>

@@ -106,8 +106,8 @@ const EmployeesSettings = () => {
             </h1>
             <section className="mt-10">
                 <div>
-                    <p>Sur cette page vous pouvez: </p>
-                    <ul className="mt-4 list-inside list-disc">
+                    <p className="w-full text-sm md:text-base">Sur cette page vous pouvez: </p>
+                    <ul className="mt-4 list-inside list-disc text-sm md:text-base">
                         <li className="px-4">
                             Créer un compte employé ou administrateur
                         </li>
@@ -123,7 +123,7 @@ const EmployeesSettings = () => {
 
                 <div className="mt-4 w-2/3 md:w-1/3">
                     <div className="flex flex-col mb-4 w-full">
-                        <label htmlFor="search">Rechercher</label>
+                        <label className="w-full text-sm md:text-base" htmlFor="search">Rechercher</label>
                         <input
                             type="search"
                             name="search"
@@ -141,7 +141,7 @@ const EmployeesSettings = () => {
                 </div>
             </section>
             <section className=" mt-10">
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto rounded-md">
                     <table className="min-w-full divide-y divide-red-02 bg-yellow-02">
                         <thead>
                             <tr>

@@ -44,7 +44,7 @@ const CarFilter = ({ filterCars, resetFilters }) => {
     };
 
     return (
-        <div className="w-full rounded-md flex flex-col gap-4 bg-white text-black-02 p-5 md:w-2/3 md:h-fit lg:gap-0 lg:w-1/3">
+        <div className="w-full rounded-md flex flex-col gap-4 bg-white text-black-02 p-5 md:w-2/3 md:h-fit lg:gap-0 lg:w-1/3 text-sm md:text-base">
             <h2 className="text-2xl text-center">Filtrer les véhicules</h2>
             {/* Filtre par prix */}
             <FilterSlider

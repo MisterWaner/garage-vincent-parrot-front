@@ -4,7 +4,7 @@ import { Slider } from "@mui/material";
 //Filter slider component to use in the car filter component
 const FilterSlider = ({ id, label, min, max, step, value, onChange }) => {
     return (
-        <div className="grid grid-cols-1 grid-rows-4 w-full md:w-1/2 md:mx-auto">
+        <div className="grid grid-cols-1 grid-rows-4 w-full md:w-1/2 md:mx-auto text-sm md:text-base">
             <div className="self-center">
                 <span className="font-bold">{label} :</span>
             </div>

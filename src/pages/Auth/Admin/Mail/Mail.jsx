@@ -118,13 +118,13 @@ const Mail = () => {
                 Messages
             </h1>
             <section className="mt-10">
-                <p>
+                <p className="w-full text-sm md:text-base">
                     Vous avez actuellement {mails.length} messages dont{" "}
                     {countUnreadMails()} non lus.
                 </p>
             </section>
             <section className="mt-10">
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto rounded-md">
                     <table className="min-w-full divide-y divide-red-02 bg-yellow-02">
                         <thead>
                             <tr>

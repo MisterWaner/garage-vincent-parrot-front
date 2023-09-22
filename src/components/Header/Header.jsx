@@ -20,8 +20,8 @@ const Header = () => {
     };
 
     return (
-        <header className="text-yellow-02 w-full fixed z-40 top-0 left-0">
-            <nav className="lg:flex items-center justify-between bg-black-02">
+        <header className="text-red-02 w-full fixed z-40 top-0 left-0">
+            <nav className="lg:flex items-center justify-between bg-yellow-02/30">
                 <Link to="/" onClick={() => setOpen(false)}>
                     <img className="w-40" src={Logo} alt="logo-garage" />
                 </Link>
@@ -29,7 +29,7 @@ const Header = () => {
                 <ul
                     className={`w-full h-fit absolute lg:static transition-all duration-300 ease-in flex flex-col items-center py-5 space-y-5 z-[-1] list-none lg:z-auto lg:flex-row lg:space-y-0 lg:py-0 lg:justify-around ${
                         open
-                            ? "top-[155px] backdrop-blur-sm"
+                            ? "top-[160px] backdrop-blur-sm bg-yellow-02/30"
                             : "top-[-490px] backdrop-blur-none"
                     }`}
                 >

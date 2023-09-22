@@ -18,7 +18,7 @@ const AdminSettings = () => {
                 Bonjour {firstname}, bienvenue dans votre compte
             </h1>
             <section className="mt-10">
-                <p>
+                <p className="w-full text-sm md:text-base">
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea
                     iusto est quo autem, cumque quos? Recusandae amet minus
                     corrupti illo, sed optio eaque, ad veritatis quasi debitis
@@ -27,7 +27,7 @@ const AdminSettings = () => {
                     odio, facilis voluptate nulla itaque?
                 </p>
             </section>
-            <section className="mt-10 p-4 bg-white text-black-02 w-full lg:w-1/2 xl:w-1/3 rounded-md">
+            <section className="mt-10 p-4 bg-white text-black-02 w-full min-w-fit lg:w-1/2 xl:w-1/3 rounded-md">
                 <h2 className="text-lg text-center font-bold mb-4">
                     Modifier mon mot de passe
                 </h2>

@@ -1,11 +1,11 @@
 //Component to display the RGPD page
 const RgpdPage = () => {
     return (
-        <main className="max-w-[1440px] mx-auto mt-[160px] p-5 text-white">
+        <main className="max-w-[1440px] mx-auto mt-[160px] p-5 text-white text-sm md:text-base">
             <h1 className="text-center text-2xl text-yellow-02 underline my-6 sm:text-3xl lg:text-5xl decoration-red-02">
                 Politique de confidentialité
             </h1>
-            <section className="mt-10 md:text-lg">
+            <section className="mt-10">
                 <p className="my-4">
                     Les informations recueillies sur ce formulaire sont
                     enregistrées dans un fichier informatisé par{" "}

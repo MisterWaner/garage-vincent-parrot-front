@@ -29,7 +29,7 @@ const Testimonial = ({review}) => {
             <div className="flex flex-col justify-between px-10 rounded-md max-w-md sm:mx-auto h-full bg-yellow-02 text-black-02 ">
                 <div className="relative p-6">
                     <figure className="relative z-10">
-                        <blockquote className="p-6 text-lg leading-relaxed">
+                        <blockquote className="p-6 text-sm md:text-base leading-relaxed">
                             <p>{review.comment}</p>
                         </blockquote>
                         <figcaption className="flex flex-col items-start gap-2 p-6 pt-0 text-sm">

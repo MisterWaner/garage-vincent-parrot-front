@@ -26,7 +26,7 @@ const ScrollToTop = () => {
         <>
             {showButton && (
                 <button
-                    className="fixed bottom-4 right-4 text-yellow-02 border border-solid border-red-02 bg-red-02 rounded-full z-50"
+                    className="fixed bottom-4 right-4 text-yellow-02 border border-solid border-red-02 bg-red-02 rounded-full z-40"
                     onClick={scrollToTop}
                 >
                     <FaCircleArrowUp className="w-full h-full" size={30} />
