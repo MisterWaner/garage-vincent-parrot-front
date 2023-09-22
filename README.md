@@ -21,23 +21,23 @@ Admins can add, edit and delete cars. They can also see the messages of the cust
 
 ## Installation
 
-    1. **Clone the repository**
+1. **Clone the repository**
 
-        ```shell
-        $ git clone https://github.com/MisterWaner/garage-vincent-parrot-front.git
-        ```
+    ```shell
+    $ git clone https://github.com/MisterWaner/garage-vincent-parrot-front.git
+    ```
 
-    2. **Install the dependencies**
+2. **Install the dependencies**
 
-        ```shell
-        $ npm install
-        ```
+    ```shell
+    $ npm install
+    ```
 
-    3. **Start the project**
+3. **Start the project**
 
-        ```shell
-        $ npm run dev
-        ```
+    ```shell
+    $ npm run dev
+    ```
 
 ## 📅 When ?
 This project was done for my final evaluation during my web development studies in 2023.
