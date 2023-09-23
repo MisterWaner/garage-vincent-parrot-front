@@ -5,6 +5,8 @@ import {
     RouterProvider,
 } from "react-router-dom";
 
+import { useEffect } from "react";
+
 //Pages
 import Home from "./pages/Public/Home/Home";
 import Contact from "./pages/Public/Contact/Contact";
@@ -27,6 +29,9 @@ import AdminLayout from "./pages/Layout/AdminLayout";
 import EmployeeLayout from "./pages/Layout/EmployeeLayout";
 
 const App = () => {
+
+    const body = document.querySelector("body");
+
     const router = createBrowserRouter(
         createRoutesFromElements(
             <>
@@ -42,9 +47,7 @@ const App = () => {
                 </Route>
 
                 {/* Admin routes */}
-                <Route
-                    path={`/admin`}
-                    element={<AdminLayout />}>
+                <Route path={`/admin`} element={<AdminLayout />}>
                     <Route index element={<AdminSettings />} />
                     <Route path="mails" element={<Mail />} />
                     <Route path="reviews" element={<TestimonialsSettings />} />
@@ -63,6 +66,17 @@ const App = () => {
             </>
         )
     );
+
+    useEffect(() => {
+        const unlisten = router.subscribe(({ pathname }) => {
+            if (pathname !== window.location.pathname) {
+                window.scrollTo(0, 0);
+                body.classList.add("scroll-auto")
+            }
+        });
+
+        return unlisten;
+    }, [router, body]);
 
     return (
         <>
