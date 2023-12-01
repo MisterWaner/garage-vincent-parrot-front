@@ -32,11 +32,11 @@ const CarsGallery = ({ cars }) => {
                             ? "véhicules trouvés"
                             : "véhicule trouvé"}
                     </p>
-                            <div className="flex flex-wrap gap-6">
-                                {cars.map((car) => (
-                                                        <CarCard key={car.immat} car={car} />
-                                                    ))}
-                            </div>
+                    <div className="flex flex-wrap gap-6">
+                        {cars.map((car) => (
+                            <CarCard key={car.immat} car={car} />
+                        ))}
+                    </div>
                 </>
             )}
         </div>

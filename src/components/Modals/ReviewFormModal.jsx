@@ -141,6 +141,8 @@ const ReviewFormModal = ({ toggleModal }) => {
                             name="rating"
                             type="number"
                             id="rating"
+                            max={5}
+                            min={0}
                             className="bg-yellow-02 rounded-sm text-black-02 p-2"
                             {...register("rating")}
                         />
